@@ -11851,6 +11851,9 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+/*
+  这里可以改变整个页面（包括正文部分和首页部分）的页边距和最大宽度。
+*/
 @media screen and (min-width: 1024px) {
   .ct-body .container {
     max-width: 2500px;
