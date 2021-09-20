@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第九章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第九章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/12</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E7%BB%93%E5%90%88%E5%85%B6%E4%BB%96%E7%BB%98%E5%9B%BE%E6%8A%80%E6%9C%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>结合其他绘图技术</h1>
+<p>Cocoa 旨在与 OS X 中的其他技术很好地集成。许多技术都打包为 Objective-C 框架，这使将它们包含在 Cocoa 中变得容易。但是，您不限于使用 Objective-C 框架。Cocoa 本身内部使用 Quartz 来实现大多数绘图例程。您可以轻松地从代码中使用 Quartz 和其他基于 C 的技术，例如 OpenGL 和 QuickTime。</p>
+<p>以下各节提供有关如何整合 OS X 中可用的一些更重要的绘图技术的信息。</p>
+<h2><a id="%E5%9C%A8%E6%82%A8%E7%9A%84%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8quartz" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在您的应用程序中使用 Quartz</h2>
+<p>您可以使用 Cocoa 绘制的所有内容也可以使用 Quartz 绘制。Cocoa 绘制代码本身使用 Quartz 基元来呈现内容。Cocoa 只是添加了一个面向对象的界面，在某些情况下还可以为您完成更多工作。Cocoa 并没有为所有 Quartz 行为提供类。在 Cocoa 中不提供功能的情况下，您可能需要直接使用 Quartz。</p>
+<p>有关 Quartz 功能及其使用方法的一般信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066">Quartz 2D 编程指南</a>。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8quartz%E5%8A%9F%E8%83%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 Quartz 功能</h3>
+<p>由于 Quartz 实现了 Cocoa 所不具备的某些功能，因此有时您可能需要使用 Cocoa 代码中的 Quartz 函数调用。因为 Cocoa 在大多数绘图操作中都使用 Quartz，所以混合使用这两种技术不是问题。</p>
+<p>Cocoa 不直接支持的某些 Quartz 功能包括：</p>
+<ul>
+<li>层数</li>
+<li>渐变（也称为阴影）</li>
+<li>图像数据源</li>
+<li>混合模式（Cocoa 改用合成模式）</li>
+<li>遮罩图像</li>
+<li>透明层（用于对内容进行分组）</li>
+<li>任意模式（图像除外）</li>
+</ul>
+<p>在每种情况下，您都可以自由使用 Quartz函数来利用这些功能。某些功能可以产生数据类型，然后可以将其合并回 Cocoa 对象。（例如，您可以使用图像数据源获取 Quartz 图像（<code>CGImageRef</code>），然后可以使用该图像来创建 <code>NSImage</code> 对象。）但是，在某些情况下，您可能需要使用 Quartz 函数执行整个操作。</p>
+<p>有关如何使用 Quartz 功能的信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066">Quartz 2D 编程指南</a>。</p>
+<h3><a id="%E5%9B%BE%E5%BD%A2%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形类型转换</h3>
+<p>在 Cocoa 和 Quartz 代码之间来回切换时，可能需要对数据类型进行某种转换。表 9-1 显示了一些基本 Quartz 类型中与 Cocoa 相等的类型。</p>
+<p>表 9-1：简单数据类型转换</p>
+<table>
+<thead>
+<tr>
+<th>Cocoa 类型</th>
+<th>Quartz 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSRect</code></td>
+<td><code>CGRect</code></td>
+</tr>
+<tr>
+<td><code>NSPoint</code></td>
+<td><code>CGPoint</code></td>
+</tr>
+<tr>
+<td><code>NSSize</code></td>
+<td><code>CGSize</code></td>
+</tr>
+</tbody>
+</table>
+<p>尽管在每种情况下结构布局都是相同的，但是您不能将 Quartz 数据类型直接传递给需要 Cocoa 类型的方法。要进行转换，必须将一种类型转换为另一种类型，如以下示例所示：</p>
+<pre><code class="language-objective-c">NSRect cocoaRect = *(NSRect*)&amp;myCGRect;
+</code></pre>
+<p>表 9-2 列出了 Cocoa 类，它们近似于特定 Quartz 数据类型的行为。在某些情况下，Cocoa 类包装了其 Quartz 对应对象的一个实例，但这并不总是正确的。对于阴影，Quartz 不提供用于管理阴影参数的直接数据类型。您必须使用几种不同的功能在 Quartz 中设置阴影属性。就层而言，没有与 Cocoa 相等的类型。</p>
+<p>表 9-2：等效的 Cocoa 和 Quartz 类型</p>
+<table>
+<thead>
+<tr>
+<th>Cocoa 类型</th>
+<th>Quartz 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSGraphicsContext</code></td>
+<td><code>CGContextRef</code></td>
+</tr>
+<tr>
+<td><code>NSAffineTransform</code></td>
+<td><code>CGAffineTransform</code></td>
+</tr>
+<tr>
+<td><code>NSColor</code></td>
+<td><code>CGColorRef</code>, <code>CGPatternRef</code></td>
+</tr>
+<tr>
+<td><code>NSFont</code></td>
+<td><code>CGFontRef</code></td>
+</tr>
+<tr>
+<td><code>NSGlyph</code></td>
+<td><code>CGGlyph</code></td>
+</tr>
+<tr>
+<td><code>NSImage</code></td>
+<td><code>CGImageRef</code></td>
+</tr>
+<tr>
+<td><code>NSBezierPath</code></td>
+<td><code>CGPathRef</code></td>
+</tr>
+<tr>
+<td><code>NSShadow</code></td>
+<td><code>CGSize</code>, <code>CGColorRef</code></td>
+</tr>
+<tr>
+<td><code>NSGradient</code> (OS X v10.5 and later)</td>
+<td><code>CGShadingRef</code></td>
+</tr>
+<tr>
+<td>No equivalent</td>
+<td><code>CGLayerRef</code></td>
+</tr>
+</tbody>
+</table>
+<p>因为 Cocoa 类型通常包装等效的 Quartz 类型，所以您应该查看 Cocoa 参考文档以获取有关如何获取等效的 Quartz对象（如果有）的信息。在许多情况下，Cocoa类 不能直接访问其 Quartz 等效项，因此您可能需要基于 Cocoa 对象中的信息来创建 Quartz 类型，例如在以下情况下：</p>
+<ul>
+<li>要从 <code>NSBezierPath</code> 对象创建 <code>CGPathRef</code> 对象，必须使用 Quartz 函数调用重绘路径。使用 <code>NSBezierPath</code> 的 <code>elementAtIndex:associatedPoints:</code> 方法检索路径的点信息。</li>
+<li>要在 <code>CGColorRef</code> 和 <code>NSColor</code> 对象之间来回转换，请从一个对象获取颜色分量值，然后使用这些值创建另一个对象。创建颜色时，您可能还需要指定该颜色的颜色空间。在大多数情况下，Quartz 和 Cocoa 支持相同的色彩空间。如果颜色使用自定义颜色空间，则可以使用可用的 ICC 配置文件数据来创建适当的颜色空间对象。</li>
+<li>要从 Quartz 图像创建 <code>NSImage</code> 对象，您需要间接创建图像对象。有关如何执行此操作的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIJIGIG">使用 Quartz 映像创建 NSImage</a>。</li>
+<li>要创建 Quartz 阴影，可以在调用 <code>CGContextSetShadow</code> 或 <code>CGContextSetShadowWithColor</code> 之前，使用 <code>NSShadow</code> 的方法检索颜色，偏移和模糊半径值。</li>
+</ul>
+<h3><a id="%E8%8E%B7%E5%8F%96quartz%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取 Quartz 图形上下文</h3>
+<p>使用任何 Quartz 功能之前，您需要获取 Quartz 图形上下文（<code>CGContextRef</code>）进行绘制。对于基于视图的绘图，您可以通过将 <code>graphicsPort</code> 消息发送到当前 Cocoa 图形上下文（<code>NSGraphicsContext</code>）来获取上下文。该方法返回一个指针，您可以将该指针转换为 <code>CGContextRef</code> 数据类型，并在后续的 Quartz 函数调用中使用。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8quartz%E5%88%9B%E5%BB%BA-cocoa%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 Quartz 创建 Cocoa 图形上下文</h3>
+<p>在 OS X v10.4 和更高版本中，如果您有现有的 Quartz 图形上下文，则可以使用 <code>NSGraphicsContext</code> 的 <code>graphicsContextWithGraphicsPort:flipped:</code> 类方法创建 Cocoa 图形上下文对象。然后，您可以使用 <code>setCurrentContext:</code> 类方法使该上下文成为当前上下文。</p>
+<h3><a id="%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E7%8A%B6%E6%80%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改图形状态</h3>
+<p>在混合对 Quartz 和 Cocoa 的调用时，请记住，许多 Cocoa 类维护通常与 Quartz 图形上下文相关联的某些图形属性的本地副本。当此类准备好绘制其内容时，它将修改图形状态以匹配其本地设置，绘制其内容，然后将图形状态恢复为其原始设置。如果您使用 Quartz 更改由 Cocoa 类在本地维护的属性，则可能不会使用您的更改。</p>
+<p>如果使用 <code>NSGraphicsContext</code> 类对图形状态进行更改，则所做的更改将立即传达到 Quartz 图形上下文，反之亦然。如果未使用 <code>NSGraphicsContext</code> 设置属性，则应假定该属性在对象本地。例如，与当前上下文中存储的默认（或全局）属性相比，<code>NSBezierPath</code> 类更喜欢图形属性的本地副本。</p>
+<h2><a id="%E5%9C%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8opengl" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在应用程序中使用 OpenGL</h2>
+<p>OpenGL 是一种开放的，跨平台的，三维（3D）图形标准，具有广泛的行业支持。OpenGL 通过提供成熟的，有据可查的图形处理管道来支持当前和将来的硬件加速器的抽象，从而简化了编写实时 2D 或 3D 图形应用程序的任务。</p>
+<p>以下各节简要介绍了将 OpenGL 绘图调用合并到您的 Cocoa 应用程序中的技术。有关 OS X 中 OpenGL 支持的更多信息，以及有关如何将 OpenGL 集成到 Cocoa 应用程序中的详细示例，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987">Mac OpenGL 编程指南</a>。有关 OpenGL 的一般信息，请参见 <a href="https://developer.apple.com/library/archive/navigation/redirect.html#//apple_ref/doc/uid/TP30000943-TP30000424-TP30000549">Reference Library &gt; Graphics &amp; Imaging &gt; OpenGL</a>。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8nsopenglview" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 NSOpenGLView</h3>
+<p>进行 OpenGL 绘制的一种方法是将 OpenGL 视图（<code>NSOpenGLView</code> 的一个实例）添加到窗口中。OpenGL 视图的行为与其他任何视图一样，但是还存储指向 OpenGL 图形上下文对象（<code>NSOpenGLContext</code> 的实例）的指针。在视图中存储图形上下文消除了代码在每个绘制周期内重新创建上下文的需要，这可能会很昂贵。</p>
+<p>要在程序中使用 OpenGL 视图，请创建 <code>NSOpenGLView</code> 的子类，然后以编程方式或使用 Interface Builder 将该视图添加到窗口中。以编程方式创建 OpenGL 视图时，可以指定要与该视图关联的像素格式对象。像素格式对象（<code>NSOpenGLPixelFormat</code> 的实例）指定OpenGL图形上下文的缓冲区和其他渲染属性。有关不同像素格式属性的含义的信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987">Mac OpenGL 编程指南</a>。</p>
+<p>如果使用 Interface Builder 将视图添加到窗口中，请使用检查器为视图指定像素格式信息。Interface Builder 使您可以指定一些像素属性，但不能全部。为了支持其他属性，您必须在运行时使用 <code>setPixelFormat:</code> 方法替换视图的像素格式对象。</p>
+<blockquote>
+<p>重要说明：如果以编程方式设置像素格式属性，则必须在使用 <code>openGLContext</code> 方法获取 OpenGL 图形上下文之前进行设置。图形上下文是使用当前像素格式信息创建的，如果该信息发生更改，则不会重新创建。 另外，您可以随时使用 <code>setOpenGLContext:</code> 方法更改 OpenGL 图形上下文。</p>
+</blockquote>
+<p>与其他视图一样，您可以使用 OpenGL 视图的 <code>drawRect:</code> 方法绘制视图的内容。调用 <code>drawRect:</code> 方法时，将自动配置环境以使用与视图关联的 OpenGL 图形上下文进行绘制。</p>
+<p>与其他图形上下文不同，完成绘制后，无需还原以前的 OpenGL 图形上下文。OpenGL 不会维护一堆需要弹出的图形上下文，因为不再需要它们。相反，它仅使用最新的上下文。</p>
+<h3><a id="%E5%88%9B%E5%BB%BAopengl%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建 OpenGL 图形上下文</h3>
+<p>在创建 OpenGL 图形上下文对象之前，首先要创建一个像素格式对象（<code>NSOpenGLPixelFormat</code>）。在创建像素格式对象时指定的属性决定了图形上下文的渲染行为。一旦有了有效的像素格式对象，就可以创建和初始化 OpenGL 图形上下文对象。</p>
+<p>清单 9-1 尝试创建一个支持全屏，双缓冲，32 位图形的 OpenGL 图形上下文。如果所需的渲染器可用，则返回上下文。否则，返回 <code>nil</code>。</p>
+<p>清单 9-1：创建一个 OpenGL 图形上下文</p>
+<pre><code class="language-objective-c">- (NSOpenGLContext*)getMyContext
+{
+    // Specify the pixel-format attributes.
+    NSOpenGLPixelFormatAttribute attrs[] =
+    {
+        NSOpenGLPFAFullScreen,
+        NSOpenGLPFADoubleBuffer,
+        NSOpenGLPFADepthSize, 32,
+        0
+    };
+ 
+    // Create the pixel-format object.
+    NSOpenGLContext* myContext = nil;
+    NSOpenGLPixelFormat* pixFmt = [[NSOpenGLPixelFormat alloc]
+                                     initWithAttributes:attrs];
+ 
+    // If the pixel format is valid, create the OpenGL context.
+    if (pixFmt != nil)
+    {
+        myContext = [[NSOpenGLContext alloc] initWithFormat:pixFmt
+                                 shareContext:NO];
+    }
+ 
+    [pixFmt release];
+    return myContext;
+}
+</code></pre>
+<p>由于 OpenGL 图形上下文的创建取决于当前可用的渲染器，因此您的代码应始终在尝试使用所需对象之前验证是否已创建了所需对象。如果创建对象失败，则始终可以尝试使用一组不同的属性再次创建它。</p>
+<h2><a id="%E5%9C%A8%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%AD%E4%BD%BF%E7%94%A8quicktime" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在应用程序中使用 QuickTime</h2>
+<p>QuickTime 是 Apple的 跨平台多媒体技术，旨在帮助您创建和交付视频，声音，动画，图形，文本，交互性和音乐。QuickTime 支持用于图像，视频和音频的数十种文件和压缩格式，包括符合 ISO 的 MPEG-4 视频和 AAC 音频。</p>
+<p>您可以通过以下两种方式之一将 QuickTime 功能整合到 Cocoa 应用程序中。最简单的方法是通过 QuickTime 工具包，它是用于 QuickTime 接口的功能齐全的基于 Objective-C 的框架。 如果您已经熟悉基于 C 的 QuickTime 接口，则可以改用那些接口。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8quicktime%E5%A5%97%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 QuickTime 套件</h3>
+<p>QuickTime Kit 框架（<code>QTKit.framework</code>）与 OS X 的 Cocoa 应用程序中的 QuickTime 电影配合使用。QuickTime Kit 框架是 OS X v10.4中 引入的，旨在替代现有的 <code>NSMovie</code> 和 <code>NSMovieView</code> Cocoa 类，并最终替代它们。与 Application Kit 类相比，此新框架对 QuickTime 函数和数据类型的覆盖范围更广。更重要的是，该框架不需要 Cocoa 程序员熟悉 Carbon 数据类型，例如句柄，别名，文件系统规范等。</p>
+<p>QuickTime Kit 框架主要在 OS X v10.4 和更高版本中可用，但在安装了 QuickTime 7 或更高版本的 OS X v10.3 中也受支持。有关如何使用 QuickTime Kit 的信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/QuickTime/Conceptual/QTKitProgrammingGuide/Chapter01/Introduction.html#//apple_ref/doc/uid/TP40001245">QuickTime Kit 编程指南</a>。有关 QuickTime Kit 中类的参考，请参见 <a href="https://developer.apple.com/documentation/qtkit">QTKit Framework Reference</a>。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8%E5%9F%BA%E4%BA%8Equicktime-c%E7%9A%84%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用基于 QuickTime C 的函数</h3>
+<p>在引入 QuickTime Kit 框架很久以前，QuickTime 程序是使用基于 C 的 API 编写的。 QuickTime API 包含数千个功能，并为您提供管理 QuickTime 内容的最大灵活性。您可以像其他框架一样在 Cocoa 应用程序中使用此 API。</p>
+<p>有关 QuickTime 的介绍，请参见 <a href="https://developer.apple.com/library/archive/documentation/QuickTime/RM/Fundamentals/QTOverview/QTOverview_AIntro/Introduction.html#//apple_ref/doc/uid/TP30000992">QuickTime 概述</a>。有关完整的 QuickTime 参考，请参见 QuickTime Framework 参考。</p>
+<h2><a id="%E4%BD%BF%E7%94%A8quartz-composer%E5%90%88%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 Quartz Composer 合成</h2>
+<p>如果您的软件在 OS X v10.4 和更高版本中运行，则可以使用 Quartz Composer 呈现复杂的图形内容。Quartz Composer 使用最新的 OS X 图形技术来快速，轻松地创建高级图形图像和动画。您可以使用 Quartz Composer 应用程序以图形方式创建成分文件，然后将这些成分加载到 Cocoa 应用程序中并运行它们。这样，更改 Cocoa 应用程序的行为就像更新合成文件一样简单。</p>
+<p>Quartz Composer 特别适合于想要执行复杂图像操作的应用程序。通过它，您可以轻松访问 Quartz 2D，Core Image，Core Video，OpenGL，QuickTime，MIDI 系统服务和 Real Simple Syndication（RSS）的功能。您的应用程序可以渲染合成图像以显示或为用户提供用于操纵合成参数的控件。</p>
+<p>有关显示如何从 Cocoa 应用程序运行合成的详细示例，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/QuartzComposer/qc_intro/qc_intro.html#//apple_ref/doc/uid/TP40001357">Quartz Composer 编程指南</a>中的“使用 QCRenderer 播放合成”一章。</p>
+<h2><a id="%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E6%88%90%E5%83%8F%E6%8A%80%E6%9C%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>选择合适的成像技术</h2>
+<p>OS X 包括多种用于处理图像的技术。尽管 NSImage 类提供了足以满足许多开发人员使用的强大功能集，但是在某些时候您可能需要使用其他成像技术。表 9-3 列出了一些其他可用的成像技术以及何时使用它们中的每一种。</p>
+<p>表 9-3：成像技术</p>
+<table>
+<thead>
+<tr>
+<th>图像技术</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quartz Images (<code>CGImageRef</code>)</td>
+<td>Quartz 图像是不可变的数据类型，可用于操作 Quartz中 的位图数据。尽管 NSImage 易于使用，并为分辨率独立性提供自动支持，但是如果您使用的另一个 API 需要它们，则可能需要创建 Quartz 图像。您可以通过绘制到 <code>NSBitmapImageRep</code> 对象或 Quartz 位图上下文中，然后从那里提取 <code>CGImageRef</code> 来创建 Quartz图像。Quartz 图像是 Application Services 框架的一部分。</td>
+</tr>
+<tr>
+<td>Quartz Layers (<code>CGLayerRef</code>)</td>
+<td>Quartz 图层是 Quartz 图像的可变替代。您可以绘制图层，就像绘制 <code>NSImage</code> 对象一样。为此，您可以创建一个上下文，将焦点锁定在该上下文上，进行绘制，然后从结果中检索图像对象。由于它们是在视频内存中实现的，因此图层可以非常有效地使用，尤其是在需要重复绘制相同图像的情况下。Quartz 层在 OS X v10.4 和更高版本中作为 Application Services 框架的一部分提供。</td>
+</tr>
+<tr>
+<td>Core Image（<code>CIImage</code>）</td>
+<td>Core Image 框架适用于处理图像数据。您将使用此技术将视觉效果或滤镜应用于现有的位图图像。因为它是专门为处理位图图像而设计的，所以在执行任何处理之前，必须将图像转换为 CIImage 对象。OS X v10.4 和更高版本中提供了 Core Image，它是 Quartz Core 框架的一部分。</td>
+</tr>
+<tr>
+<td>Image I/O</td>
+<td>Image I/O 框架面向需要对读和写图像数据进行更直接控制的开发人员。您可以使用此框架将图像从一种格式转换为另一种格式，或者可以使用它向程序创建的图像添加元数据。Image I/O的功能在 OS X v10.4 中可用，并在以后作为 Application Services 框架的一部分提供。</td>
+</tr>
+<tr>
+<td>Core Animation</td>
+<td>虽然不是明确的成像技术，但 Core Animation 框架是一种在视图内渲染图像和其他数据的智能，高效的方法。该框架提供了一个缓存的后备存储，可以以最少的重绘次数来制作动画。您可能会使用此技术代替 <code>NSImage</code> 或其他成像技术来创建动画效果或其他快速变化的图形。它提供了可观的动画性能，而无需您使用低级 API（例如 OpenGL）。OS X v10.5 和更高版本中都提供了 Core Animation 框架，该框架是 Quartz Core 框架的一部分。</td>
+</tr>
+</tbody>
+</table>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E8%B7%AF%E5%BE%84.html">&laquo; 上一章：路径（Paths）</a>
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

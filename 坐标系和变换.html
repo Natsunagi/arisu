@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第三章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第三章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/09</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E5%9D%90%E6%A0%87%E7%B3%BB%E5%92%8C%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>坐标系和变换</h1>
+<p>坐标空间简化了创建复杂接口所需的图形代码。在标准 Mac 应用程序中，窗口代表绘图的基本坐标系，并且在将所有内容发送到窗口服务器时，最终必须在该坐标空间中指定所有内容。但是，即使是简单的界面，也很难方便地指定相对于窗口原点的坐标。调整窗口大小时，甚至固定项目的位置也可能发生变化，并且需要重新计算。这就是 Cocoa 使事情变得简单的地方。</p>
+<p>您添加到窗口的每个 Cocoa 视图都维护其自己的局部坐标系以进行绘制。无需将坐标值转换为窗口坐标，您只需使用局部坐标系进行绘制即可，而无需更改视图位置。在将绘图命令发送到窗口服务器之前，Cocoa 会自动更正坐标值并将其放在基本坐标空间中。</p>
+<p>即使存在局部坐标空间，也经常需要临时更改坐标空间以影响某些行为。使用数学变换（也称为变换）可以完成更改坐标空间的操作。变换将坐标值从一个坐标空间转换到另一个坐标空间。您可以使用变换以影响后续渲染调用的方式更改视图的坐标系，也可以使用它们来确定点在窗口或其他视图中的位置。</p>
+<p>以下各节提供有关 Cocoa 如何管理视图的局部坐标系以及如何使用变换影响绘图环境的信息。</p>
+<h2><a id="%E5%9D%90%E6%A0%87%E7%B3%BB%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>坐标系基础</h2>
+<p>Cocoa 和 Quartz 使用相同的基本坐标系模型。在有效绘制之前，您需要了解此坐标空间及其对绘图命令的影响。它还有助于了解修改坐标空间以简化图形代码的方式。</p>
+<h3><a id="%E6%9C%AC%E5%9C%B0%E5%9D%90%E6%A0%87%E7%B3%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>本地坐标系</h3>
+<p>Cocoa 使用笛卡尔坐标系作为指定坐标的基本模型。该系统中的原点位于当前图形空间的左下角，正值沿轴向上延伸到原点的右侧。整个系统的根源位于包含菜单栏的屏幕的左下角。</p>
+<p>如果您被迫在屏幕坐标中绘制所有内容（坐标系的原点位于计算机主屏幕的左下角），则您的代码将非常复杂。为简化起见，Cocoa 建立了一个局部坐标系，其原点等于将要绘制的窗口或视图的原点。窗口或视图内部的后续图形调用是相对于此局部坐标系进行的。代码完成绘制后，Cocoa 和基础图形系统会将本地坐标中的坐标转换回屏幕坐标，以便可以将内容与其他应用程序中的内容组合在一起并发送到图形硬件。</p>
+<blockquote>
+<p>注意：如果一台计算机连接了多个监视器，则可以将这些监视器设置为相互镜像或显示一个连续的桌面。在镜像模式下，每个屏幕的原点为（0，0）。在连续模式下，一个屏幕的原点为（0，0），但其他屏幕的原点与第一个屏幕的原点偏移。</p>
+</blockquote>
+<p>图 3-1 显示了屏幕，窗口和视图的坐标系原点。在每种情况下，每个点左下角的值都是在其父坐标系中测量的坐标。（屏幕没有父坐标系，因此两个坐标值均为0）。窗口的父窗口是屏幕，视图的父窗口是窗口。</p>
+<p>图 3-1：屏幕上的屏幕，窗口和视图坐标系</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-1.png" alt="" /></p>
+<p>从屏幕坐标到本地窗口或视图坐标的映射在 Cocoa 图形上下文对象的当前转换矩阵（CTM）中进行。Cocoa 自动将 CTM 应用于您进行的任何图形调用，因此您无需自己转换坐标值。但是，您可以修改 CTM 来更改视图内坐标轴的位置和方向。（有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIGEJHE">转换操作</a>。）</p>
+<h3><a id="%E7%82%B9%E6%95%B0%E4%B8%8E%E5%83%8F%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>点数与像素</h3>
+<p>OS X 中的绘图系统基于 PDF 绘图模型，这是基于矢量的绘图模型。与基于栅格的绘图模型（其中绘图命令对单个像素进行操作）相比，OS X 中的绘图命令是使用固定比例的绘图空间（称为用户坐标空间）指定的。然后，系统将该绘图空间中的坐标映射到相应目标设备（例如监视器或打印机）的实际像素上。该模型的优势在于，使用矢量命令绘制的图形可以很好地缩放到任何分辨率的设备。随着设备分辨率的提高，系统能够使用任何额外的像素来使图形看起来更清晰。</p>
+<p>为了保持基于矢量的绘图系统固有的精度，使用浮点值而不是整数指定绘图坐标。通过使用 OS X 坐标的浮点值，您可以非常精确地指定程序内容的位置。在大多数情况下，您不必担心这些值最终如何映射到屏幕或其他输出设备。相反，Cocoa 可为您处理此映射。</p>
+<p>即使绘图模型基于 PDF，但有时仍然需要渲染基于像素的内容。位图图像是创建用户界面的常用方法，并且您的绘图代码可能需要进行特殊调整，以确保在不同分辨率的设备上正确绘制任何位图图像。同样，您可能要确保即使基于矢量的图形也可以沿像素边界正确对齐，以使它们不具有抗锯齿外观。OS X 提供了许多功能，可帮助您以所需方式绘制基于像素的内容。</p>
+<p>以下各节提供了有关用于绘制和渲染内容的坐标空间的更多详细信息。还介绍了一些有关如何在绘图代码中处理特定于像素的渲染的提示。</p>
+<h4><a id="%E7%94%A8%E6%88%B7%E7%A9%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用户空间</h4>
+<p>Cocoa 中的用户坐标空间是您用于所有绘图命令的环境。它表示一个固定比例的坐标空间，这意味着您在该空间中发出的绘图命令将生成尺寸一致的图形，而与基础设备的分辨率无关。</p>
+<p>用户空间中的单位基于打印机的位置，该位置在出版行业中用于测量打印页面上内容的大小。单点等于 1/72 英寸。点被 Mac OS 的早期版本采用为屏幕上内容的标准分辨率。OS X 继续对用户空间绘图使用相同的有效“分辨率”。</p>
+<p>尽管过去单个点通常直接对应于一个像素，但在 OS X 中可能并非如此。点数与任何特定设备的分辨率无关。如果您绘制的宽度和高度恰好是三个点的矩形，这并不意味着它将在屏幕上显示为三像素乘三像素的矩形。在 144 dpi 屏幕上，该矩形可能每侧使用六个像素进行渲染，而在 600 dpi 打印机上，该矩形每侧需要25像素。从点到像素的实际转换取决于设备，并且由 OS X 自动为您处理。</p>
+<p>实际上，用户坐标空间是您需要考虑的唯一坐标空间。但是，该规则也有一些例外，<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCICIJAJ">精确像素绘制</a>中涵盖了这些例外。</p>
+<h4><a id="%E8%AE%BE%E5%A4%87%E7%A9%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设备空间</h4>
+<p>设备坐标空间是指目标设备使用的本机坐标空间，无论它是屏幕，打印机，文件还是其他设备。设备坐标空间中的单位是使用像素指定的，并且此空间的分辨率取决于设备。例如，大多数监视器的分辨率在 100 dpi 范围内，但打印机的分辨率可能超过 600 dpi。但是，有些设备没有固定的分辨率。例如，PDF 和 EPS 文件与分辨率无关，可以将其内容缩放到任何分辨率。</p>
+<p>对于 Cocoa 用户来说，设备坐标空间是您几乎不必担心的事情。每当生成绘图命令时，都始终使用用户空间坐标来指定位置。您唯一需要了解的设备空间坐标是在您调整绘制内容以更清晰地映射到特定目标设备时。例如，您可以使用设备坐标将路径或图像与特定像素边界对齐，以防止出现不必要的抗锯齿现象。在这种情况下，您可以根据基础设备的分辨率调整用户空间坐标。有关如何执行此操作的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCICIJAJ">制作精确像素图</a>。</p>
+<h3><a id="%E4%B8%8E%E5%88%86%E8%BE%A8%E7%8E%87%E6%97%A0%E5%85%B3%E7%9A%84%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>与分辨率无关的用户界面</h3>
+<p>在 OS X v10.4 及更早版本中，Quartz 和 Cocoa 始终将屏幕设备视为分辨率始终为 72 dpi，而不管其实际分辨率如何。这意味着对于基于屏幕的绘图，用户空间中的一个点始终等于设备空间中的一个像素。当屏幕的分辨率远远超过 100 dpi 时，假设一点等于一个像素就开始引起问题。最明显的是，一切都变小了。在 OS X v10.4 中，发生了将点像素关系解耦的第一步。</p>
+<p>在 OS X v10.4 中，添加了对应用程序用户界面中的分辨率独立性的支持。此功能的初始实现为您提供了一种手动将应用程序的用户空间与底层设备空间分离的方式。您可以通过为用户界面选择比例因子来实现。比例因子使用户空间内容按指定的数量缩放。正确实现分辨率独立性的代码应该看起来不错（尽管更大）。未正确实施的代码可能会在形状边界上遇到对齐问题或像素裂缝。要在应用程序中实现分辨率独立性，请启动 Quartz Debug，然后选择“工具”&gt;“显示用户界面分辨率”，然后设置比例因子。更改分辨率后，重新启动您的应用程序以查看其对新分辨率的响应。</p>
+<p>在大多数情况下，Cocoa 应用程序不必执行任何特殊操作来处理与分辨率无关的 UI。如果您使用标准的 Cocoa 视图和绘图命令来绘制内容，则 Cocoa 会使用当前比例因子自动缩放您绘制的任何内容。对于基于路径的内容，您的图形代码应该几乎不需要更改。但是，对于图像，您可能需要采取步骤以确保这些图像在较高比例因子下看起来不错。例如，您可能需要创建更高分辨率的版本才能利用提高的屏幕分辨率。您可能还需要调整图像的位置，以避免由于在非整体像素边界上绘制图像而导致像素破裂。</p>
+<p>有关如何确保内容在任何分辨率下都能正常绘制的提示，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCICIJAJ">制作像素精确绘图</a>。有关分辨率独立性及其如何影响代码的更多信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012302">OS X 高分辨率准则</a>。</p>
+<h2><a id="%E8%BD%AC%E6%8D%A2%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换基础</h2>
+<p>变换是一种在代码中快速轻松地操纵坐标（和坐标系统）的工具。考虑一个原点为（0，0）的矩形。如果您想将此矩形的原点更改为（10，3），则修改矩形的原点并绘制它会非常简单。但是，假设您想更改一条复杂路径的原点，该路径合并了数十个点和多个 Bezier 曲线及其关联的控制点。重新计算该路径中每个点的位置有多容易？这可能会花费很多时间，并且需要进行一些非常复杂的计算。输入转换。</p>
+<p>变换是一种二维数学数组，用于将点从一个坐标空间映射到另一个坐标空间。使用变换，您可以仅使用几种方法在二维空间中自由缩放，旋转和翻译内容，并以相同的速度撤消更改。</p>
+<p><code>NSAffineTransform</code> 类提供了对 Cocoa 转换的支持。以下各节提供有关变换及其效果的背景信息。有关如何在代码中使用转换的其他信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIIJGAG">在代码中使用转换</a>。</p>
+<h3><a id="%E8%BA%AB%E4%BB%BD%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>身份转换</h3>
+<p>转换的最简单类型是身份转换。身份转换将任何点映射到自身-也就是说，它根本不会转换该点。您总是从身份转换开始，然后向其中添加转换。从身份转换开始，可以确保您从已知状态开始。要创建身份转换，您将使用以下代码：</p>
+<pre><code class="language-objective-c">NSAffineTransform* identityXform = [NSAffineTransform transform];
+</code></pre>
+<h3><a id="%E8%BD%AC%E5%9E%8B%E6%93%8D%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转型操作</h3>
+<p>对于二维图形，您可以通过几种不同的方式来变换内容，包括平移，缩放和旋转。变换会修改当前图形环境的坐标系，并影响所有后续图形操作。在应用变换之前，建议您保存当前图形状态。</p>
+<p>以下各节描述了每种类型的转换及其对渲染内容的影响。</p>
+<h4><a id="%E5%B9%B3%E7%A7%BB%EF%BC%88translation%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>平移（Translation）</h4>
+<p>平移涉及将当前坐标系的原点水平和垂直移动一定量。平移可能是最常用的，因为它可以用于在当前视图中定位图形元素。例如，如果创建起点始终为（0，0）的路径，则可以使用平移变换在视图周围移动该路径，如图 3-2 所示。</p>
+<p>图 3-2：平移内容</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-2.png" alt="" /></p>
+<p>要平移内容，请使用 <code>NSAffineTransform</code> 的 <code>translateXBy:yBy:</code> 方法。下面的示例在视图的坐标空间中将当前上下文的原点从（0，0）更改为（50，20）：</p>
+<pre><code class="language-objective-c">NSAffineTransform* xform = [NSAffineTransform transform];
+[xform translateXBy:50.0 yBy:20.0];
+[xform concat];
+</code></pre>
+<h4><a id="%E7%BC%A9%E6%94%BE%E6%AF%94%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>缩放比例</h4>
+<p>通过缩放，您可以分别沿 x 和 y 轴拉伸或缩小用户空间的单位。通常，用户空间中的一个单位等于 1/72 英寸。如果将任一轴的比例乘以 2，则该轴上的一个单位等于 2/72 英寸。这会使比例因子大于 1 的内容放大，而比例因子小于 1 的内容缩小。</p>
+<p>图 3-3 显示了缩放对内容的影响。在该图中，已经应用了平移变换，以使原点位于原始用户空间坐标系中的（1，1）。应用缩放变换后，您可以看到修改后的坐标系以及它如何映射到原始坐标系。</p>
+<p>图 3-3：缩放内容</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-3.png" alt="" /></p>
+<p>尽管通常可以通过对水平轴和垂直轴应用相同的比例因子来按比例缩放，但是可以为每个轴分配不同的比例因子以创建拉伸或扭曲的图像。若要按比例缩放内容，请使用 <code>NSAffineTransform</code> 的 <code>scaleBy:</code> 方法。若要沿 X 和 Y 轴不同地缩放内容，请使用 <code>scaleXBy:yBy:</code> 方法。 以下示例演示了图 3-3 中所示的比例因子：</p>
+<pre><code class="language-objective-c">NSAffineTransform* xform = [NSAffineTransform transform];
+[xform scaleXBy:2.0 yBy:1.5];
+[xform concat];
+</code></pre>
+<blockquote>
+<p>注意：缩放不会更改坐标系的原点。</p>
+</blockquote>
+<h4><a id="%E6%97%8B%E8%BD%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>旋转</h4>
+<p>旋转通过绕当前原点旋转坐标轴来更改其坐标轴方向，如图 3-4 所示。您可以通过一整圈运动来更改方向。</p>
+<p>图 3-4：旋转内容</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-4.png" alt="" /></p>
+<p>若要旋转内容，请使用 <code>NSAffineTransform</code> 的 <code>rotationByDegrees:</code> 或 <code>rotationByRadians:</code> 方法。正旋转值围绕当前原点逆时针旋转。例如，要将当前坐标系绕当前原点旋转 45 度（如图3-4所示），可以使用以下代码：</p>
+<pre><code class="language-objective-c">NSAffineTransform* xform = [NSAffineTransform transform];
+[xform rotateByDegrees:45];
+[xform concat];
+</code></pre>
+<blockquote>
+<p>注意：将非均匀缩放变换与旋转变换结合使用也可以使您的内容失真。</p>
+</blockquote>
+<h3><a id="%E8%BD%AC%E6%8D%A2%E9%A1%BA%E5%BA%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换顺序</h3>
+<p>变换的实现使用矩阵乘法将输入的坐标点映射到修改的坐标空间。尽管“变换数学”涵盖了矩阵的数学，但是要注意的重要因素是矩阵乘法并不总是可交换的运算，即 b 与 a 的乘积并不总是等于 a 与 b 的乘积。因此，应用转换的顺序通常对于获得所需结果至关重要。</p>
+<p>图 3-5 显示了以两种不同方式应用于路径的两个转换。在该图的顶部，内容沿 X 轴平移 60 个点，然后旋转 45 度。在该图的底部，通过平移之前的旋转来反转完全相同的变换。最终结果是两个不同的坐标系。</p>
+<p>图 3-5：转换顺序</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-5.png" alt="" /></p>
+<p>上图演示了转换顺序的关键方面。每个后续变换都将应用到由先前变换创建的坐标系。平移然后旋转时，旋转围绕平移坐标系的原点开始。同样，旋转然后平移时，平移会沿着旋转的坐标系的轴发生。</p>
+<p>对于相同类型的转换，转换的顺序无关紧要。例如，连续进行三个旋转会创建一个坐标系，该坐标系的最终旋转等于三个旋转角度的最终总和。在其他情况下（例如按 1.0 缩放），变换的顺序无关紧要，但通常应假定顺序很重要。</p>
+<h3><a id="%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换运算</h3>
+<p>所有变换操作都有助于建立数学矩阵，然后图形系统将其用于计算单个点的屏幕位置。 <code>NSAffineTransform</code> 类使用 3 x 3 矩阵存储转换值。图 3-6 显示了此矩阵，并确定了用于应用变换的关键因素。m11，m12，m21 和 m22 值控制缩放比例和旋转因子，而 tx 和 ty 控制平移。</p>
+<p>图 3-6：基本转换矩阵</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-6.png" alt="" /></p>
+<p>使用线性代数，可以将坐标向量乘以变换矩阵，以获得位置等于新坐标系中原始点的新坐标向量。图 3-7 显示了矩阵乘法过程和所得的线性方程。</p>
+<p>图 3-7：坐标系的数学变换</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-7.png" alt="" /></p>
+<p>如果您已经熟悉转换结构和数学，则可以使用 <code>NSAffineTransform</code> 的 <code>setTransformStruct:</code> 方法直接设置转换矩阵的值。此方法用您指定的新值替换六个键转换值。一次替换所有值比一次应用单个转换快得多。但是，它确实需要您预先计算矩阵值。</p>
+<p>有关矩阵乘法背后的数学运算的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066">Quartz 2D 编程指南</a>。</p>
+<h2><a id="%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在代码中使用转换</h2>
+<p>当需要绘制时，视图的 <code>drawRect:</code> 方法中的代码必须确定在何处绘制单个内容。可以轻松指定某些元素（例如图像和矩形）的位置，但是对于诸如路径之类的复杂元素，变换是更改当前图形位置的简便方法。</p>
+<p>要创建一个新的转换对象，请调用 <code>NSAffineTransform</code> 的 <code>transform</code> 类方法。返回的变换对象自动设置为恒等变换。在将所有所需的转换添加到转换对象之后，可以调用 <code>concat</code> 方法将其应用于当前上下文。调用 <code>concat</code> 会将您的转换添加到当前图形上下文的 CTM 中。修改将一直生效，直到您明确撤消它们为止（如<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIJGDAA">撤消转换</a>中所述），或者恢复了以前的图形状态。</p>
+<p>下面的示例创建一个新的转换对象，并向其中添加一些转换。</p>
+<pre><code class="language-objective-c">NSAffineTransform* xform = [NSAffineTransform transform];
+ 
+// Add the transformations
+[xform translateXBy:50.0 yBy:20.0];
+[xform rotateByDegrees:90.0]; // counterclockwise rotation
+[xform scaleXBy:1.0 yBy:2.0];
+ 
+// Apply the changes
+[xform concat];
+</code></pre>
+<h3><a id="%E8%BD%AC%E6%8D%A2%E6%92%A4%E9%94%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换撤销</h3>
+<p>应用后，转换会影响当前上下文中的所有后续图形调用。要撤消一组转换，可以恢复以前的图形状态或应用逆转换。两种技术都有其优点和缺点，因此您应根据需要和可用信息选择一种技术。</p>
+<p>恢复先前的图形状态是撤消转换的最简单方法，但具有其他副作用。除了撤消转换外，还原图形状态还可以将当前图形环境中的所有其他属性还原为以前的状态。</p>
+<p>如果只想撤消当前转换，则可以向 CTM 添加逆转换。逆变换使用互补的一组变换来抵消给定一组变换的效果。若要创建逆变换对象，请使用所需变换对象的 <code>invert</code> 方法。然后，将此修改后的转换对象应用于当前上下文，如以下示例所示：</p>
+<pre><code class="language-objective-c">NSAffineTransform* xform = [NSAffineTransform transform];
+ 
+// Add the transformations
+[xform translateXBy:50.0 yBy:20.0];
+[xform rotateByDegrees:90.0]; // counterclockwise rotation
+[xform concat];
+ 
+// Draw content...
+ 
+// Remove the transformations by applying the inverse transform.
+[xform invert];
+[xform concat];
+</code></pre>
+<p>您可能会使用后一种技术，使用相同的绘图属性但在视图中的不同位置绘制多个项目。根据您使用的转换类型，您也许还可以执行增量转换。例如，如果您要调用 <code>translateXBy:yBy:</code> 仅是为了重新定位原点，则可以为每个连续项递增地移动原点。下面的示例显示如何将一项放置在（10，10）处，将下一项放置在（15，10）处：</p>
+<pre><code class="language-objective-c">[NSAffineTransform* xform = [NSAffineTransform transform];
+// Draw item 1
+[xform translateXBy:10.0 yBy:10.0];
+[xform concat];
+[item1 draw];
+ 
+//Draw item 2
+[xform translateXBy:5.0 yBy:0.0]; // Translate relative to the previous  element.
+[xform concat];
+[item2 draw];
+</code></pre>
+<p>请记住，在您不想直接修改原始项目的情况下，可以使用上述技术。Cocoa 提供了无需修改当前变换矩阵即可修改几何坐标的方法。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIJDDBA">变换坐标</a>。</p>
+<p>还值得注意的是，逆变换的有效性受到数学精度的限制。对于涉及获取所需旋转角度的正弦和余弦的旋转变换，逆变换可能不够精确，无法完全撤消原始旋转。在这种情况下，您可能只想保存并恢复图形状态以撤消转换。</p>
+<h3><a id="%E8%BD%AC%E6%8D%A2%E5%9D%90%E6%A0%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换坐标</h3>
+<p>如果您不想更改当前图形环境的坐标系，但是想要更改单个对象的位置或方向，则有几种选择。 N<code>SAffineTransform</code> 类包含用于直接更改坐标值的 <code>transformPoint:</code> 和 <code>transformSize:</code> 方法。使用这些方法不会更改当前图形上下文的 CTM。</p>
+<p>如果要更改路径中的坐标，可以使用 <code>NSAffineTransform</code> 的 <code>transformBezierPath:</code> 方法进行更改。此方法返回指定的 Bezier 路径对象的转换后的副本。此方法与修改原始对象的 <code>NSBezierPath</code> 的 <code>transformUsingAffineTransform:</code> 方法略有不同。</p>
+<h3><a id="%E4%BB%8E%E7%AA%97%E5%8F%A3%E8%BD%AC%E6%8D%A2%E4%B8%BA%E8%A7%86%E5%9B%BE%E5%9D%90%E6%A0%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>从窗口转换为视图坐标</h3>
+<p>操作系统发送到视图的事件是使用窗口的坐标系发送的。在视图可以使用事件包含的任何坐标值之前，它必须将这些坐标转换为其自己的局部坐标空间。<code>NSView</code> 类提供了一些功能来促进 <code>NSPoint</code>，<code>NSSize</code> 和 <code>NSRect</code> 结构的转换。在这些方法中，包括 <code>convertPoint:fromView:</code> 和 <code>convertPoint:toView:</code>，它们可将点与视图的本地坐标系进行相互转换。有关转换方法的完整列表，请参见 <a href="https://developer.apple.com/documentation/appkit/nsview">NSView 类参考</a>。</p>
+<p>重要说明：Cocoa 事件对象返回 y 坐标值是从 1 开始（在窗口坐标中），而不是从 0 开始。因此，在窗口或视图的左下角单击鼠标会在 Cocoa 中产生点（0，1），而不是（0，0）。仅 y 坐标基于 1。</p>
+<p>下面的示例将鼠标事件的鼠标位置从窗口坐标转换为本地视图的坐标。要转换为视图的局部坐标空间，请使用 <code>convertPoint:fromView:</code> 方法。此方法的第二个参数指定当前在其坐标系中指定了点的视图。为第二个参数指定 <code>nil</code> 告诉当前视图将点转换为窗口坐标系中的点。</p>
+<pre><code class="language-objective-c">NSPoint  mouseLoc = [theView convertPoint:[theEvent locationInWindow] fromView:nil];
+</code></pre>
+<h2><a id="%E7%BF%BB%E8%BD%AC%E5%9D%90%E6%A0%87%E7%B3%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>翻转坐标系</h2>
+<p>在 Cocoa 和 Quartz 中经常出现的一个主题是使用翻转坐标系进行绘图。默认情况下，Cocoa 使用标准的笛卡尔坐标系，其中正值向上延伸到原点的右侧。但是，可以“翻转”坐标系，以使正值向下延伸到原点的右侧，并且原点本身位于当前视图或窗口的左上角，如图 3-8 所示。</p>
+<p>图 3-8：正常和翻转的坐标轴</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-8.png" alt="" /></p>
+<p>在某些情况下，翻转坐标系可使绘图更容易。特别是文本系统使用翻转的坐标来简化文本行的放置，在大多数书写系统中，文本行从上到下流动。尽管鼓励您尽可能使用标准的直角坐标（非翻转）坐标系，但是可以使用翻转坐标（如果这样做更容易在代码中支持）。</p>
+<p>将视图配置为使用翻转的坐标只会影响您直接在该视图中绘制的内容。翻转坐标系不会被子视图继承。但是，您在视图中绘制的内容必须根据视图的当前方向正确定向。不考虑当前视图方向可能会导致内容放置不正确或内容颠倒。</p>
+<p>以下各节提供有关 Cocoa 支持翻转坐标的信息，以及使用翻转坐标系统时可能遇到的一些问题。在可能的情况下，这些部分还提供有关如何解决因坐标系翻转而产生的问题的指南。</p>
+<h3><a id="%E9%85%8D%E7%BD%AE%E8%A7%86%E5%9B%BE%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%BF%BB%E8%BD%AC%E5%9D%90%E6%A0%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置视图以使用翻转坐标</h3>
+<p>实现翻转坐标所需的第一步是确定视图的默认方向。如果您更喜欢使用翻转坐标，可以通过两种方法在绘制之前配置视图的坐标系：</p>
+<ul>
+<li>覆盖视图的 <code>isFlipped</code> 方法并返回 <code>YES</code>。</li>
+<li>在渲染之前立即对内容应用翻转变换。</li>
+</ul>
+<p>如果您打算使用翻转的坐标绘制视图的所有内容，则到目前为止，首选的方法是覆盖视图的 <code>isFlipped</code> 方法。重写此方法可使 Cocoa 知道您的视图默认要使用翻转的坐标。当视图的 <code>isFlipped</code> 方法返回 <code>YES</code> 时，Cocoa 会自动为您进行多项调整。最明显的变化是，Cocoa 在调用视图的 <code>drawRect:</code> 方法之前将适当的转换转换添加到 CTM。此行为消除了您的绘图代码手动应用翻转变换的需要。此外，许多 Cocoa 对象会自动调整其绘制代码以解决当前视图的坐标系问题。例如，设置当前字体时，<code>NSFont</code> 对象会自动考虑坐标系的方向。这样可以防止在视图中绘制文本时使文本上下颠倒。</p>
+<p>如果您使用翻转的坐标仅绘制视图内容的一部分，则可以使用翻转变换（而不是覆盖 <code>isFlipped</code>）来手动修改坐标系。翻转变换使您可以临时调整当前坐标系，然后在不再需要时撤消该调整。您应在绘制相关的翻转内容之前立即将此变换应用于视图的坐标系。有关如何创建翻转变换的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIHDAIJ">创建翻转变换</a>。</p>
+<h3><a id="%E7%BF%BB%E8%BD%AC%E5%9D%90%E6%A0%87%E7%B3%BB%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E5%86%85%E5%AE%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>翻转坐标系中的绘图内容</h3>
+<p>您支持翻转坐标所做的大部分工作都在应用程序的绘图代码中进行。如果选择在特定视图中使用翻转坐标，则可能是因为它使绘图代码更易于实现。在翻转的坐标系中进行绘制需要您相对于屏幕以不同的方式放置元素，但否则非常简单。以下各节提供了一些技巧，以帮助您确保任何呈现的内容按照您希望的方式显示。</p>
+<h4><a id="%E7%BB%98%E5%88%B6%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制图像</h4>
+<p>在自定义视图中渲染图像时，必须注意视图与在该视图中绘制的任何图像的相对方向。如果使用 <code>drawInRect:fromRect:operation:fraction:</code> 方法在翻转视图中绘制图像，则图像在视图中将倒置显示。您可以使用以下几种方法之一解决此问题：</p>
+<ul>
+<li>您可以在绘制图像之前立即应用翻转变换；请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIHDAIJ">创建翻转变换</a>。</li>
+<li>您可以使用 NSImage 的 <code>CompositeToPoint</code> 方法之一进行绘制。</li>
+<li>您可以反转图像数据本身。（尽管合适的修复方法，但这通常不是很实用。）</li>
+</ul>
+<p>使用翻转变换消除翻转视图的效果可确保在所有情况下都能正确渲染图像内容。该技术保留了对坐标系的所有先前转换，包括比例和旋转，但是消除了由于视图翻转而引起的反转。如果需要使用 <code>NSImage</code> 的 <code>drawInRect:fromRect:operation:fraction:</code> 方法绘制图像，则应特别使用此技术。此方法使您可以缩放图像以适合目标矩形，并且是图像中更常用的绘制方法之一。</p>
+<p>尽管 <code>NSImage</code> 的 <code>CompositeToPoint</code> 方法为您提供了一种无需翻转转换即可正确定向图像的方法，但不建议您使用它们。有一些副作用使使用这些方法绘制更加复杂。  <code>CompositeToPoint</code> 方法通过删除应用于 CTM 的所有自定义缩放比例或旋转因子来工作。这些方法还消除了任何翻转变换所应用的任何缩放比例（但不消除平移），无论该变换是由您还是由 Cocoa 提供的。（这些方法也不会从分辨率独立性上移除有效的比例因子。）但是，将保留您应用于 CTM 的所有自定义转换因子。尽管此行为是为了确保图像不会被视图的边界矩形剪切，但是如果您不补偿翻转变换的平移因子，则可能仍会发生剪切。</p>
+<p>图 3-9 显示了使用 <code>CompositeToPoint:fromRect:operation:</code> 方法在未翻转视图中然后在翻转视图中渲染图像时发生的情况。在未翻转的视图中，图像在视图中的指定点按预期渲染。在翻转的视图中，删除了 y 轴的比例因子，但没有移除平移因子，这会导致图像被裁剪，因为它部分出现在视图的可见范围之外。为了进行补偿，您需要通过从视图高度中减去原始值来调整图像的 y 坐标，以获得调整后的位置。</p>
+<p>图 3-9：将图像合成为翻转视图</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/3-9.png" alt="" /></p>
+<p>与在翻转坐标系中绘制图像有关的问题本质上与您首先创建这些图像的方式无关。图像内部使用单独的坐标系来定向图像数据。无论是从现有文件加载图像数据，还是通过锁定焦点来创建图像，一旦加载了图像数据或解锁了焦点，便会设置图像数据。此时，您必须选择适当的绘制方法或在绘制之前自行调整坐标系，以纠正翻转的方向问题。</p>
+<blockquote>
+<p>重要说明：尽管 <code>NSImage</code> 的 <code>setFlipped:</code> 方法似乎是在事后更改图像方向的好方法，但实际情况并非如此。<code>setFlipped:</code> 方法可让您在发出 <code>lockFocus</code> 调用并绘制到图像之前指定图像数据的方向。有时在绘制过程中使用该方法校正翻转的坐标系似乎可行，但是这不是翻转图像的可靠方法，因此强烈建议不要使用这种方法。</p>
+</blockquote>
+<p>有关图像及其内部坐标系的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIBCHBA">图像坐标系</a>。</p>
+<blockquote>
+<p>重要信息：无论图像内容是翻转还是未翻转，都始终使用当前上下文的坐标系指定图像的位置和大小。</p>
+</blockquote>
+<h4><a id="%E7%BB%98%E5%88%B6%E6%96%87%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制文本</h4>
+<p>Cocoa 中的文本呈现工具从当前视图中获取文本定向的提示。如果视图的 <code>isFlipped</code> 方法返回 <code>YES</code>，则 Cocoa 会自动反转在该视图中绘制的文本，以补偿其翻转的坐标系。但是，如果您从图形代码中手动应用了翻转变换，则 Cocoa 不知道在绘制文本时会进行补偿。因此，您在手动应用翻转变换后呈现的任何文本都将在您的视图中上下颠倒显示。无论您使用的是 Cocoa 文本系统还是 <code>NSString</code> 的绘制工具来绘制文本，这些规则均适用。</p>
+<p>如果将焦点锁定在图像上并在其中绘制一些文本，则 Cocoa 使用 NSImage 对象的内部坐标系来确定文本的正确方向。与其他图像内容一样，如果随后以翻转视图渲染图像，则绘制的文本也会与其余图像数据一起翻转。</p>
+<p>有关使用文本的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIEEIGC">文本</a>。</p>
+<h3><a id="%E5%88%9B%E5%BB%BA%E7%BF%BB%E8%BD%AC%E5%8F%98%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建翻转变换</h3>
+<p>如果要临时翻转视图的坐标系，则可以创建一个翻转变换并将其应用于当前图形上下文。翻转变换是一个配置有两个变换的 <code>NSAffineTransform</code> 对象：比例变换和平移变换。翻转变换的工作方式是翻转 y 轴的方向（使用比例变换），然后将原点平移到视图顶部。</p>
+<p>清单 3-1 显示了一个 drawRect: 方法，该方法创建一个翻转变换并将其应用于当前上下文。 此处显示的翻转变换先转换原点，然后再反转垂直轴的方向。您还可以通过先反转垂直轴然后在负方向上平移原点（即使用帧高度的负值）来实现此变换。</p>
+<p>清单 3-1：手动翻转坐标系</p>
+<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+{
+    NSRect frameRect = [self bounds];
+    NSAffineTransform* xform = [NSAffineTransform transform];
+    [xform translateXBy:0.0 yBy:frameRect.size.height];
+    [xform scaleXBy:1.0 yBy:-1.0];
+    [xform concat];
+ 
+    // Draw flipped content.
+}
+</code></pre>
+<p>翻转变换仅切换当前坐标系的方向。如果视图已经使用翻转坐标进行绘制，则因为其 <code>isFlipped </code>方法返回 <code>YES</code>，因此应用翻转变换会将坐标系还原为标准方向。</p>
+<h3><a id="cocoa%E7%BF%BB%E8%BD%AC%E5%9D%90%E6%A0%87%E7%9A%84%E4%BD%BF%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cocoa 翻转坐标的使用</h3>
+<p>有些 Cocoa 类固有地支持翻转坐标，有些则不支持。如果您在用户界面中使用未修改的 Cocoa 视图和控件，则这些视图和控件是否使用翻转坐标与代码无关紧要。但是，如果要子类化，则重要的是要了解坐标系的方向。当前，以下控件和视图默认情况下使用翻转的坐标：</p>
+<ul>
+<li><code>NSButton</code></li>
+<li><code>NSMatrix</code></li>
+<li><code>NSProgressIndicator</code></li>
+<li><code>NSScrollView</code></li>
+<li><code>NSSlider</code></li>
+<li><code>NSSplitView</code></li>
+<li><code>NSTabView</code></li>
+<li><code>NSTableHeaderView</code></li>
+<li><code>NSTableView</code></li>
+<li><code>NSTextField</code></li>
+<li><code>NSTextView</code></li>
+</ul>
+<p>一些 Cocoa 类支持翻转坐标，但并非一直使用它们。以下列表包括翻转坐标支持取决于其他缓解因素的已知情况。</p>
+<ul>
+<li>Images 默认情况下不使用翻转坐标；但是，您可以使用 <code>NSImage</code> 的 <code>setFlipped:</code> 方法手动翻转图像的内部坐标系。<code>NSImage</code> 对象的所有表示都使用相同的方向。有关图像和翻转坐标的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIBCHBA">图像坐标系</a>。</li>
+<li>Cocoa 文本系统从当前上下文中获取提示，以确定是否应翻转文本。如果要在 <code>NSTextView</code> 对象中显示文本，则文本系统对象（例如 <code>NSFont</code>）还使用翻转的坐标来确保文本以右侧显示。如果要在使用标准坐标的自定义视图中绘制文本，则文本系统对象不使用翻转坐标。</li>
+<li><code>NSClipView</code> 对象通过查看其文档视图的坐标系来确定是否使用翻转的坐标。如果文档视图使用了翻转的坐标，则剪辑视图也是如此。使用相同的坐标系可确保滚动原点与文档视图的边界原点匹配。</li>
+<li>图形便利功能（例如在 NSGraphics.h 中声明的便利功能）在绘制时会考虑翻转的坐标系。有关可用图形便利功能的信息，请参见<a href="https://developer.apple.com/documentation/appkit/functions">应用程序套件功能参考</a>。</li>
+</ul>
+<p>随着 Cocoa 中引入了新的控件和视图，这些对象可能还支持翻转的坐标。有关任何类是否支持翻转坐标的信息，请查阅类参考文档。您还可以在运行时调用视图的 <code>isFlipped</code> 方法，以确定它是否使用翻转坐标。</p>
+<h2><a id="%E5%81%9A%E5%83%8F%E7%B4%A0%E7%B2%BE%E7%A1%AE%E7%BB%98%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>做像素精确绘图</h2>
+<p>尽管可以仅使用 Cocoa 提供的视图，控件和图像来创建应用程序，但应用程序通常使用一个或多个自定义视图或图像。而且，尽管 Cocoa 提供了用于布局自定义内容的默认行为，但在很多情况下，您可能需要调整单个视图或图像的位置以避免视觉伪影。当在高分辨率设备（例如打印机）或有效分辨率独立比例因子的设备上平铺或绘制位图图像时，尤其如此。</p>
+<p>以下各节提供有关如何防止在高分辨率绘图期间可能出现的视觉伪影的准则和实用建议。有关分辨率独立性以及如何调整代码以支持不同比例因子的其他信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012302">OS X 高分辨率指南</a>。</p>
+<h3><a id="cocoa%E4%B8%AD%E7%8B%AC%E7%AB%8B%E5%88%86%E8%BE%A8%E7%8E%87%E7%BB%98%E5%9B%BE%E7%9A%84%E6%8F%90%E7%A4%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cocoa 中独立分辨率绘图的提示</h3>
+<p>Cocoa 应用程序为渲染到高分辨率设备提供了大量支持。尽管这种支持大部分是自动的，但是您仍然需要做一些工作以确保内容看起来不错。以下列表包括设计界面时应采取的一些方法：</p>
+<ul>
+<li>使用高分辨率图像。</li>
+<li>在布局期间，请确保视图和图像位于完整的像素边界上。</li>
+<li>为自定义控件创建平铺的背景图像时，请使用 <code>NSDrawThreePartImage</code> 和 <code>NSDrawNinePartImage</code> 方法绘制背景，而不要尝试自己绘制背景。</li>
+<li>对非整数比例因子使用抗锯齿的文本呈现模式，并确保将文本视图放在像素边界上。</li>
+<li>使用非整数比例因子（例如 1.25 和 1.5 ）测试您的应用程序。这些因素往往会产生奇数个像素，从而可能显示出潜在的像素裂纹。</li>
+</ul>
+<p>如果使用 OpenGL 进行绘制，则还应注意，在 OS X v10.5 中，绘制到 <code>NSOpenGLContext</code> 中的视图的边界矩形以像素而不是点为单位进行测量（在非 OpenGL 情况下是如此）。但是，将来可能会更改此支持，因此 OpenGL 开发人员应确保使用 <code>NSView</code> 的坐标转换方法直接转换坐标。例如，可以确保以下用于视图对象的转换代码返回 OpenGL 所需的正确值。</p>
+<pre><code class="language-objective-c">NSSize boundsInPixelUnits = [self convertRect:[self bounds] toView:nil];
+glViewport(0, 0, boundsInPixelUnits.size.width, boundsInPixelUnits.size.height);
+</code></pre>
+<p>有关分辨率独立性及其如何影响渲染内容的更多信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012302">OS X高分辨率指南</a>。</p>
+<h3><a id="%E8%AE%BF%E9%97%AE%E5%BD%93%E5%89%8D%E6%AF%94%E4%BE%8B%E5%9B%A0%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>访问当前比例因子</h3>
+<p>了解当前的比例因子可以帮助您决定如何最好地呈现内容。<code>NSWindow</code> 和 <code>NSScreen</code> 类都包含一个 <code>userSpaceScaleFactor</code> 方法，您可以调用该方法来获取应用程序的当前比例因子（如果有）。在 OS X v10.5 及更早版本中，此方法通常返回 1.0，表示用户空间和设备空间具有相同的分辨率（其中一点等于一个像素）。但是在某些时候，此方法可能会返回大于 1.0 的值。例如，值 1.25 表示屏幕分辨率约为 90 dpi，而值 2.0 表示屏幕分辨率为 144 dpi。</p>
+<p>如果您想知道特定屏幕的实际分辨率，则 <code>NSScreen</code> 类在其设备描述字典（使用 <code>deviceDescription</code> 方法访问）中包含有关显示分辨率的信息。您可以使用此信息（而不是乘以比例因子）来确定要用于图像的适当分辨率。</p>
+<h3><a id="%E8%B0%83%E6%95%B4%E5%86%85%E5%AE%B9%E7%9A%84%E5%B8%83%E5%B1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>调整内容的布局</h3>
+<p>由于屏幕是分辨率相对较低的设备，因此与在诸如打印机之类的高分辨率设备上相比，屏幕上的绘图毛刺通常更明显。当您以需要进行调整以匹配发送到屏幕的基础像素的方式渲染内容时，可能会出现绘图故障。例如，在非像素边界上绘制的图像和形状可能需要混叠，因此，与在像素边界上精确绘制的图像和形状相比，其外观可能不那么清晰。另外，缩放图像以适合不同大小的区域需要插值，这会引入伪影和颗粒感。</p>
+<p>尽管在任何版本的 OS X 上都可能发生像素对齐问题，但随着操作系统更改以支持分辨率独立性，它们更有可能发生。在独立于分辨率的情况下，不再需要用户坐标空间和设备坐标空间中的单位来保持一对一关系。对于高分辨率屏幕，这意味着用户空间中的单个单元可能受设备空间中的多个像素支持。因此，即使您的用户空间坐标落在整数单位边界上，它们在设备空间中仍可能未对齐。多余像素的存在还可能导致像素破裂，当未对齐的形状由于未完全填充预期的绘制区域而留下小的间隙时，会发生像素破裂。</p>
+<p>如果图像或形状未按预期方式绘制，或者图形内容显示出像素裂纹的迹象，则可以通过调整用于绘制内容的坐标值来消除许多此类问题。如果当前比例因子是 1.0，则不需要以下步骤，而其他比例因子则需要以下步骤。</p>
+<ol>
+<li>将用户空间点，大小或矩形值转换为设备空间坐标。</li>
+<li>规范设备空间中的值，使其与适当的像素边界对齐。</li>
+<li>将归一化的值转换回用户空间。</li>
+<li>使用调整后的值绘制内容。</li>
+</ol>
+<p>获取正确的设备空间矩形的最佳方法是使用 <code>NSView</code> 的 <code>centerScanRect:</code> 方法。此方法在用户空间坐标中获取一个矩形，根据当前的比例因子和设备执行所需的计算以调整矩形的位置，然后返回生成的用户空间矩形。对于布局，还可以使用<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-SW25">转换坐标值</a>中描述的方法。</p>
+<p>如果要更好地控制设备空间中项目的精确布局，还可以自己调整坐标。OS X 提供了一些用于将坐标值放入设备空间中的值进行归一化的函数，包括 <code>NSIntegralRect</code> 和 <code>CGRectIntegral</code> 函数。 您还可以在 math.h 中使用 <code>ceil</code> 和 <code>floor</code> 方法来根据需要向上或向下舍入设备空间坐标。</p>
+<h3><a id="%E8%BD%AC%E6%8D%A2%E5%9D%90%E6%A0%87%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换坐标值</h3>
+<p>在 OS X v10.5 中，向 <code>NSView</code> 添加了几种方法，以简化用户空间和设备空间坐标之间的转换：</p>
+<ul>
+<li><code>convertPointToBase:</code></li>
+<li><code>convertSizeToBase:</code></li>
+<li><code>convertRectToBase:</code></li>
+<li><code>convertPointFromBase:</code></li>
+<li><code>onvertSizeFromBase:</code></li>
+<li><code>convertRectFromBase:</code></li>
+</ul>
+<p>这些便捷的方法可以将值与基本（设备）坐标系进行相互转换。他们考虑了视图的当前后备存储配置，包括它是否由图层支持。</p>
+<p>要更改 <code>NSPoint</code> 结构的坐标值，视图的 <code>drawRect:</code> 方法的开头可能具有类似于以下代码：</p>
+<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+{
+    NSPoint myPoint = NSMakePoint(1.0, 2.0);
+    CGFloat scaleFactor = [[self window] userSpaceScaleFactor];
+    if (scaleFactor != 1.0)
+    {
+        NSPoint    tempPoint = [self convertPointToBase:myPoint];
+        tempPoint.x = floor(tempPoint.x);
+        tempPoint.y = floor(tempPoint.y);
+        myPoint = [self convertPointFromBase:tempPoint];
+    }
+    // Draw the content at myPoint
+}
+</code></pre>
+<p>由您决定哪种归一化功能最适合您的图形代码。前面的示例使用了 <code>floor</code> 方法来标准化给定形状的原点，但是您可以结合使用 floor 和 <code>ceil</code>，这取决于视图中其他内容的位置。</p>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87.html">&laquo; 上一章：图形上下文</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E9%A2%9C%E8%89%B2%E5%92%8C%E9%80%8F%E6%98%8E%E5%BA%A6.html">下一章：颜色和透明度 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

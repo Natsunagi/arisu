@@ -240,13 +240,18 @@ NSUserDefaults
 <p><code>NSGraphicsContext</code> 类表示底层图形系统提供的绘图上下文。每个 <code>NSGraphicsContext</code> 实例都拥有自己独立的图形状态：坐标系，剪切，当前字体等。在每个 NSWindow 实例的主线程上自动创建该类的实例。如果从辅助线程执行任何绘制，则会专门为该线程创建新的 <code>NSGraphicsContext</code> 实例。
 如果从辅助线程执行任何绘制，则必须手动刷新绘图调用。Cocoa 不会自动使用从辅助线程绘制的内容更新视图，因此在完成绘图时需要调用 <code>NSGraphicsContext</code> 的 <code>flushGraphics</code> 方法。如果您的应用程序仅从主线程中提取内容，则无需刷新绘图调用。</p>
 <h5><a id="nsimage%E9%99%90%E5%88%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>NSImage 限制</h5>
-<p>一个线程可以创建一个 <code>NSImage</code> 对象，绘制到图像缓冲区，并将其传递给主线程进行绘制。底层图像缓存在所有线程之间共享。有关图像以及缓存的工作原理的详细信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290">Cocoa绘图指南</a>。</p>
+<p>一个线程可以创建一个 <code>NSImage</code> 对象，绘制到图像缓冲区，并将其传递给主线程进行绘制。底层图像缓存在所有线程之间共享。有关图像以及缓存的工作原理的详细信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003290">Cocoa绘图指南</a>。</p>
 <h3><a id="cocoa-data%E6%A1%86%E6%9E%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cocoa Data 框架</h3>
-<p>核心数据框架通常支持线程，尽管有一些适用的注意事项。有关这些警告的信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/index.html#//apple_ref/doc/uid/TP40001075">Core Data Programming Guide</a>中的“核心数据并发”。</p>
+<p>核心数据框架通常支持线程，尽管有一些适用的注意事项。有关这些警告的信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreData/index.html#//apple_ref/doc/uid/TP40001075">Core Data Programming Guide</a> 中的“核心数据并发”。</p>
 <h2><a id="core-foundation" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Core Foundation</h2>
 <p>Core Foundation 具有足够的线程安全性，如果您小心编程，则不应遇到与竞争线程相关的任何问题。它在常见情况下是线程安全的，例如查询，保留，释放和传递不可变对象时。即使可能从多个线程查询的中央共享对象也是可靠的线程安全的。</p>
 <p>与 Cocoa 一样，Core Foundation 在对象或其内容的突变方面不是线程安全的。例如，正如您所料，修改可变数据或可变数组对象不是线程安全的，但也不是修改不可变数组内的对象。其中一个原因是性能，这在这些情况下至关重要。而且，通常不可能在该水平上实现绝对的安全性。例如，您不能排除因保留从集合中获取的对象而导致的不确定行为。在调用保留包含的对象之前，可能会释放集合本身。</p>
 <p>在要从多个线程访问 Core Foundation 对象并进行变更的情况下，您的代码应通过在接入点使用锁来防止同时访问。例如，枚举 Core Foundation 数组对象的代码应该使用枚举块周围的相应锁定调用来防止其他人改变数组。</p>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E5%90%8C%E6%AD%A5.html">&laquo; 上一章：同步</a>
+    </div>
+</div>
 
                   </article>
                   <div class="comments-wrap">

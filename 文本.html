@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第七章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第七章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/11</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E6%96%87%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>文本</h1>
+<p>文本渲染是一种特殊的图形类型，它是大多数应用程序的重要组成部分。Cocoa 提供了一系列应可满足大多数开发人员需求的呈现文本的选项。以下各节简要介绍了这些选项。有关更多详细信息，您应该在 <code>Reference Library &gt; Cocoa &gt; Text &amp; Fonts</code> 中查看文档。</p>
+<h2><a id="%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>文本属性</h2>
+<p>Cocoa 支持使用 <code>NSFont</code> 类以编程方式获取字体信息。您可以将字体作为属性应用于字符串，也可以使用它们在当前上下文中设置默认字体。Cocoa 文本系统还使用字体对象来格式化文本。您可以使用所需字体的名称和大小从 Cocoa 请求 <code>NSFont</code> 对象，如以下示例所示。</p>
+<pre><code class="language-objective-c">NSFont* font1= [NSFont fontWithName:@&quot;Helvetica&quot; size:9.0];
+NSFont* font2 = [NSFont fontWithName:@&quot;Helvetica Bold&quot;  size:10.0];
+</code></pre>
+<p><code>NSFont</code> 类不提供编程方式来修改其他文本属性，例如字符间距和文本绘制模式。但是，Cocoa 确实提供了可以显示给用户的系统字体面板。用户可以在此面板中更改当前字体属性。您还可以使用 Cocoa 文本系统设置大多数文本选项，如<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCICEJCJ">高级文本绘图</a>中所述。</p>
+<p>尽管通常在绘制 <code>NSString</code> 和 <code>NSAttributedString</code> 对象时直接指定字体属性，但是您也可以在当前图形状态下更改字体和字体大小信息。要更改这些值，请创建一个 <code>NSFont</code> 对象并调用其 <code>set</code> 方法。</p>
+<p>有关使用字体和字体对象的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/FontHandling/FontHandling.html#//apple_ref/doc/uid/10000093i">字体处理</a>。有关如何显示字体面板的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/TextFonts/Conceptual/CocoaTextArchitecture/FontHandling/FontHandling.html#//apple_ref/doc/uid/TP40009459-CH5-SW3">创建字体面板</a>。</p>
+<h2><a id="%E7%AE%80%E5%8D%95%E6%96%87%E5%AD%97%E7%BB%98%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>简单文字绘图</h2>
+<p>如果需要快速绘制少量文本，最简单的方法是使用 <code>NSString</code> 和 <code>NSAttributedString</code> 方法。Application Kit 在这些类上定义了支持在当前上下文中绘制字符串的方法。对于 <code>NSString</code> 对象，可以在绘制过程中将基本属性（例如字体，颜色和样式设置）应用于整个字符串。对于 <code>NSAttributedString</code> 对象，可以将多组属性应用于字符串的不同部分。</p>
+<p>在 OS X v10.4 之前，<code>NSString</code> 和 <code>NSAttributedString</code> 类旨在偶尔在程序中呈现文本。这些绘制方法的性能不如使用 Cocoa 文本系统呈现文本所获得的性能好。同样，字符串的布局在当前视图中限于一个简单的矩形区域。在 OS X v10.4 中，字符串绘制方法的性能显着提高，并且在许多情况下很有用。当然，您应该始终自己衡量性能，并查看它是否适合您的程序。如果需要进行更复杂的文本布局，则仍应考虑使用 Cocoa 文本系统。</p>
+<p>有关字符串绘制方法的信息，请参见 <a href="https://developer.apple.com/documentation/appkit">Application Kit Framework Reference</a> 中的 NSString Application Kit 补充参考或 NSAttributedString Application Kit 补充参考。</p>
+<h2><a id="%E9%AB%98%E7%BA%A7%E6%96%87%E5%AD%97%E7%BB%98%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>高级文字绘图</h2>
+<p>如果您的程序显示大量文本或需要以复杂的方式排列文本，则应使用 Cocoa 文本系统。该系统在诸如文本输入，布局，显示，编辑，复制和粘贴等基本功能的基础上提供高级文本处理功能。该系统支持多种字体和段落样式，嵌入式图像，拼写检查，非矩形文本容器以及复杂的排版功能以及许多其他功能。</p>
+<p>文本布局是您可以执行的与绘图相关的最昂贵操作之一，并且 Cocoa 文本系统已针对可能的最佳性能进行了优化。文本系统管理一组复杂的缓存，并优化其执行布局的时间，以减少对程序绘制周期的影响。当然，这些优化仅在程序重用其文本对象时有效，但是这样做相对简单。</p>
+<p>使用 Cocoa文 本系统的最简单方法是在一个窗口中放置一个 <code>NSTextView</code> 对象。文本视图对象创建并维护绘制文本并响应用户事件以修改文本所需的文本布局对象。</p>
+<p>如果您想更好地控制文本布局和编辑行为，则可以在多个地方使用 Cocoa 文本系统。Cocoa 文本系统核心的文本引擎是高度可定制的。您可以子类化几个文本系统类，以提供自定义布局和排版行为。您还可以创建自己的基于文本的视图，以提供默认 <code>NSTextView</code> 所提供的功能以外的功能。</p>
+<p>有关 Cocoa 文本系统的信息，您应该首先阅读 <a href="https://developer.apple.com/library/archive/documentation/TextFonts/Conceptual/CocoaTextArchitecture/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009459">Cocoa Text Architecture Guide</a>。该文档描述了文本系统的基本概念，并向您介绍了文本布局和管理中涉及的许多类。它还提供了一些简单的教程来帮助您入门以及指向其他与文本相关的文档的指针。</p>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E5%85%88%E8%BF%9B%E7%9A%84%E7%BB%98%E5%9B%BE%E6%8A%80%E6%9C%AF.html">&laquo; 上一章：先进的绘图技术</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E8%B7%AF%E5%BE%84.html">下一章：路径（Paths） &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

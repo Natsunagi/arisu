@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第一章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第一章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/09</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="cocoa%E7%BB%98%E7%94%BB%E6%8C%87%E5%AF%BC%E6%A6%82%E8%BF%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cocoa 绘画指导概述</h1>
+<p>绘图是大多数 Cocoa 应用程序的基本组成部分。如果您的应用程序仅使用标准系统控件，则 Cocoa 会为您完成所有绘图。但是，如果使用自定义视图或控件，则可以使用绘图命令来创建其外观。</p>
+<p>以下各节提供了 Cocoa 中与绘图相关的功能的快速浏览。随后的章节提供了有关每个功能的更多详细信息，还包括您在绘制过程中可能执行的许多常见任务的示例。</p>
+<h2><a id="cocoa%E7%BB%98%E5%9B%BE%E6%94%AF%E6%8C%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cocoa 绘图支持</h2>
+<p>Cocoa 绘图环境可用于在 Application Kit 框架（AppKit.framework）之上构建的所有应用程序。该框架定义了许多类和函数，用于绘制从原始形状到复杂图像和文本的所有内容。Cocoa 绘制还依赖于在 Foundation 框架（Foundation.framework）中找到的某些原始数据类型。</p>
+<p>Cocoa 绘图环境与 OS X 中的所有其他绘图技术兼容，包括 Quartz，OpenGL，Core Image，Core Video，Quartz Composer，PDF Kit 和 QuickTime。实际上，大多数 Cocoa 类在其实现中广泛使用 Quartz 进行实际绘制。如果您发现 Cocoa 没有所需的功能，则可以在必要时集成其他技术以达到理想的效果。</p>
+<p>因为它基于 Quartz，所以 Application Kit 框架提供了与 Quartz 中大多数功能相同的功能，但是使用的是面向对象的包装器。Application Kit 直接支持的功能包括：</p>
+<ul>
+<li>基于路径的绘图（也称为基于矢量的绘图）</li>
+<li>文字布局和显示</li>
+<li>PDF创建和显示</li>
+<li>透明度</li>
+<li>暗影（Shadows）</li>
+<li>色彩管理</li>
+<li>转换（Transforms）</li>
+<li>打印支持</li>
+<li>抗锯齿渲染</li>
+<li>OpenGL支持</li>
+</ul>
+<p>与 Quartz 一样，Cocoa 绘图环境尽可能利用图形硬件来加速绘图操作。此支持是自动的。您不必在代码中显式启用它。</p>
+<p>有关 Cocoa中 可用类的信息，请参阅 <a href="https://developer.apple.com/documentation/appkit">Application Kit框架参考</a>和 <a href="https://developer.apple.com/documentation/foundation">Foundation 框架参考</a>。有关如何将基于 C 的技术集成到您的 Cocoa 应用程序中的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/QuartzOpenGL/QuartzOpenGL.html#//apple_ref/doc/uid/TP40003290-CH211-BAADHIAF">结合其他绘图技术</a>。</p>
+<h2><a id="%E7%94%BB%E5%AE%B6%E7%9A%84%E6%A8%A1%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>画家的模型</h2>
+<p>与 Quartz 一样，Cocoa 绘图使用画家（painter）的模型进行成像。在画家的模型中，每个连续的绘画操作都会将一层“油漆”应用于输出“画布”。随着添加新的油漆层，以前的油漆元素可能会被新油漆遮盖（部分或全部）或修改。该模型使您可以从少量强大的原语中构建极其复杂的图像。</p>
+<p>图 1-1 显示了画家模型的工作方式，并演示了渲染内容时绘制顺序的重要性。在第一个结果中，首先绘制左侧的线框形状，然后绘制实心形状，使除线框形状的周长以外的所有面都模糊。以相反的顺序绘制形状时，结果会大不相同。由于线框形状中有更多的孔，因此实心部分会通过这些孔显示出来。</p>
+<p>图 1-1：画家模型</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-1.png" alt="" /></p>
+<h2><a id="%E7%BB%98%E7%94%BB%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘画环境</h2>
+<p>绘图环境包含数字画布和图形设置，这些设置决定了内容的最终外观。画布确定绘制内容的位置，而图形设置控制绘制的各个方面，包括内容的大小，颜色，质量和方向。</p>
+<h3><a id="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形上下文</h3>
+<p>您可以将图形上下文视为绘图目标。图形上下文封装了绘制到基础画布所需的所有信息，包括当前的绘图属性以及画布上数字绘画的设备特定表示。在 Cocoa 中，图形上下文由 <code>NSGraphicsContext</code> 类表示，并用于表示以下绘制目标：</p>
+<ul>
+<li>Windows（及其视图）</li>
+<li>图像（包括各种位图）</li>
+<li>印表机（Printers）</li>
+<li>档案（PDF，EPS）</li>
+<li>OpenGL 曲面</li>
+</ul>
+<p>到目前为止，最常见的绘制目标是应用程序的窗口，和它的拓展视图。Cocoa 在每个窗口，每个线程的基础上为您的应用程序维护图形上下文对象。这意味着对于给定的窗口，该窗口的图形上下文与应用程序中的线程数量一样多。尽管大多数绘图都发生在应用程序的主线程上，但是其他图形上下文对象也使从辅助线程进行绘制成为可能。</p>
+<p>对于大多数其他绘图操作，Cocoa 会根据需要创建图形上下文，并在调用绘图代码之前对其进行配置。在某些情况下，您执行的操作可能会间接创建图形上下文。例如，在创建 PDF 文件时，您可能只需要为视图对象的特定部分请求 PDF 数据。在幕后，Cocoa 实际上创建了一个图形上下文对象，并调用视图的绘图代码来生成 PDF 数据。</p>
+<p>您还可以显式创建图形上下文，以在特殊情况下处理图形。例如，创建位图图像的一种方法是创建位图画布，然后创建直接绘制到该画布的图形上下文。还有其他显式创建图形上下文对象的方法，尽管大多数方法都涉及绘制到屏幕或图像。很少会创建用于打印或生成 PDF 或 EPS 数据的图形上下文对象。</p>
+<p>有关图形上下文的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIJFBJJ">图形上下文</a>。</p>
+<h3><a id="%E5%9B%BE%E5%BD%A2%E7%8A%B6%E6%80%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形状态</h3>
+<p>除了管理绘图目标外，<code>NSGraphicsContext</code> 对象还管理与当前绘图目标关联的图形状态。图形状态由影响内容绘制方式的属性组成，例如线宽，笔触颜色和填充颜色。当前图形状态可以保存在由当前图形上下文对象维护的堆栈上。然后，只需恢复先前的图形状态，就可以快速撤消对图形状态的任何后续更改。保存和恢复图形状态的功能为您的绘图代码返回到已知的属性集提供了一种简单的方法。</p>
+<p>Cocoa 管理图形状态的某些属性的方式与 Quartz 略有不同。例如，使用 NSColor 类设置当前的笔触和填充颜色，而使用 NSBezierPath 类设置大多数基于路径的参数。责任的转移反映了 Cocoa 更具面向对象的性质。</p>
+<p>有关构成当前图形状态的属性以及管理它们的对象的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIHGDAH">图形状态信息</a>。</p>
+<h3><a id="%E5%9D%90%E6%A0%87%E7%B3%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>坐标系</h3>
+<p>Cocoa 支持的坐标系与基于 Quartz 的应用程序中使用的坐标系相同。所有坐标都是使用浮点值而不是整数指定的。您的代码将绘制在用户坐标空间中。您的绘图命令将转换为设备坐标空间，然后将其渲染到目标设备。</p>
+<p>用户坐标空间对坐标值使用固定比例。在此坐标空间中，一个单位实际上等于 1/72 英寸。尽管看起来这可能意味着要以每英寸72点（dpi）的分辨率进行绘制，但是假设这样做是错误的。实际上，用户坐标空间没有像素或 dpi 的固有概念。使用浮点值使您可以在用户坐标空间中进行精确布局，并使 Cocoa 承担将坐标转换为设备空间。</p>
+<p>顾名思义，设备坐标空间是指目标设备（通常是监视器或打印机）使用的原始坐标空间。与用户坐标空间（其单位有效固定）不同，设备坐标空间的单位与目标设备的分辨率有关，后者可能会有所不同。Cocoa 在渲染期间自动处理从用户空间到设备空间的坐标转换，因此您几乎不需要直接使用设备坐标。</p>
+<p>有关 Cocoa 中坐标系的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIFCIHJ">坐标系基础</a>。</p>
+<h3><a id="%E8%BD%AC%E6%8D%A2%EF%BC%88transforms%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换（Transforms）</h3>
+<p>变换是一种用于在二维空间中操纵坐标的数学构造。变换在基于图形的计算中被广泛使用，以简化绘图过程。坐标值通过转换的数学矩阵相乘，以获得反映了转换属性的修改后的坐标。</p>
+<p>在 Cocoa 中，<code>NSAffineTransform</code> 类实现了转换行为。您可以使用此类将以下效果应用于当前坐标系：</p>
+<ul>
+<li>平移（Translation）</li>
+<li>缩放比例（Scaling）</li>
+<li>旋转（Rotation）</li>
+</ul>
+<p>您可以将上述效果以不同的组合进行组合以获得有趣的结果。在绘制过程中，Cocoa 将效果应用到您绘制的内容上，将这些特征赋予您的形状和图像。由于在渲染过程中某个点通过变换将所有坐标相乘，因此添加这些效果对性能几乎没有影响。实际上，使用变换操作形状通常比直接操作源数据要快。</p>
+<p>有关变换的更多信息，包括它们如何影响您的内容以及如何使用它们，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIDJJBI">坐标系和变换</a>。</p>
+<h3><a id="%E8%89%B2%E5%BD%A9%E5%92%8C%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>色彩和色彩空间</h3>
+<p>颜色是绘图的重要部分。在绘制任何元素之前，必须选择渲染该元素时要使用的颜色。Cocoa 为指定几种不同颜色空间中的任何颜色信息提供了完整的支持。还提供了创建国际颜色协会（ICC）和 ColorSync 配置文件中的颜色的支持。</p>
+<p>透明度是影响颜色外观的另一个因素。在 OS X 中，透明度用于呈现逼真的内容和美观的效果。Cocoa 提供全面支持，以增加颜色的透明度。</p>
+<p>在 Cocoa中，<code>NSColor</code> 和 <code>NSColorSpace</code> 类提供了颜色对象和颜色空间对象的实现。有关如何在 Cocoa 中使用颜色的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJDFIFE">颜色和透明度</a>。</p>
+<h2><a id="%E5%9F%BA%E6%9C%AC%E7%BB%98%E5%9B%BE%E5%85%83%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基本绘图元素</h2>
+<p>复杂图形的创建通常有一个简单的开始。在 Cocoa 中，您绘制的所有内容都源自在绘制代码中组装的一组基本元素。这些元素是所有绘图操作的基础，并将在以下各节中进行描述。</p>
+<h3><a id="%E5%87%A0%E4%BD%95%E6%94%AF%E6%8C%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>几何支持</h3>
+<p>Cocoa 提供了自己的数据结构，用于处理基本的几何信息，例如点和矩形。Cocoa 定义了表 1-1 中列出的数据类型。这些数据结构中的每一个成员字段都是浮点值。</p>
+<p>表 1-1：原始数据类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center">类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center"><code>NSPoint</code></td>
+<td>点数据类型由 <code>x</code> 和 <code>y</code> 值组成。点指定渲染元素的坐标。例如，使用点定义线，指定矩形的起点，指定圆弧的角度等。</td>
+</tr>
+<tr>
+<td style="text-align: center"><code>NSSize</code></td>
+<td>大小数据类型由 <code>width</code> 和 <code>height</code> 字段组成。大小用于指定目标的尺寸。例如，size 数据类型指定矩形或椭圆形的宽度和高度。</td>
+</tr>
+<tr>
+<td style="text-align: center"><code>NSRect</code></td>
+<td>矩形数据类型是由原点和大小组成的复合结构。<code>origin</code> 字段指定矩形在当前坐标系中的左下角的位置。 <code>size</code> 字段指定矩形相对于原点并向右上方延伸的高度和宽度。（请注意，在翻转的坐标空间中，原点位于左上角，矩形的高度和宽度向下和向右延伸。）</td>
+</tr>
+</tbody>
+</table>
+<p>有关如何操作点，矩形和大小数据类型的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCGCFBG">操纵几何类型</a>。</p>
+<h3><a id="%E5%BD%A2%E7%8A%B6%E5%9F%BA%E5%85%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>形状基元</h3>
+<p>Cocoa 通过 <code>NSBezierPath</code> 类提供了对绘制图形基元的支持。您可以使用此类创建以下基本形状，其中一些形状如图 1-2 所示。</p>
+<ul>
+<li>线（Lines）</li>
+<li>矩形（Rectangles）</li>
+<li>椭圆和圆（Ovals and circles）</li>
+<li>弧线（Arcs）</li>
+<li>贝塞尔曲线（Bezier cubic curves）</li>
+</ul>
+<p>图 1-2：图形基元示例</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-2.png" alt="" /></p>
+<p>贝塞尔曲线路径对象存储基于矢量的路径信息，使其紧凑且独立于分辨率。您可以使用任何简单形状创建路径，也可以将基本形状组合在一起以创建更复杂的路径。要渲染这些形状，请设置路径的图形属性，然后描边或填充它以“绘制”视图的路径。</p>
+<blockquote>
+<p>注意：您还可以使用 <code>NSBezierPath</code> 方法将字形轮廓添加到 Bezier 路径对象。但是，对于大多数文本处理，您应该使用在 Text 中引入的 Cocoa 文本系统。</p>
+</blockquote>
+<p>有关绘制形状的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCHFJJG">路径</a>。</p>
+<h3><a id="%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像</h3>
+<p><code>NSImage</code> 类及其关联的图像表示形式类（<code>NSImageRep</code> 和子类）提供了对图像的支持。<code>NSImage</code> 类包含用于创建和管理与图像有关的数据的基本接口。图像表示类提供了 <code>NSImage</code> 用于处理基础图像数据的基础结构。</p>
+<p>可以从现有文件加载图像，也可以动态创建图像。图 1-3 显示了从文件加载的一些位图图像。</p>
+<p>图 1-3：位图图像示例</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-3.jpg" alt="" /></p>
+<p>Cocoa 直接或间接支持许多不同的图像格式。Cocoa 支持的某些格式直接包括以下内容：</p>
+<ul>
+<li>位图图像，包括以下图像格式：
+<ul>
+<li>BMP</li>
+<li>GIF</li>
+<li>JPEG</li>
+<li>JPEG 2000</li>
+<li>PNG</li>
+<li>TIFF</li>
+</ul>
+</li>
+<li>Images based on Encapsulated PostScript (EPS) data.（基于封装的PostScript（EPS）数据的图像）</li>
+<li>Images based on Portable Document Format (PDF) data.（基于可移植文档格式（PDF）数据的图像）</li>
+<li>Images based on PICT data.（基于 PICT 数据的图像）</li>
+<li>Core Image images（核心图片图片）</li>
+</ul>
+<p>由于它们支持多种类型的数据，因此不应严格将图像对象视为位图。图像对象还可以存储在 EPS，PDF 和 PICT 文件中找到的基于路径的绘图命令。他们可以呈现 Core Image 提供给他们的数据。他们可以根据需要插值图像数据，并根据需要以不同的分辨率渲染图像。</p>
+<p>有关 Cocoa 图像支持以及在代码中使用图像的方式的详细信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIBBFGJ">图像</a>。</p>
+<h3><a id="%E6%B8%90%E5%8F%98%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>渐变色</h3>
+<p>在 OS X v10.5 和更高版本中，可以使用 <code>NSGradient</code> 类创建渐变填充图案。</p>
+<h3><a id="%E6%96%87%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>文本</h3>
+<p>Cocoa 提供了一个先进的文本系统，可以绘制从简单字符串到格式化文本流的所有内容。图 1-4 显示了可以创建的风格化文本的一些基本示例。</p>
+<p>图 1-4：文本示例</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-4.png" alt="" /></p>
+<p>因为使用 Cocoa 文本系统进行文本布局和渲染是一个非常复杂的过程，所以它在其他地方已经有很好的文档说明，因此在本文档中不会进行详细介绍。有关图形文字的基本信息以及指向更高级的文本相关文档的链接，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIEEIGC">文本</a>。</p>
+<h2><a id="views-and-drawing" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Views and Drawing</h2>
+<p>几乎所有 Cocoa 图中的绘制都是在内部视图中完成的。视图是代表窗口可视部分的对象。每个视图对象负责显示一些可视内容并响应其可见区域中的用户事件。一个视图也可能负责一个或多个子视图。</p>
+<p><code>NSView</code> 类是所有与视图相关的对象的基类。Cocoa 定义了几种用于显示标准内容的视图，包括文本视图（text views），拆分视图（split views），选项卡视图（tab views），标尺视图（ruler views）等。Cocoa 控件也基于 <code>NSView</code> 类，并实现了界面元素，例如按钮，滚动条，表格和文本字段。</p>
+<p>除了标准视图和控件之外，您还可以创建自己的自定义视图。如果任何标准视图都没有提供您要查找的行为，则可以创建自定义视图。Cocoa 通过向视图发送一条 <code>drawRect:</code> 消息来通知其视图需要绘制自身。<code>drawRect:</code> 方法的实现是所有绘图代码的去向。</p>
+<blockquote>
+<p>注意：尽管您也可以将标准视图和控件子类化以实现自定义行为，但是建议您尽可能尝试使用委托对象。如果要子类化标准控件，请避免更改该控件的外观。这样做违反了 OS X 人机界面指南中的指导项目。</p>
+</blockquote>
+<p>默认情况下，仅在响应用户操作时才发生窗口更新。这意味着仅当有关视图的某些更改时，才调用视图的 <code>drawRect:</code> 方法。 例如，当滚动动作导致视图的先前隐藏部分暴露时，Cocoa 调用该方法。Cocoa 也调用它来响应您自己的代码的请求。如果自定义视图显示的信息发生更改，则必须明确告知 Cocoa 您希望更新视图的适当部分。为此，您可以使视图的可见区域的一部分无效。Cocoa 将无效区域收集在一起，并生成适当的 <code>drawRect:</code> 消息以重绘内容。</p>
+<p>尽管有许多绘制方法，但是基本的 <code>drawRect:</code> 方法具有以下结构：</p>
+<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+{
+    // Draw your content
+}
+</code></pre>
+<p>仅仅如此！在调用 <code>drawRect:</code> 方法时，Cocoa 已经将绘图焦点锁定在视图上，保存了图形状态，将当前的变换矩阵调整为视图的原点，并将裁剪矩形调整为视图的框架。您要做的就是绘制内容。</p>
+<p>实际上，您的 <code>drawRect:</code> 方法通常要复杂得多。您自己的方法可能使用其他几个对象和方法来处理实际图形。您可能还需要保存和恢复图形状态一次或多次。因为此单一方法用于视图的所有图形，所以它还必须处理几种不同的情况。例如，您可能希望在打印过程中进行更精确的绘图，或者在实时调整大小操作期间使用经过高度优化的代码。这些选项众多，并且在后续章节中会更详细地介绍。</p>
+<p>有关视图和实时调整大小的其他信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaViewsGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40002978">View 编程指南</a>。有关在 Cocoa 中进行打印的更多信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Printing/osxp_aboutprinting/osxp_aboutprt.html#//apple_ref/doc/uid/10000083i">Mac 打印编程指南</a> 中的“自定义视图的打印图纸”。</p>
+<h2><a id="%E5%B8%B8%E8%A7%81%E7%BB%98%E5%9B%BE%E4%BB%BB%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常见绘图任务</h2>
+<p>表 1-2 列出了一些与绘制视图内容有关的常见任务，并提供了有关如何完成这些任务的建议。</p>
+<p>表 1-2 常见绘图任务和解决方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center">任务</th>
+<th>如何完成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">绘制内容以创建自定义视图。</td>
+<td>在您的自定义视图中实现 <code>drawRect:</code> 方法。使用此方法的实现，可以使用路径，图像，文本或 Cocoa，Quartz 或 OpenGL 中可用的任何其他工具来绘制内容。</td>
+</tr>
+<tr>
+<td style="text-align: center">更新自定义视图以反映更改的内容。</td>
+<td>将 <code>setNeedsDisplayInRect:</code> 或 <code>setNeedsDisplay:</code> 消息发送到视图。发送这些消息之一会将部分或全部视图标记为无效，并且需要更新。Cocoa 通过在下一个更新周期内向您的视图发送一个 <code>drawRect:</code> 消息来做出响应。</td>
+</tr>
+<tr>
+<td style="text-align: center">对视图中的某些内容进行动画处理。</td>
+<td>使用 Core Animation，设置计时器或使用 <code>NSAnimation</code> 或<code> NSViewAnimation</code> 类以所需的帧速率生成通知。收到计时器通知后，使部分或全部视图无效以强制进行更新。有关核心动画的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40004514">核心动画编程指南</a>。有关使用计时器进行动画制作的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-CJBIGIGG">将 NSTimer 用于动画内容</a>。有关使用NSAnimation对象的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-CJBGBGDJ">使用 Cocoa 动画对象</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">在实时调整大小时绘制。</td>
+<td>使用 <code>NSView</code> 的 <code>inLiveResize</code> 方法确定实时调整大小是否正在发生。如果是这样，请在确保视图具有所需外观的同时尽量减少绘制。有关实时调整大小优化的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/Drawing/Articles/DrawingPerformance.html#//apple_ref/doc/uid/10000151i">图形性能准则</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">在打印过程中绘制。</td>
+<td>使用 <code>NSGraphicsContext</code> 的 <code>currentContextDrawingToScreen</code> 类方法或 <code>isDrawingToScreen</code> 实例方法来确定是否正在进行打印操作。使用 <code>NSGraphicsContext</code> 的 <code>attributes</code> 方法 检索（根据需要）有关当前打印作业的任何其他信息。以最佳分辨率绘制图像。以您认为合适的任何其他方式调整图形，以在目标设备上获得最佳外观。有关打印的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Printing/osxp_aboutprinting/osxp_aboutprt.html#//apple_ref/doc/uid/10000083i">Mac 打印编程指南</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">从视图创建 PDF 或 EPS 数据。</td>
+<td>使用 <code>dataWithPDFInsideRect:</code> 或 <code>dataWithEPSInsideRect:</code> 方法获取数据。在您的 <code>drawRect:</code> 方法中，使用 <code>currentgraphDrawingToScreen</code> 类方法或 <code>NSGraphicsContext</code> 的 <code>isDrawingToScreen</code> 实例方法来确定是否正在进行打印操作。</td>
+</tr>
+</tbody>
+</table>
+<p>一旦进入其运行循环，发送到线程端口的所有未来事件都由 <code>ProcessClientRequest</code> 函数处理。该函数的实现取决于线程的工作类型，这里没有显示。</p>
+<div style="padding-top:25px;">
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87.html">下一章：图形上下文 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

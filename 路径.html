@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第八章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第八章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/12</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E8%B7%AF%E5%BE%84%EF%BC%88paths%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路径（Paths）</h1>
+<p>Cocoa 提供了使用路径绘制简单或复杂几何形状的支持。路径是用于创建基本形状（如直线，圆弧和曲线）的点的集合。通过这些基元，可以创建更复杂的形状（例如圆形，矩形，多边形和复杂的弯曲形状）并绘制它们。因为它们由点组成（与栅格化的位图相对），所以路径轻巧，快速，并且可以缩放到不同的分辨率，而不会损失精度或质量。</p>
+<p>以下各节主要关注 <code>NSBezierPath</code> 类的使用，该类提供了用于创建和操作路径的主要接口。Cocoa 还提供了一些功能，这些功能为创建和绘制路径提供类似的行为，但不需要创建对象的开销。在适当的地方提及了这些功能，但有关更多信息，请参见<a href="https://developer.apple.com/documentation/foundation">基础框架参考</a>和<a href="https://developer.apple.com/documentation/appkit">应用工具包框架参考</a>。</p>
+<h2><a id="%E8%B7%AF%E5%BE%84%E6%9E%84%E5%BB%BA%E5%9D%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路径构建块</h2>
+<p>Cocoa 定义了几种基本数据类型，用于在绘图环境中处理几何信息。这些数据类型包括 <code>NSPoint</code>，<code>NSRect</code> 和 <code>NSSize</code>。您可以使用这些数据类型为要绘制的形状指定线条，矩形以及宽度和高度信息。可以使用这些数据结构中的一个或多个来指定从直线和矩形到圆，弧和贝塞尔曲线的所有内容。</p>
+<p>点，矩形和大小数据类型的坐标值均使用浮点值指定。随着底层目标设备的分辨率提高，浮点值可提供更高的精度。</p>
+<p>在 Quartz 环境中，<code>NSPoint</code>，<code>NSRect</code> 和 <code>NSSize</code> 数据类型具有等效项：<code>CGPoint</code>，<code>CGRect和CGSize</code>。由于 Cocoa 和 Quartz 类型的布局相同，因此可以通过将一种类型转换为另一种类型来在两种类型之间进行转换。</p>
+<h2><a id="nsbezierpath%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>NSBezierPath 类</h2>
+<p><code>NSBezierPath</code> 类提供绘制大多数原始形状的行为，对于许多复杂形状，它是 Cocoa 中唯一可用的工具。<code>NSBezierPath</code> 对象封装了与路径关联的信息，包括定义路径的点和影响路径外观的属性。以下各节介绍了 <code>NSBezierPath</code> 如何表示路径信息，还介绍了影响路径外观的属性。</p>
+<h3><a id="%E8%B7%AF%E5%BE%84%E5%85%83%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路径元素</h3>
+<p><code>NSBezierPath</code> 对象使用路径元素来构建路径。路径元素由基本命令和一个或多个点组成。该命令告诉路径对象如何解释关联的点。组装时，一组路径元素会创建一系列形成所需形状的线段。</p>
+<p><code>NSBezierPath</code> 类负责处理最初创建和组织路径元素的许多工作。但是，如果要更改现有路径，了解如何操作路径元素就变得很重要。如果您根据用户输入创建复杂路径，则可能希望为用户提供以后更改该路径的选项。尽管您可以使用更改创建一个新的路径对象，但是修改现有路径元素要简单得多。（有关如何修改路径元素的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCICAFC">操纵单个路径元素</a>。）</p>
+<p><code>NSBezierPath</code> 类仅定义四个基本路径元素命令，这些命令在表 8-1 中列出。这些命令足以定义所有可能的路径形状。每个命令都有一个或多个点，这些点包含放置路径元素所需的信息。大多数路径元素都将当前绘图点用作绘图的起点。</p>
+<p>表 8-1：路径元素命令</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center">命令</th>
+<th style="text-align: center">点的数量</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">NSMoveToBezierPathElement</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">将路径对象的当前绘图点移动到指定点。该路径元素不会生成任何图形。在路径中间使用此命令会导致线段断开。</td>
+</tr>
+<tr>
+<td style="text-align: center">NSLineToBezierPathElement</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">创建从当前图形点到指定点的直线。使用此路径元素指定直线和矩形。</td>
+</tr>
+<tr>
+<td style="text-align: center">NSCurveToBezierPathElement</td>
+<td style="text-align: center">3</td>
+<td style="text-align: center">使用两个控制点定义从当前点到指定端点的曲线段。这些点按以下顺序存储：<code>controlPoint1</code>，<code>controlPoint2</code>，<code>endPoint</code>。椭圆，圆弧和贝塞尔曲线均使用曲线元素来指定其几何形状。</td>
+</tr>
+<tr>
+<td style="text-align: center">NSClosePathBezierPathElement</td>
+<td style="text-align: center">1</td>
+<td style="text-align: center">在指定点标记当前子路径的结尾。（请注意，为“闭合路径”元素指定的点基本上与当前点相同。</td>
+</tr>
+</tbody>
+</table>
+<p>将新形状添加到路径时，<code>NSBezierPath</code> 会将其分解为一个或多个组件路径元素，以进行存储。例如，调用 <code>moveToPoint:</code> 或 <code>lineToPoint:</code> 分别创建一个 Move To 元素或 Line To 元素。对于更复杂的形状（例如矩形和椭圆形），可能会创建多个直线或曲线元素。 图 8-1 显示了两个形状以及生成的路径元素。对于曲线段，该图还显示了定义曲线的控制点。</p>
+<p>图 8-1：复杂路径的路径元素</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-1.png" alt="" /></p>
+<p>清单 8-1 显示了创建图 8-1 所示路径的代码。</p>
+<p>清单 8-1：创建一个复杂路径</p>
+<pre><code class="language-objective-c">NSBezierPath* aPath = [NSBezierPath bezierPath];
+ 
+[aPath moveToPoint:NSMakePoint(0.0, 0.0)];
+[aPath lineToPoint:NSMakePoint(10.0, 10.0)];
+[aPath curveToPoint:NSMakePoint(18.0, 21.0)
+        controlPoint1:NSMakePoint(6.0, 2.0)
+        controlPoint2:NSMakePoint(28.0, 10.0)];
+ 
+[aPath appendBezierPathWithRect:NSMakeRect(2.0, 16.0, 8.0, 5.0)];
+</code></pre>
+<h3><a id="%E5%AD%90%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>子路径</h3>
+<p>子路径是 <code>NSBezierPath</code> 对象中的一系列连接的直线和曲线段。单个路径对象可能包含多个子路径，每个子路径都由“Move To”或“Close Path”元素划定。设置初始绘图点（通常使用 <code>moveToPoint:</code> 方法）时，将设置第一个子路径的起点。绘制时，将构建子路径的内容，直到关闭路径（使用 <code>closePath</code> 方法）或添加另一个 Move To 元素为止。那时，子路径被认为是封闭的，任何新元素都被添加到新的子路径中。</p>
+<p><code>NSBezierPath</code> 的某些方法会自动为您创建一个新的子路径。例如，创建一个矩形或椭圆形将导致添加一个“Move To”元素，几个图形元素以及一个“Close Path”和“Move To”元素（示例请参见图 8-1）。元素列表末尾的“Move To”元素可确保将当前绘图点保留在已知位置，在这种情况下，该位置位于矩形的原点。</p>
+<p>存在子路径可以帮助您区分路径对象的不同部分。例如，子路径会影响路径的填充方式。请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BAJIJJGD">缠绕规则</a>。将路径划分为子路径还会影响诸如 <code>bezierPathByReversingPath</code> 之类的方法，该方法会一次反转一个子路径。但是，在其他情况下，<code>NSBezierPath</code> 对象中的子路径共享相同的图形属性。</p>
+<h3><a id="%E8%B7%AF%E5%BE%84%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>路径属性</h3>
+<p><code>NSBezierPath</code> 对象维护确定其路径形状所需的所有属性。这些属性包括线宽，曲线平坦度，线帽样式，线连接样式和路径的斜接限制。您可以使用 <code>NSBezierPath</code> 的方法设置这些值。</p>
+<p>在填充或描边路径之前，路径属性不会生效，因此，如果在绘制路径之前多次更改属性，则仅使用最后一个值。<code>NSBezierPath</code> 类维护每个属性的自定义版本和默认版本。如果设置了路径对象，则使用自定义属性值。如果没有为给定的路径对象设置自定义属性值，则使用默认值。<code>NSBezierPath</code> 类不使用通过 Quartz 函数设置的路径属性值。</p>
+<blockquote>
+<p>注意：路径属性适用于整个路径。如果要对路径的不同部分使用不同的属性，则必须创建两个单独的路径对象，并将适当的属性应用于每个对象。</p>
+</blockquote>
+<p>以下各节描述了可以为路径对象设置的属性，以及这些属性如何影响渲染的路径。</p>
+<h4><a id="%E7%BA%BF%E5%AE%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线宽</h4>
+<p>线宽属性控制整个路径的宽度。线宽以点为单位，并指定为浮点值。所有行的默认宽度为 1。要更改所有 <code>NSBezierPath</code> 对象的默认线宽度，请使用 <code>setDefaultLineWidth:</code> 方法。要设置当前路径对象的线宽，请使用该路径对象的 setLineWidth: 方法。要为没有 <code>NSBezierPath</code> 对象渲染的形状设置默认线宽，必须使用 Quartz 中的 <code>CGContextSetLineWidth</code> 函数。</p>
+<p>视目标设备，线的位置和当前的抗锯齿设置的限制，将小数线宽呈现为尽可能接近指定的宽度。例如，假设您要画一条宽度为 0.2 点的线。将该宽度乘以每英寸1/72点，将产生一条 0.0027778 英寸宽的线。在 90 dpi 的屏幕上，最小的线条可能是 1 像素宽或 0.0111 英寸。为确保您的线条未在屏幕上隐藏，Cocoa 名义上以屏幕的最小最小宽度（0.0111 英寸）绘制它。实际上，如果线条跨越像素边界或启用了抗锯齿功能，则线条可能会影响路径两侧的其他像素。如果输出设备是 600 dp i打印机，则 Quartz 能够使线条更接近其实际宽度 0.0027778 英寸。</p>
+<p>清单 8-2 使用不同的技术绘制了一些路径。<code>NSFrameRect</code> 函数使用默认的线宽绘制矩形，因此必须在调用函数之前设置值。仅当未设置自定义值时，路径对象才使用默认值。您甚至可以更改路径对象的线宽，然后再次绘制以获得不同的路径宽度，尽管您还需要移动路径才能看到差异。</p>
+<p>清单 8-2：设置路径的线宽</p>
+<pre><code class="language-objective-c">// Draw a rectangle using the default line width: 2.0.
+[NSBezierPath setDefaultLineWidth:2.0];
+NSFrameRect(NSMakeRect(20.0, 20.0, 10.0, 10.0));
+ 
+// Set the line width for a single NSBezierPath object.
+NSBezierPath* thePath = [NSBezierPath bezierPath];
+[thePath setLineWidth:1.0]; // Has no effect.
+[thePath moveToPoint:NSMakePoint(0.0, 0.0)];
+[thePath lineToPoint:NSMakePoint(10.0, 0.0)];
+[thePath setLineWidth:3.0];
+[thePath lineToPoint:NSMakePoint(10.0, 10.0)];
+ 
+// Because the last value set is 3.0, all lines are drawn with
+// a width of 3.0, not just the second line.
+[thePath stroke];
+ 
+// Changing the width and stroking again draws the same path
+// using the new line width.
+[thePath setLineWidth:4.0];
+[thePath stroke];
+ 
+// Changing the default line width has no effect because a custom
+// value already exists. The path is rendered with a width of 4.0.
+[thePath setDefaultLineWidth:5.0];
+[thePath stroke];
+</code></pre>
+<h4><a id="%E7%BA%BF%E5%B8%BD%E6%A0%B7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线帽样式</h4>
+<p>当前的线帽样式确定路径段的开放端点的外观。Cocoa 支持图 8-2 中所示的线帽样式。</p>
+<p>图 8-2：线帽样式</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-2.png" alt="" /></p>
+<p>要设置 <code>NSBezierPath</code> 对象的线帽样式，请使用 <code>setLineCapStyle:</code> 方法。默认的线帽样式设置为 <code>NSButtLineCapStyle</code>。要更改默认的线帽样式，请使用 <code>setDefaultLineCapStyle:</code> 方法。清单 8-3 演示了这两种方法：</p>
+<p>清单8-3：设置路径的线帽样式</p>
+<pre><code class="language-objective-c">// Set the default line cap style
+[NSBezierPath setDefaultLineCapStyle:NSButtLineCapStyle];
+ 
+// Customize the line cap style for the new object.
+NSBezierPath* aPath = [NSBezierPath bezierPath];
+[aPath moveToPoint:NSMakePoint(0.0, 0.0)];
+[aPath lineToPoint:NSMakePoint(10.0, 10.0)];
+[aPath setLineCapStyle:NSSquareLineCapStyle];
+[aPath stroke];
+</code></pre>
+<h4><a id="%E7%BA%BF%E8%BF%9E%E6%8E%A5%E6%A0%B7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线连接样式</h4>
+<p>当前的线连接样式确定路径中的连接线如何在顶点处连接。Cocoa 支持图 8-3 所示的线连接样式。</p>
+<p>图 8-3：线连接样式</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-3.png" alt="" /></p>
+<p>要为 <code>NSBezierPath</code> 对象设置线连接样式，请使用 <code>setLineJoinStyle:</code> 方法。默认的线连接样式设置为 <code>NSMiterLineJoinStyle</code>。若要更改默认的线连接样式，请使用 <code>setDefaultLineJoinStyle:</code> 方法。清单 8-4 演示了这两种方法：</p>
+<p>清单 8-4：设置路径的线连接样式</p>
+<pre><code class="language-objective-c">// Set the default line join style
+[NSBezierPath setDefaultLineJoinStyle:NSMiterLineJoinStyle];
+ 
+// Customize the line join style for a new path.
+NSBezierPath* aPath = [NSBezierPath bezierPath];
+[aPath moveToPoint:NSMakePoint(0.0, 0.0)];
+[aPath lineToPoint:NSMakePoint(10.0, 10.0)];
+[aPath lineToPoint:NSMakePoint(10.0, 0.0)];
+[aPath setLineJoinStyle:NSRoundLineJoinStyle];
+[aPath stroke];
+</code></pre>
+<h4><a id="%E8%A1%8C%E7%A0%B4%E6%8A%98%E5%8F%B7%E6%A0%B7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>行破折号样式</h4>
+<p>破折号样式确定用于描画路径的图案。默认情况下，描边路径显示为实线。使用虚线模式，可以指定实色和透明色样的交替组。设置虚线样式时，可以指定每个连续的实心或透明色板的宽度（以磅为单位）。然后，您指定的宽度将在路径的整个长度上重复。</p>
+<p>图 8-4 显示了一些样例虚线图案以及用于创建每个图案的值。</p>
+<p>图 8-4：虚线图样</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-4.png" alt="" /></p>
+<p><code>NSBezierPath</code> 类不支持默认线破折号样式的概念。如果要使用虚线样式，则必须使用 <code>setLineDash:count:phase:</code> 方法将其明确地应用于路径，如清单 8-5 所示，该方法将呈现上图中的最后一个图案。</p>
+<p>清单 8-5：在路径中添加破折号样式</p>
+<pre><code class="language-objective-c">void AddDashStyleToPath(NSBezierPath* thePath)
+{
+    // Set the line dash pattern.
+    float lineDash[6];
+ 
+    lineDash[0] = 40.0;
+    lineDash[1] = 12.0;
+    lineDash[2] = 8.0;
+    lineDash[3] = 12.0;
+    lineDash[4] = 8.0;
+    lineDash[5] = 12.0;
+ 
+   [thePath setLineDash:lineDash count:6 phase:0.0];
+}
+</code></pre>
+<h4><a id="%E7%BA%BF%E5%B9%B3%E6%95%B4%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线平整度</h4>
+<p>线条平坦度属性确定曲线段的渲染精度。平坦度值测量渲染期间要使用的最大错误容限（以像素为单位）。较小的值可使曲线更平滑，但需要更多的计算时间。较大的值会导致更多的锯齿曲线，但渲染速度会更快。</p>
+<p>当您想快速渲染大量曲线并且不关心精度时，可以调整线的平坦度。例如，当精度不那么重要时，您可以在实时调整大小或滚动操作期间增加此值。无论如何，您都应该始终衡量性能，以确保这样的修改实际上可以节省时间。</p>
+<p>图 8-5 显示了更改默认平面度如何影响曲面。左图显示了一组平坦度值为 0.6（默认值）的曲面。右图显示了将平面度值设置为 20 时渲染的相同曲面。每个曲面的曲率都消失了，现在看起来像是一组连接的线段。</p>
+<p>图 8-5：曲线上的平坦度影响</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-5.png" alt="" /></p>
+<p>要设置特定 <code>NSBezierPath</code> 对象的平坦度，请使用 <code>setFlatness:</code> 方法。要设置默认的平坦度值，请使用 <code>setDefaultFlatness:</code>，如清单 8-6 所示：</p>
+<p>清单 8-6：设置路径的平坦度</p>
+<pre><code class="language-objective-c">[- (void) drawRect:(NSRect)rect
+{
+    if ([self inLiveResize])
+    {
+        // Adjust the default flatness upward to reduce
+        // the number of required computations.
+        [NSBezierPath setDefaultFlatness:10.0];
+ 
+        // Draw live resize content.
+    }
+    // ...
+ 
+}
+</code></pre>
+<h4><a id="%E6%96%9C%E6%8E%A5%E6%9E%81%E9%99%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>斜接极限</h4>
+<p>斜接限制可帮助您避免以锐角连接两个线段时出现尖峰。如果斜接长度（斜接的对角线长度）与线宽的比值超过了斜接限制，则使用斜角连接而不是斜接连接来绘制拐角。</p>
+<blockquote>
+<p>注意：斜接限制仅适用于使用斜接连接样式渲染的路径。</p>
+</blockquote>
+<p>图 8-6 显示了一个不同的斜接限制如何影响相同路径的示例。该路径由通过斜接连接的几条 10 点宽的线组成。在左图中，斜接限制设置为 5。由于斜接长度超过了斜接限制，因此将线连接更改为斜角连接。如右图所示，通过将斜接限制增加到 16，可以恢复斜接连接，但延伸得远远超出两条线相交的点。</p>
+<p>图 8-6：斜接限制效果</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-6.png" alt="" /></p>
+<p>要设置特定 <code>NSBezierPath</code> 对象的斜接限制，请使用 <code>setMiterLimit:</code> 方法。要为新创建的 <code>NSBezierPath</code> 对象设置默认斜接限制，请使用 <code>setDefaultMiterLimit:</code>。 清单 8-7 演示了这两种方法：</p>
+<p>清单 8-7：设置路径的斜接限制</p>
+<pre><code class="language-objective-c">// Increase the default limit
+[NSBezierPath setDefaultMiterLimit:20.0];
+ 
+// Customize the limit for a specific path with sharp angles.
+NSBezierPath* aPath = [NSBezierPath bezierPath];
+[aPath moveToPoint:NSMakePoint(0.0, 0.0)];
+[aPath lineToPoint:NSMakePoint(8.0, 100.0)];
+[aPath lineToPoint:NSMakePoint(16.0, 0.0)];
+[aPath setLineWidth:5.0];
+[aPath setMiterLimit:5.0];
+[aPath stroke];
+</code></pre>
+<h3><a id="%E7%BB%95%E7%BA%BF%E8%A7%84%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绕线规则</h3>
+<p>当您填充路径所包围的区域时，<code>NSBezierPath</code> 将应用当前的缠绕规则来确定要填充屏幕的哪些区域。缠绕规则只是一种算法，用于跟踪有关组成路径的整个填充区域的每个连续区域的信息。从给定区域内的点到路径范围外的任何点绘制射线。 然后使用表 8-2 中的规则解释交叉路径线的总数（包括隐式线）和每条路径线的方向，这些规则确定是否应填充区域。</p>
+<p>表 8-2：缠绕规则</p>
+<table>
+<thead>
+<tr>
+<th>缠绕规则</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSNonZeroWindingRule</code></td>
+<td>将每个从左到右的路径计为 +1，将每个从右到左的路径计为 -1。如果所有交叉的总和为 0，则该点在路径之外。如果总和不为零，则该点在路径内部，并填充包含该点的区域。这是默认绕线规则。</td>
+</tr>
+<tr>
+<td><code>NSEvenOddWindingRule</code></td>
+<td>计算过路通道的总数。如果交叉点数为偶数，则该点位于路径之外。如果交叉点的数量为奇数，则该点位于路径内，并且应填充包含该点的区域。</td>
+</tr>
+</tbody>
+</table>
+<p>填充操作适用于开放和封闭子路径。闭合子路径是一系列以“Close Path”元素结尾的图形调用。打开的子路径以“Move To”元素结尾。填充部分子路径时，<code>NSBezierPath</code> 会通过从子路径的第一点到最后一点创建一条隐式（非渲染）线，自动为您关闭它。</p>
+<p>图 8-7：显示了如何将缠绕规则应用于特定路径。子图 a 显示使用非零规则渲染的路径，子图 b 显示使用偶数奇数规则渲染的路径。子图 c 和 d 添加了方向标记，并且隐藏了闭合图形的路径线，以帮助您了解如何将规则应用于路径的两个区域。</p>
+<p>图 8-7：将缠绕规则应用于路径</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-7.png" alt="" /></p>
+<p>要为 <code>NSBezierPath</code> 对象设置缠绕规则，请使用 <code>setWindingRule:</code> 方法。默认绕线规则为 <code>NSNonZeroWindingRule</code>。要更改所有 <code>NSBezierPath</code> 对象的默认绕线规则，请使用 <code>setDefaultWindingRule:</code> 方法。</p>
+<h2><a id="%E6%93%8D%E7%BA%B5%E5%87%A0%E4%BD%95%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>操纵几何类型</h2>
+<p>Foundation 框架包含许多用于操纵几何值并使用这些值执行各种计算的功能。除了基本的相等性检查之外，您还可以执行更复杂的操作，例如矩形的并集和交集或在矩形边界中包含点。</p>
+<p>表 8-3：列出了一些更常用的功能及其行为。函数语法以简写形式提供，其中省略了参数类型以说明调用约定。有关可用功能及其完整语法的完整列表，请参见 <a href="https://developer.apple.com/documentation/foundation">Foundation Framework Reference</a> 中的“功能”部分。</p>
+<p>表 8-3：常用几何函数</p>
+<table>
+    <tr>
+        <th>操作</th>
+        <th>函数</th>
+        <th>描述</th>
+    </tr>
+    <tr>
+        <td rowspan="3">创建</td>
+        <td><code>NSPoint NSMakePoint(x, y)</code></td>
+        <td>返回具有指定 x 和 y 值的格式正确的 <code>NSPoint</code> 数据结构。</td>
+    </tr>
+    <tr>
+        <td><code>NSSize NSMakeSize(w, h)</code></td>
+        <td>返回具有指定宽度和高度的格式正确的 <code>NSSize</code> 数据结构。</td>
+    </tr>
+    <tr>
+        <td><code>NSRect NSMakeRect(x, y, w, h)</code></td>
+        <td>返回格式正确的 <code>NSRect</code> 数据结构，具有指定的原点（x，y）和大小（宽度，高度）。</td>
+    </tr>
+    <tr>
+        <td rowspan="3">相等</td>
+        <td><code>BOOL NSEqualPoints(p1, p2)</code></td>
+        <td>如果两个点相同，则返回 <code>YES</code>。</td>
+    </tr>
+    <tr>
+        <td><code>BOOL NSEqualSizes(s1, s2)</code></td>
+        <td>如果两个尺寸类型的宽度和高度相同，则返回 <code>YES</code>。</td>
+    </tr>
+    <tr>
+        <td><code>BOOL NSEqualRects(r1, r2)</code></td>
+        <td>如果两个矩形的原点相同，宽度和高度相同，则返回 <code>YES</code>。</td>
+    </tr>
+    <tr>
+        <td rowspan="6">矩形操作</td>
+        <td><code>BOOL NSContainsRect(r1, r2)</code></td>
+        <td>如果矩形 1 完全包围矩形 2，则返回 <code>YES</code>。</td>
+    </tr>
+    <tr>
+        <td><code>NSRect NSInsetRect(r, dX, dY)</code></td>
+        <td>返回指定矩形的副本，其边向内移动指定的增量值。负增量值会使边向外移动。不修改原始矩形。</td>
+    </tr>
+    <tr>
+        <td><code>NSRect NSIntersectionRect(r1, r2)</code></td>
+        <td>返回两个矩形的交集。</td>
+    </tr>
+    <tr>
+        <td><code>NSRect NSUnionRect(r1, r2)</code></td>
+        <td>返回两个矩形的并集。</td>
+    </tr>
+    <tr>
+        <td><code>BOOL NSMouseInRect(p, r, flipped)</code></td>
+        <td>测试点是否在指定的视图矩形内。调整点击检测算法，以从用户角度提供一致的行为。</td>
+    </tr>
+    <tr>
+        <td><code>BOOL NSPointInRect(p, r)</code></td>
+        <td>测测试点是否在指定的矩形内。这是基本的数学比较。</td>
+    </tr>
+</table>
+<h2><a id="%E7%BB%98%E5%88%B6%E5%9F%BA%E6%9C%AC%E5%BD%A2%E7%8A%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制基本形状</h2>
+<p>对于许多类型的内容，基于路径的绘图比基于图像的绘图具有多个优点：</p>
+<ul>
+<li>由于路径是通过数学方式指定的，因此可以轻松缩放至不同的分辨率。因此，相同的路径对象可用于基于屏幕和基于打印的绘图。</li>
+<li>与路径关联的几何信息所需的存储空间比大多数图像数据格式少得多。</li>
+<li>渲染路径通常比合成可比较的图像更快。将路径数据传输到图形硬件所需的时间少于传输与图像关联的纹理数据所需的时间。</li>
+</ul>
+<p>以下各节提供有关可以使用路径绘制的基本形状的信息。您可以组合使用这些形状中的一个或多个来创建更复杂的路径，然后按照<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCBGDFI">在路径中绘制形状</a>中的描述描边或填充路径。对于某些形状，可能有不止一种将形状添加到路径的方法，或者可能存在立即绘制形状的替代方法。尽可能列出每种技术的利弊，以帮助您确定哪种技术最适合特定情况。</p>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E7%82%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加点</h3>
+<p><code>NSPoint</code> 结构本身表示屏幕上的位置；它没有重量，因此无法绘制。要在屏幕上绘制等效的点，需要在所需的位置创建一个小矩形，如清单 8-8 所示。</p>
+<p>清单 8-8：画一个点</p>
+<pre><code class="language-objective-c">void DrawPoint(NSPoint aPoint)
+{
+    NSRect aRect = NSMakeRect(aPoint.x, aPoint.y, 1.0, 1.0);
+ 
+    NSRectFill(aRect);
+}
+</code></pre>
+<p>当然，点的更常见用法是指定其他形状的位置。许多形状要求您在实际创建形状之前指定当前点。您可以使用 <code>moveToPoint:</code> 或 <code>relativeMoveToPoint:</code> 方法设置当前点。某些形状（例如矩形和椭圆形）已经包含位置信息，不需要单独调用 <code>moveToPoint:</code>。</p>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E7%BA%BF%E5%92%8C%E5%A4%9A%E8%BE%B9%E5%BD%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加线和多边形</h3>
+<p>Cocoa 提供了几种在路径上添加线条的选项，每种技术都在效率和正确性之间提供了不同的权衡。您可以通过以下方式绘制线条：</p>
+<ul>
+<li>通过使用 <code>NSRectFill</code> 填充矩形来创建单条水平线和垂直线。此技术不太精确，但通常比创建 <code>NSBezierPath</code> 对象快一点。要使用此技术创建对角线，必须在绘制之前应用旋转变换。此技术不适用于创建连接的线段。</li>
+<li>使用 <code>NSBezierPath</code> 的 <code>lineToPoint:</code>，<code>relativeLineToPoint:</code> 或 <code>strokeLineFromPoint:toPoint:</code> 方法创建单个或连接的线段。此技术速度很快，是创建线和复杂多边形的最精确选择。</li>
+<li>使用 <code>appendBezierPathWithPoints:count:</code> 方法可以快速创建一系列连接的线。此技术比添加单个行快。</li>
+</ul>
+<p>多边形由多条连接的线组成，应使用 <code>NSBezierPath</code> 对象创建。创建四边非矩形形状（如平行四边形，菱形或梯形）的最简单方法是使用线段。您也可以使用变换来创建这些形状，但是计算正确的偏斜因子将需要进行大量工作。</p>
+<p>清单 8-9 显示了使用 <code>NSBezierPath</code> 绘制平行四边形的代码。本示例中的方法将平行四边形内接在指定矩形内。<code>withShift</code> 参数指定应用于矩形区域的左上角和右下角的水平移位。</p>
+<p>清单 8-9：使用线条绘制多边形</p>
+<pre><code class="language-objective-c">void DrawParallelogramInRect(NSRect rect, float withShift)
+{
+    NSBezierPath* thePath = [NSBezierPath bezierPath];
+ 
+    [thePath moveToPoint:rect.origin];
+    [thePath lineToPoint:NSMakePoint(rect.origin.x + withShift,  NSMaxY(rect))];
+    [thePath lineToPoint:NSMakePoint(NSMaxX(rect), NSMaxY(rect))];
+    [thePath lineToPoint:NSMakePoint(NSMaxX(rect) - withShift,  rect.origin.y)];
+    [thePath closePath];
+ 
+    [thePath stroke];
+}
+</code></pre>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E7%9F%A9%E5%BD%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加矩形</h3>
+<p>由于经常使用矩形，因此有几种绘制方式。</p>
+<ul>
+<li>使用 <code>NSBezierPath</code> 的方法创建矩形。以下方法相当快，并且可以提供最佳的精度：
+<ul>
+<li><code>strokeRect:</code></li>
+<li><code>fillRect:</code></li>
+<li><code>bezierPathWithRect:</code></li>
+<li><code>appendBezierPathWithRect:</code></li>
+</ul>
+</li>
+<li>使用<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCFABIE">绘制矩形</a>中所述的 Cocoa 函数创建矩形。这些函数比 <code>NSBezierPath</code> 的方法绘制矩形的速度更快，但精度更低。</li>
+<li>如<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCHIDGH">添加线和多边形中</a>所述，使用单独的线创建一个矩形。您可以使用这种技术来创建对角线定向的矩形（即，其边不平行于x和y轴的矩形），而无需使用旋转变换。</li>
+</ul>
+<p>清单 8-10 显示了一个简单的函数，该函数使用两种不同的技术填充和描画同一个矩形。绘制矩形时会使用当前的填充颜色和描边颜色，以及默认的合成操作。在这两种情况下，都将立即绘制矩形。无需发送单独的 <code>fill</code> 或 <code>stroke</code> 消息。</p>
+<p>清单 8-10：绘制一个矩形</p>
+<pre><code class="language-objective-c">void DrawRectangle(NSRect aRect)
+{
+    NSRectFill(aRect);
+    [NSBezierPath strokeRect:aRect];
+}
+</code></pre>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E5%9C%86%E8%A7%92%E7%9F%A9%E5%BD%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加圆角矩形</h3>
+<p>在 OS X v10.5 和更高版本中，<code>NSBezierPath</code> 类包含以下用于创建圆角矩形的方法：</p>
+<ul>
+<li><code>bezierPathWithRoundedRect:xRadius:yRadius:</code></li>
+<li><code>appendBezierPathWithRoundedRect:xRadius:yRadius:</code></li>
+</ul>
+<p>这些方法创建的矩形的角根据指定的半径值弯曲。半径描述了要在矩形的每个角使用的椭圆的宽度和高度。图 8-8 显示了如何使用此内接的椭圆形定义矩形的角线段的路径。</p>
+<p>图8-8：刻出圆角矩形的角</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-8.png" alt="" /></p>
+<p>清单 8-11 显示了一个代码片段，该代码片段创建并绘制了带有圆角矩形的路径。</p>
+<p>清单 8-11：绘制一个圆角矩形</p>
+<pre><code class="language-objective-c">void DrawRoundedRect(NSRect rect, CGFloat x, CGFloat y)
+{
+    NSBezierPath* thePath = [NSBezierPath bezierPath];
+ 
+    [thePath appendBezierPathWithRoundedRect:rect xRadius:x yRadius:y];
+    [thePath stroke];
+}
+</code></pre>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E6%A4%AD%E5%9C%86%E5%92%8C%E5%9C%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加椭圆和圆</h3>
+<p>要绘制椭圆和圆形，请使用以下 <code>NSBezierPath</code> 方法：</p>
+<ul>
+<li><code>bezierPathWithOvalInRect:</code></li>
+<li><code>appendBezierPathWithOvalInRect:</code></li>
+</ul>
+<p>两种方法都在您指定的矩形内刻有椭圆形。然后，您必须填充或描画路径对象以在当前上下文中绘制椭圆。下面的示例从指定的矩形创建一个椭圆并描画其路径。</p>
+<pre><code class="language-objective-c">void DrawOvalInRect(NSRect ovalRect)
+{
+    NSBezierPath* thePath = [NSBezierPath bezierPath];
+ 
+    [thePath appendBezierPathWithOvalInRect:ovalRect];
+    [thePath stroke];
+}
+</code></pre>
+<p>您也可以使用圆弧创建一个椭圆，但是这样做会重复内部方法的工作，并且会稍慢一些。添加单个弧的唯一原因是创建局部（非闭合）椭圆形路径。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCBGFBH">添加弧</a>。</p>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E5%BC%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加弧</h3>
+<p>要绘制弧线，请使用以下 <code>NSBezierPath</code> 方法：</p>
+<ul>
+<li><code>appendBezierPathWithArcFromPoint:toPoint:radius:</code></li>
+<li><code>appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:</code></li>
+<li><code>appendBezierPathWithArcWithCenter:radius:startAngle:endAngle:clockwise:</code></li>
+</ul>
+<p><code>appendBezierPathWithArcFromPoint:toPoint:radius:</code> 方法通过以当前点和传递给该方法的两个点所成的角度刻入弧来创建弧。以这种方式刻出一个圆会产生不与用于指定圆的任何点相交的弧。这也可能导致从当前点到弧的起点之间形成多余的线。</p>
+<p>图 8-9 显示了三个不同的弧以及用于创建它们的控制点。对于使用 <code>appendBezierPathWithArcFromPoint:toPoint:radius:</code> 创建的两个弧，必须在调用方法之前设置当前点。在两个示例中，该点都设置为（30，30）。由于第二个圆弧的半径较短，并且圆弧的起点与当前点不同，因此从当前点到起点绘制一条线。</p>
+<p>图 8-9：创建弧</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-9.png" alt="" /></p>
+<p>清单 8-12 显示了用于创建图 8-9 中每个圆弧的代码段。（尽管该图单独显示了弧，但是执行以下代码将使弧彼此重叠。）</p>
+<p>清单 8-12：创建三个弧</p>
+<pre><code class="language-objective-c">NSBezierPath*   arcPath1 = [NSBezierPath bezierPath];
+NSBezierPath*   arcPath2 = [NSBezierPath bezierPath];
+ 
+[[NSColor blackColor] setStroke];
+ 
+// Create the first arc
+[arcPath1 moveToPoint:NSMakePoint(30,30)];
+[arcPath1 appendBezierPathWithArcFromPoint:NSMakePoint(0,30)  toPoint:NSMakePoint(0,60) radius:30];
+[arcPath1 stroke];
+ 
+// Create the second arc.
+[arcPath2 moveToPoint:NSMakePoint(30,30)];
+[arcPath2 appendBezierPathWithArcFromPoint:NSMakePoint(30,40)  toPoint:NSMakePoint(70,30) radius:20];
+[arcPath2 stroke];
+ 
+// Clear the old arc and do not set an initial point, which prevents a
+// line being drawn from the current point to the start of the arc.
+[arcPath2 removeAllPoints];
+[arcPath2 appendBezierPathWithArcWithCenter:NSMakePoint(30,30) radius:30  startAngle:45 endAngle:135];
+[arcPath2 stroke];
+</code></pre>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加贝塞尔曲线</h3>
+<p>要绘制贝塞尔曲线，必须使用 <code>NSBezierPath</code> 的 <code>curveToPoint:controlPoint1:controlPoint2:</code> 方法。此方法支持创建从当前点到您在调用该方法时指定的目标点的三次曲线。<code>controlPoint1</code> 参数确定从当前点开始的曲率，而 <code>controlPoint2</code> 参数确定目标点的曲率，如图 8-10 所示。</p>
+<p>图 8-10：三次贝塞尔曲线</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-10.png" alt="" /></p>
+<h3><a id="%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加文字</h3>
+<p>由于 <code>NSBezierPath</code> 仅支持基于路径的内容，因此您不能将文本字符直接添加到路径。相反，您必须添加字形。字形是特定字体中字符（或部分字符）的视觉表示。对于轮廓字体的字形，此视觉表示形式存储为一组数学路径，可以添加到 <code>NSBezierPath</code> 对象中。</p>
+<blockquote>
+<p>注意：使用 <code>NSBezierPath</code> 并不是渲染文本的最有效方法，但是可以用于需要与文本关联的路径信息的情况。</p>
+</blockquote>
+<p>要获取一组字形，可以使用 Cocoa 文本系统或 <code>NSFont</code> 类。从 Cocoa 文本系统获取字形通常比较容易，因为您可以获取任意字符串的字形，而使用 <code>NSFont</code> 则要求您知道各个字形的名称。要从 Cocoa 文本系统中获取字形，必须执行以下操作：</p>
+<ol>
+<li>创建管理文本布局所需的文本系统对象。</li>
+<li>使用 <code>NSLayoutManager</code> 的 <code>glyphAtIndex:</code> 或 <code>getGlyphs:range:</code> 方法检索所需的字形。</li>
+<li>使用以下方法之一将字形添加到您的 <code>NSBezierPath</code> 对象：
+<ul>
+<li><code>appendBezierPathWithGlyph:inFont:</code></li>
+<li><code>appendBezierPathWithGlyphs:count:inFont:</code></li>
+</ul>
+</li>
+</ol>
+<p>将字形添加到您的 <code>NSBezierPath</code> 对象后，它将转换为一系列路径元素。这些路径元素仅指定直线和曲线，不保留有关字符本身的任何信息。通过更改路径元素的点或修改路径属性，可以像处理任何其他路径一样操作包含字形的路径。</p>
+<h3><a id="%E5%9C%A8%E8%B7%AF%E5%BE%84%E4%B8%AD%E7%BB%98%E5%88%B6%E5%BD%A2%E7%8A%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在路径中绘制形状</h3>
+<p>有两种方法可以绘制路径内容：可以描画路径或填充路径。抚摸路径会使用当前的笔触颜色和路径属性来绘制路径形状的轮廓。填充路径会使用当前的填充颜色和缠绕规则渲染路径所涵盖的区域。</p>
+<p>图 8-11 显示了与<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCHIBJC">图 8-1</a> 相同的路径，但填充了内容并应用了不同的笔触宽度。</p>
+<p>图 8-11：绘制和填充路径</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/8-11.png" alt="" /></p>
+<h2><a id="%E7%BB%98%E5%88%B6%E7%9F%A9%E5%BD%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制矩形</h2>
+<p>Cocoa 提供了几种使用默认属性立即将矩形绘制到当前上下文的函数。这些函数使用 Quartz 基元快速绘制一个或多个矩形，但其方式可能不如使用 <code>NSBezierPath</code> 那样精确。例如，这些例程不会将当前的联接样式应用于框架矩形的角。</p>
+<p>表 8-4 列出了一些更常用的用于绘制矩形的函数及其行为。您可以在速度比精度更重要的地方使用这些功能。每个函数的语法均以简写形式提供，其中省略了参数类型以演示调用约定。有关可用功能及其完整语法的完整列表，请参见 <a href="https://developer.apple.com/documentation/appkit/functions">Application Kit 函数参考</a>。</p>
+<p>表格 8-4：矩形框和填充功能</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void NSEraseRect(aRect)</code></td>
+<td>用白色填充指定的矩形。</td>
+</tr>
+<tr>
+<td><code>void NSFrameRect(aRect)</code></td>
+<td>使用当前的填充颜色，默认的线宽和 <code>NSCompositeCopy</code> 合成操作来绘制矩形的框架。</td>
+</tr>
+<tr>
+<td><code>void NSFrameRectWithWidth(aRect, width)</code></td>
+<td>使用当前的填充颜色，指定的宽度和 <code>NSCompositeCopy</code> 合成操作来绘制矩形的框架。</td>
+</tr>
+<tr>
+<td><code>void NSFrameRectWithWidthUsingOperation(aRect, width, op)</code></td>
+<td>使用当前的填充颜色，指定的宽度和指定的操作绘制矩形的框架。</td>
+</tr>
+<tr>
+<td><code>void NSRectFill(aRect)</code></td>
+<td>使用当前的填充颜色和 <code>NSCompositeCopy</code> 合成操作填充矩形。</td>
+</tr>
+<tr>
+<td><code>void NSRectFillUsingOperation(aRect, op)</code></td>
+<td>使用当前的填充颜色和指定的合成操作填充矩形。</td>
+</tr>
+<tr>
+<td><code>void NSRectFillList(rectList, count)</code></td>
+<td>使用当前的填充颜色和 <code>NSCompositeCopy</code> 合成操作来填充 C 样式的矩形数组。</td>
+</tr>
+<tr>
+<td><code>void NSRectFillListWithColors(rects, colors, count)</code></td>
+<td>使用相应的颜色列表填充C样式的矩形数组。每个列表必须具有相同数量的条目。</td>
+</tr>
+<tr>
+<td><code>void NSRectFillListUsingOperation(rects, count, op)</code></td>
+<td>使用当前的填充颜色和指定的合成操作来填充 C 样式的矩形数组。</td>
+</tr>
+<tr>
+<td><code>void NSRectFillListWithColorsUsingOperation(rects, colors, count, op)</code></td>
+<td>使用相应的颜色列表和指定的合成操作填充 C 样式的矩形数组。矩形列表和颜色列表必须包含相同数量的项目。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>重要说明：您可能已经注意到 <code>NSFrameRect</code>，<code>NSFrameRectWithWidth</code> 和 <code>NSFrameRectWithWidthUsingOperation</code> 函数使用填充颜色而不是笔触颜色绘制矩形。这些方法通过填充四个子矩形（矩形的每一侧各一个）来绘制矩形的框架。这与 <code>NSBezierPath</code> 绘制矩形的方式不同，有时会导致混淆。如果矩形未按预期方式显示，请检查代码以确保使用 <code>NSColor</code> 的 <code>set</code> 或 <code>setFill</code> 方法设置绘图颜色。</p>
+</blockquote>
+<h2><a id="%E4%BD%BF%E7%94%A8%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用路径</h2>
+<p>构建一个时尚且吸引人的用户界面是一项艰巨的工作，大多数程序都使用图像和路径的组合来实现。路径具有轻量，可伸缩和快速的优势。即使这样，路径并非在所有情况下都适用。以下各节提供了有关如何在程序中有效使用路径的一些基本技巧和指导。</p>
+<h3><a id="%E6%9E%84%E5%BB%BA%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>构建路径</h3>
+<p>构建路径涉及创建 <code>NSBezierPath</code> 对象并向其添加路径元素。所有路径必须以“Move To”元素开头才能标记路径的第一点。在某些情况下，会为您添加此元素，但在其他情况下，您必须自己添加。例如，创建闭合路径（例如椭圆形或矩形）的方法将为您插入 MoveTo 元素。</p>
+<p>单个 <code>NSBezierPath</code> 对象可能具有多个子路径。每个子路径本身就是一条完整的路径，这意味着该子路径在绘制时可能不会连接到任何其他子路径。但是，已填充的子路径仍然可以彼此交互。重叠的子路径可能会抵消彼此的填充效果，从而导致填充区域出现孔洞。</p>
+<p><code>NSBezierPath</code> 对象中的所有子路径共享相同的图形属性。将不同属性分配给不同路径的唯一方法是为每个路径创建不同的 <code>NSBezierPath</code> 对象。</p>
+<h3><a id="%E6%94%B9%E5%96%84%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>改善渲染性能</h3>
+<p>在处理绘图代码时，应牢记性能。绘图是一项占用大量处理器的活动，但是有许多方法可以减少应用程序执行的绘图数量。以下各节提供了一些与 Cocoa 应用程序中改善绘图性能有关的基本技巧。有关与图形有关的其他性能提示，请参见<a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/Drawing/Articles/DrawingPerformance.html#//apple_ref/doc/uid/10000151i">图形性能准则</a>。</p>
+<p>注意：与确定性能一样，在进行任何更改之前，您应该测量绘图操作的速度。如果花费在 <code>NSBezierPath</code> 方法内部的时间变得很长，那么简化路径可能会提供更好的性能。限制在更新周期内执行的工程图总量也可能会提高性能。</p>
+<h4><a id="%E9%87%8D%E7%94%A8%E8%B7%AF%E5%BE%84%E5%AF%B9%E8%B1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>重用路径对象</h4>
+<p>如果重复绘制相同的内容，请考虑缓存用于绘制该内容的对象。保留现有的 <code>NSBezierPath</code> 对象通常比在每个绘制周期内重新创建对象更为有效。对于可能动态更改的内容，您还可以考虑维护一个可重用对象池。</p>
+<h4><a id="%E6%AD%A3%E7%A1%AE%E4%B8%8E%E6%95%88%E7%8E%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>正确与效率</h4>
+<p>编写绘图代码时，应始终尝试使该代码尽可能高效，而不牺牲渲染内容的质量。如果您的绘图代码看起来很慢，则可以进行一些权衡取舍以提高效率，从而暂时降低质量：</p>
+<ul>
+<li>使用可用的更新矩形仅绘制已更改的内容。对于屏幕的每个部分，请使用不同的 <code>NSBezierPath</code> 对象，而不是一个覆盖所有内容的大对象。有关更多信息，请参见降<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCFGAGF">低路径复杂性</a>。</li>
+<li>在滚动，实时调整大小或其他时间紧迫的操作期间，请考虑以下选项：
+<ul>
+<li>如果屏幕上包含动画内容，请暂停动画，直到操作完成。</li>
+<li>尝试暂时增加弯曲路径的平坦度值。默认的平整度值设置为 0.6，可以产生平滑的曲线。将此值增加到 1.0 以上可能会使曲线看起来更锯齿，但应该会改善性能。您可能需要尝试一些不同的值来确定外观和速度之间的良好折衷。</li>
+<li>禁用抗锯齿。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIJJCBB">设置消除锯齿选项</a>。</li>
+</ul>
+</li>
+<li>绘制矩形时，请使用 <code>NSFrameRect</code> 和 <code>NSRectFill</code> 进行不需要最高质量的操作。这些函数提供了与 <code>NSBezierPath</code> 近似的近似，但通常更快一些。</li>
+</ul>
+<h4><a id="%E9%99%8D%E4%BD%8E%E8%B7%AF%E5%BE%84%E5%A4%8D%E6%9D%82%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>降低路径复杂度</h4>
+<p>如果要绘制大量内容，则应尽力减少存储在单个 <code>NSBezierPath</code> 对象中的路径数据的复杂性。与具有 10 或 20 个元素的路径对象相比，具有数百个路径元素的路径对象需要更多的计算。您添加的每条直线或曲线段都会增加平整路径或确定点是否在其中所需的计算量。填充路径时，许多路径交叉点也会增加所需计算的数量。</p>
+<p>如果渲染路径的准确性不是很关键，请尝试使用多个 <code>NSBezierPath</code> 对象绘制相同的内容。使用一个路径对象或多个路径对象之间在视觉上几乎没有区别。如果您的路径已经分组为多个子路径，那么将其中一些子路径放入其他 <code>NSBezierPath</code> 对象中变得很容易。使用多个路径对象可以减少每个子路径的计算数量，并且还可以将渲染限制为仅包含当前更新矩形中的那些路径。</p>
+<h3><a id="%E6%93%8D%E4%BD%9C%E5%8D%95%E4%B8%AA%E8%B7%AF%E5%BE%84%E5%85%83%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>操作单个路径元素</h3>
+<p>给定具有一些现有路径数据的 <code>NSBezierPath</code> 对象，您可以检索与该路径关联的点并分别进行修改。插图程序可能会响应路径上某一点上的鼠标事件来执行此操作。如果鼠标事件导致该点被拖动到新位置，则可以使用新位置快速更新path元素并重新绘制路径。</p>
+<p><code>NSBezierPath</code> 的 <code>elementCount</code> 方法返回对象所有子路径的路径元素总数。要找出给定路径元素的类型，请使用 <code>elementAtIndex:</code> 或 <code>elementAtIndex:associatedPoints:</code> 方法。这些方法返回表 8-1 中列出的值之一。如果您还想检索与元素关联的点，请使用 <code>elementAtIndex:associatedPoints:</code> 方法。如果您尚不知道 path 元素的类型，则应将此方法传递一个能够保存至少三种 <code>NSPoint</code> 数据类型的数组。</p>
+<p>要更改与路径元素关联的点，请使用 <code>setAssociatedPoints:atIndex:</code> 方法。您不能更改路径元素的类型，只能更改与之关联的点。更改点时，<code>NSBezierPath</code> 仅从点阵列中获取所需数量的点。例如，如果为“行至”路径元素指定三个点，则仅使用第一个点。</p>
+<p>清单 8-13 显示了一种更新与当前路径末端的曲线路径元素关联的控制点的方法。定义曲线的点以 <code>controlPoint1</code>，<code>controlPoint2</code>，<code>endPoint</code> 的顺序存储。此方法替换了会影响曲线末端的点 <code>controlPoint2</code>。</p>
+<p>清单 8-13：更改曲线路径元素的控制点</p>
+<pre><code class="language-objective-c">- (void)replaceLastControlPointWithPoint:(NSPoint)newControl
+            inPath:(NSBezierPath*)thePath
+{
+    int elemCount = [thePath elementCount];
+    NSBezierPathElement elemType =
+                [thePath elementAtIndex:(elemCount - 1)];
+ 
+    if (elemType != NSCurveToBezierPathElement)
+        return;
+ 
+    // Get the current points for the curve.
+    NSPoint points[3];
+    [thePath elementAtIndex:(elemCount - 1) associatedPoints:points];
+ 
+    // Replace the old control point.
+    points[1] = newControl;
+ 
+    // Update the points.
+    [thePath setAssociatedPoints:points atIndex:(elemCount - 1)];
+}
+</code></pre>
+<h3><a id="%E8%BD%AC%E6%8D%A2%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换路径</h3>
+<p><code>NSBezierPath</code> 对象的坐标系始终与绘制该对象的视图的坐标系匹配。因此，给定路径的第一个点位于 NSBezierPath 对象中的（0，0），则在视图中绘制该路径会将其指向视图当前坐标系中的（0，0）。要在其他位置绘制该路径，必须以以下两种方式之一应用变换：</p>
+<ul>
+<li>将变换应用于视图坐标系，然后绘制路径。有关如何将变换应用于视图的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIHIFEA">创建和应用变换</a>。</li>
+<li>使用 <code>transformUsingAffineTransform:</code> 方法将转换应用于 <code>NSBezierPath</code> 对象本身，然后在未修改的视图中绘制它。</li>
+</ul>
+<p>两种技术都导致在视图中的同一位置绘制路径。但是，第二种技术也具有永久修改 <code>NSBezierPath</code> 对象的副作用。根据您的内容，这可能不合适，也可能不合适。例如，在一个插图程序中，您可能希望用户能够在视图周围拖动形状。因此，您需要修改 <code>NSBezierPath</code> 对象以保留路径的新位置。</p>
+<h3><a id="%E4%BB%8Ensbezierpath%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA-cgpathref" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>从 NSBezierPath 对象创建 CGPathRef</h3>
+<p>有时可能需要将 <code>NSBezierPath</code> 对象转换为 <code>CGPathRef</code> 数据类型，以便可以使用 Quartz 执行基于路径的操作。例如，您可能想要绘制到 Quartz 透明层的路径或使用它进行高级命中检测。尽管不能直接从 Quartz 使用 <code>NSBezierPath</code> 对象，但是可以使用其 path 元素来构建 <code>CGPathRef</code> 对象。</p>
+<p>清单 8-14 显示了如何从 <code>NSBezierPath</code> 对象创建 <code>CGPathRef</code> 数据类型。该示例使用类别扩展了 <code>NSBezierPath</code> 类的行为。<code>crystalPath</code> 方法使用 <code>NSBezierPath</code> 对象的 path 元素来调用相应的 Quartz 路径创建函数。尽管该方法创建了一个可变的 <code>CGPathRef</code> 对象，但它返回了一个不变的副本以进行绘制。为了确保在命中检测期间返回的路径返回正确的结果，如果您的代码未明确这样做，则此方法隐式关闭最后一个子路径。Quartz 需要关闭路径，以便在路径的填充区域进行命中检测。</p>
+<p>清单 8-14：从 <code>NSBezierPath</code> 创建 <code>CGPathRef</code></p>
+<pre><code class="language-objective-c">@implementation NSBezierPath (BezierPathQuartzUtilities)
+// This method works only in OS X v10.2 and later.
+- (CGPathRef)quartzPath
+{
+    int i, numElements;
+ 
+    // Need to begin a path here.
+    CGPathRef           immutablePath = NULL;
+ 
+    // Then draw the path elements.
+    numElements = [self elementCount];
+    if (numElements &gt; 0)
+    {
+        CGMutablePathRef    path = CGPathCreateMutable();
+        NSPoint             points[3];
+        BOOL                didClosePath = YES;
+ 
+        for (i = 0; i &lt; numElements; i++)
+        {
+            switch ([self elementAtIndex:i associatedPoints:points])
+            {
+                case NSMoveToBezierPathElement:
+                    CGPathMoveToPoint(path, NULL, points[0].x, points[0].y);
+                    break;
+ 
+                case NSLineToBezierPathElement:
+                    CGPathAddLineToPoint(path, NULL, points[0].x, points[0].y);
+                    didClosePath = NO;
+                    break;
+ 
+                case NSCurveToBezierPathElement:
+                    CGPathAddCurveToPoint(path, NULL, points[0].x, points[0].y,
+                                        points[1].x, points[1].y,
+                                        points[2].x, points[2].y);
+                    didClosePath = NO;
+                    break;
+ 
+                case NSClosePathBezierPathElement:
+                    CGPathCloseSubpath(path);
+                    didClosePath = YES;
+                    break;
+            }
+        }
+ 
+        // Be sure the path is closed or Quartz may not do valid hit detection.
+        if (!didClosePath)
+            CGPathCloseSubpath(path);
+ 
+        immutablePath = CGPathCreateCopy(path);
+        CGPathRelease(path);
+    }
+ 
+    return immutablePath;
+}
+@end
+</code></pre>
+<p>上例中的代码默认情况下仅关闭最后一个打开的路径。根据您的路径对象，您可能还希望在遇到新的“Move To元素时关闭中间子路径。但是，如果路径对象通常仅包含一个路径，则无需这样做。</p>
+<h3><a id="%E6%A3%80%E6%B5%8B%E8%B7%AF%E5%BE%84%E4%B8%8A%E7%9A%84%E9%BC%A0%E6%A0%87%E7%82%B9%E5%87%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>检测路径上的鼠标点击</h3>
+<p>如果需要确定是否在路径或其填充区域上发生了鼠标事件，则可以使用 <code>NSBezierPath</code> 的 <code>containsPoint:</code> 方法。此方法针对路径对象中所有闭合和打开的子路径测试该点。如果该点位于任何子路径上或内部，则该方法返回 <code>YES</code>。在确定点是否在子路径内时，该方法使用非零缠绕规则。</p>
+<p>如果您的软件在 OS X v10.4 和更高版本中运行，则可以使用 Quartz 中的 <code>CGContextPathContainsPoint</code> 和 <code>CGPathContainsPoint</code> 函数执行更高级的命中检测。使用这些函数，您可以使用非零或奇数缠绕规则确定点是否在路径本身上或该点是否在路径内。尽管您不能直接在 <code>NSBezierPath</code> 对象上使用这些函数，但是您可以将路径对象转换为 <code>CGPathRef</code> 数据类型，然后使用它们。有关如何将路径对象转换为 <code>CGPathRef</code> 数据类型的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-SW2">从 NSBezierPath 对象创建 CGPathRef</a>。</p>
+<blockquote>
+<p>重要：仅当路径明确关闭时，Quartz 才会将点视为在路径内。如果要将 NSBezierPath 对象转换为 Quartz 路径以用于命中检测，请确保在转换之前或转换过程中关闭所有打开的子路径。否则，可能无法正确识别路径内的点。</p>
+</blockquote>
+<p>清单 8-15 显示了如何对 <code>NSBezierPath</code> 对象执行高级命中检测的示例。本示例使用类别将方法添加到 <code>NSBezierPath</code> 类。该方法的实现将当前路径的 <code>CGPathRef</code> 版本添加到当前上下文中，并调用 <code>CGContextPathContainsPoint</code> 函数。此函数使用指定的模式来分析指定点相对于当前路径的位置，并返回适当的值。 模式可以包括 <code>kCGPathFill</code>，<code>kCGPathEOFill</code>，<code>kCGPathStroke</code>，<code>kCGPathFillStroke</code> 或 <code>kCGPathEOFillStroke</code>。</p>
+<p>清单 8-15：检测路径上的匹配</p>
+<pre><code class="language-objective-c">@implementation NSBezierPath (BezierPathQuartzUtilities)
+// Note, this method works only in OS X v10.4 and later.
+- (BOOL)pathContainsPoint:(NSPoint)point forMode:(CGPathDrawingMode)mode
+{
+    CGPathRef       path = [self quartzPath]; // Custom method to create a CGPath
+    CGContextRef    cgContext = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+    CGPoint         cgPoint;
+    BOOL            containsPoint = NO;
+ 
+    cgPoint.x = point.x;
+    cgPoint.y = point.y;
+ 
+    // Save the graphics state before doing the hit detection.
+    CGContextSaveGState(cgContext);
+ 
+    CGContextAddPath(cgContext, path);
+    containsPoint = CGContextPathContainsPoint(cgContext, cgPoint, mode);
+ 
+    CGContextRestoreGState(cgContext);
+ 
+    return containsPoint;
+}
+@end
+</code></pre>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E6%96%87%E6%9C%AC.html">&laquo; 上一章：文本</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E7%BB%93%E5%90%88%E5%85%B6%E4%BB%96%E7%BB%98%E5%9B%BE%E6%8A%80%E6%9C%AF.html">下一章：结合其他绘图技术 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第五章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第五章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/10</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像</h1>
+<p>图像是任何 Mac 应用程序的重要组成部分。在 Cocoa 中，图像在用户界面中扮演着非常重要但灵活的角色。您可以使用图像来渲染先前存在的内容，或充当应用程序的绘图命令的缓冲区。Cocoa 图像处理代码的核心是 <code>NSImage</code> 类。此类管理与图像数据有关的所有内容，并用于以下任务：</p>
+<ul>
+<li>从磁盘加载现有映像。</li>
+<li>将图像数据绘制到视图中。</li>
+<li>创建新图像。</li>
+<li>缩放图像并调整其大小。</li>
+<li>将图像转换为几种不同的格式。</li>
+</ul>
+<p>您可以在程序中使用图像来执行各种任务。您可以从现有图像文件（例如 JPEG，GIF，PDF 和 EPS 文件）中加载图像，以绘制用户界面中使用原始形状绘制时可能太困难（或效率太低）的元素。您还可以将图像用作屏幕外或临时缓冲区，并捕获要在以后使用的一系列绘制命令。</p>
+<p>尽管位图是最常见的图像类型之一，但重要的是不要将 <code>NSImage</code> 类视为仅管理照片或位图数据。Cocoa 中的 <code>NSImage</code> 类能够显示各种图像类型和格式。它支持许多标准格式的照片和位图数据。它还提供对矢量或基于命令的数据（如 PDF，EPS 和 PICT）的支持。您甚至可以使用 <code>NSImage</code> 类来表示使用 <code>Core Image</code> 框架创建的图像。</p>
+<h2><a id="%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像基础</h2>
+<p><code>NSImage</code> 类提供了用于处理许多不同格式的图像的高级接口。因为它提供了高级接口，所以<code>NSImage</code> 对管理实际图像数据几乎一无所知。相反，<code>NSImage</code> 类管理一个或多个图像表示对象-从 <code>NSImageRep</code> 类派生的对象。每个图像表示对象都了解特定格式的图像数据，并能够将该数据呈现到当前上下文。</p>
+<p>以下各节深入介绍了图像对象和图像表示之间的关系。</p>
+<h3><a id="%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像表示</h3>
+<p>图像表示对象使用特定的色彩空间和特定的数据格式以特定的尺寸表示图像。图像表示由 <code>NSImage</code> 对象用来管理图像数据。图像表示对象知道如何从文件中读取图像数据，将该数据写回到文件中以及将图像数据转换为原始位图，然后可以将其渲染到当前上下文。一些图像表示还提供了用于直接处理图像数据的界面。</p>
+<p>对于基于文件的图像，NSImage 为文件中存储的每个单独的图像创建一个图像表示对象。尽管大多数图像格式仅支持单个图像，但是 TIFF 之类的格式允许存储多个图像。例如，TIFF 文件可能同时存储完整尺寸的图像和缩略图。</p>
+<p>如果要动态创建图像，则负责创建图像所需的图像表示对象。与基于文件的图像一样，您创建的大多数图像仅需要一个图像表示。由于 NSImage 擅长缩放和调整图像以适合目标画布，因此通常不必创建不同分辨率的不同图像表示。但是，在以下情况下，您可能会创建多个表示形式：</p>
+<ul>
+<li>对于打印，您可能需要为图像创建 PDF 表示形式或高分辨率位图。</li>
+<li>当图像缩放到不同大小时，您想为图像提供不同的内容。</li>
+</ul>
+<p>绘制图像时，<code>NSImage</code> 对象选择最适合目标画布的表示形式。该选择基于几个因素，在如何选择图像表示中对此进行了说明。如果要确保使用特定的图像表示形式，可以使用 <code>NSImage</code> 的 <code>drawRepresentation:inRect:</code> 方法。</p>
+<h4><a id="%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像表示类</h4>
+<p>每个图像表示对象都基于 <code>NSImageRep</code> 的子类。Cocoa 定义了几个特定的子类来处理常用格式。表 5-1 列出了该类及其支持的图像类型。</p>
+<p>表 5-1：图像表示类</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>支持类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSBitmapImageRep</code></td>
+<td>TIFF, BMP, JPEG, GIF, PNG, DIB, ICO, among others</td>
+<td>处理位图数据。直接支持几种常见的位图格式。对于自定义图像格式，您可能必须在创建图像表示形式之前自行解码图像数据。渲染时，<code>NSBitmapImageRep</code> 对象使用任何可用的颜色配置文件数据（ICC 或 ColorSync）。</td>
+</tr>
+<tr>
+<td><code>NSCachedImageRep</code></td>
+<td>渲染数据</td>
+<td>Cocoa 在内部使用此类来缓存图像以绘制到屏幕上。您不需要直接使用此类。</td>
+</tr>
+<tr>
+<td><code>NSCIImageRep</code></td>
+<td>N/A</td>
+<td>提供 <code>CIImage</code> 对象的表示形式，该对象本身支持大多数位图格式。</td>
+</tr>
+<tr>
+<td><code>NSPDFImageRep</code></td>
+<td>PDF</td>
+<td>处理 PDF 数据的显示。</td>
+</tr>
+<tr>
+<td><code>NSEPSImageRep</code></td>
+<td>EPS</td>
+<td>处理 PostScript 或封装的 PostScript 数据的显示。</td>
+</tr>
+<tr>
+<td><code>NSCustomImageRep</code></td>
+<td>Custom</td>
+<td>通过将自定义图像数据传递给您提供的委托对象来处理它。</td>
+</tr>
+<tr>
+<td><code>NSPICTImageRep</code></td>
+<td>PICT</td>
+<td>处理 PICT 格式版本 1，版本 2 和扩展版本 2 图片的显示。PICT 格式是 Carbon QuickDraw Manager 文档中描述的旧格式。</td>
+</tr>
+</tbody>
+</table>
+<p>在大多数情况下，您不需要知道如何创建图像表示。例如，如果您从文件加载现有图像，则 <code>NSImage</code> 会根据文件数据自动确定要创建的图像表示类型。您所要做的就是在视图中绘制图像。</p>
+<p>如果要支持新的图像格式，则可以创建一个新的图像表示形式类。<code>NSImage</code> 类及其 <code>NSImageRep</code> 子类不遵循其他几个 Cocoa 类中的类集群模型。创建新的图像表示形式相对简单，在<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIFJBGC">创建新的图像表示形式类</a>中进行了说明。</p>
+<h4><a id="%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>如何选择图像表示</h4>
+<p>当您告诉 <code>NSImage</code> 对象进行绘制时，它会在其图像表示形式列表中搜索与目标设备的属性最匹配的图像表示形式。在确定选择哪种图像表示时，它遵循一组有序的规则，这些规则将色彩空间，图像分辨率，位深度和图像大小与目标设备中的相应值进行比较。规则按以下顺序应用：</p>
+<ul>
+<li>选择其色彩空间最接近设备色彩空间的图像表示。如果设备是彩色的，请选择彩色图像表示。如果设备是单色的，请选择灰度图像表示。</li>
+<li>选择在水平轴和垂直轴上像素至少与目标矩形像素一样多的图像表示。如果没有图像表示完全匹配，请选择像素比目标像素多的像素。
+默认情况下，任何分辨率为设备分辨率的整数倍的图像表示都被视为匹配项。如果匹配的表示 形式不止一种，则 <code>NSImage</code> 会选择最接近设备分辨率的一种表示形式。您可以通过将 <code>NO</code> 传递给 <code>setMatchesOnMultipleResolution:</code> 方法来强制分辨率匹配精确。通过将 <code>setMatchesOnlyOnBestFittingAxis:</code> 属性设置为 <code>YES</code>，可以强制分辨率匹配仅在一个维度上精确。
+该规则更喜欢具有已定义分辨率的 TIFF 和位图表示，而不是 EPS 表示。您可以使用 <code>setUsesEPSOnResolutionMismatch:</code> 方法使 <code>NSImage</code> 在无法进行分辨率匹配的情况下选择 EPS 表示形式。</li>
+<li>选择其位深度（每个采样的位）与设备深度匹配的表示形式。如果没有表示匹配，请选择每个样本中位数最多的一个。</li>
+</ul>
+<p>您可以使用 <code>NSImage</code> 的方法更改这些规则的应用顺序。例如，如果要反转第一条规则和第二条规则，则将 <code>NO</code> 传递给 <code>setPrefersColorMatch:</code> 方法。这样做会使 <code>NSImage</code> 在色彩空间之前匹配分辨率。</p>
+<p>如果这些规则无法将选择范围缩小到单个表示形式（例如，如果 <code>NSImage</code> 对象具有具有相同分辨率和深度的两个彩色 TIFF 表示形式），则所选表示形式取决于操作系统。</p>
+<h3><a id="%E5%9B%BE%E5%83%8F%E5%92%8C%E7%BC%93%E5%AD%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像和缓存</h3>
+<p><code>NSImage</code> 类包含一个内部缓存方案，旨在提高应用程序的绘制性能。此缓存方案是图像管理的重要组成部分，默认情况下对所有图像对象启用该缓存方案。但是，您可以使用 <code>NSImage</code> 的 <code>setCacheMode:</code> 方法更改特定图像的缓存选项。 表 5-2 列出了可用的缓存模式。</p>
+<p>表 5-2：图像缓存模式</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSImageCacheDefault</code></td>
+<td>使用适合图像表示的默认缓存模式。这是默认值。有关更多信息，请参见表 5-3。</td>
+</tr>
+<tr>
+<td><code>NSImageCacheAlways</code></td>
+<td>始终缓存图像的版本。</td>
+</tr>
+<tr>
+<td><code>NSImageCacheBySize</code></td>
+<td>如果为图像设置的大小小于实际图像数据的大小，则创建图像的缓存版本。</td>
+</tr>
+<tr>
+<td><code>NSImageCacheNever</code></td>
+<td>不缓存图像。每次绘制图像数据时都会对其进行栅格化。</td>
+</tr>
+</tbody>
+</table>
+<p>表 5-3 列出了每个图像表示的缓存模式设置为 <code>NSImageCacheDefault</code> 时的行为。</p>
+<p>表 5-3：隐式缓存设置</p>
+<table>
+<thead>
+<tr>
+<th>图像表示类</th>
+<th>缓存行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSBitmapImageRep</code></td>
+<td>表现为好像 <code>NSImageCacheBySize</code> 设置生效。如果位图深度与屏幕深度不匹配或位图分辨率大于 72 dpi，则创建一个缓存的副本。</td>
+</tr>
+<tr>
+<td><code>NSCachedImageRep</code></td>
+<td>不适用。此类用于实现缓存。</td>
+</tr>
+<tr>
+<td><code>NSCIImageRep</code></td>
+<td>表现为好像 <code>NSImageCacheBySize</code> 设置生效。如果位图深度与屏幕深度不匹配或位图分辨率大于 72 dpi，则创建一个缓存的副本。</td>
+</tr>
+<tr>
+<td><code>NSPDFImageRep</code></td>
+<td>表现为好像 <code>NSImageCacheAlways</code> 设置生效。</td>
+</tr>
+<tr>
+<td><code>NSEPSImageRep</code></td>
+<td>表现为好像 <code>NSImageCacheAlways</code> 设置生效。</td>
+</tr>
+<tr>
+<td><code>NSCustomImageRep</code></td>
+<td>表现为好像 <code>NSImageCacheAlways</code> 设置生效。</td>
+</tr>
+<tr>
+<td><code>NSPICTImageRep</code></td>
+<td>表现为好像 <code>NSImageCacheBySize</code> 设置生效。如果 PICT 图像包含一个深度与屏幕深度不匹配的位图，或者该位图的分辨率大于 72 dpi，则创建该图像的缓存副本。</td>
+</tr>
+</tbody>
+</table>
+<p>缓存是准备将图像显示在屏幕上的有用步骤。首次加载时，用于图像表示的数据的格式可能无法直接呈现到屏幕上。例如，在将 PDF 数据加载到 PDF 图像表示形式中之前，必须对其进行栅格化处理，然后才能将其发送到图形卡进行显示。启用缓存后，<code>NSPDFImageRep</code> 对象在将 PDF 数据绘制到屏幕之前对其进行栅格化。然后，图像表示将保存栅格数据，以减轻以后重新创建它的需要。如果禁用此类图像的缓存，则每次渲染图像时都会进行光栅化过程，这可能会导致性能下降。</p>
+<p>对于位图图像表示，缓存的决定取决于位图图像数据。如果位图的颜色空间，分辨率和位深度与目标设备中的相应属性匹配，则可以直接使用位图，而无需进行任何缓存。但是，如果这些属性中的任何一个发生变化，则位图图像表示可能会创建一个缓存的版本。</p>
+<blockquote>
+<p>重要提示：请记住，缓存旨在提高屏幕更新期间的性能，这一点很重要。在打印期间，Cocoa 尽可能使用本机图像数据和分辨率，并且仅将图像的缓存版本用作最后的选择。</p>
+</blockquote>
+<p>如果直接更改图像表示对象的内容，则应在完成后调用所属 <code>NSImage</code> 对象的 <code>recache</code> 方法，并希望将更改反映在屏幕上。Cocoa 不会自动跟踪您对图像表示对象所做的更改。取而代之的是，它将继续使用图像表示形式的缓存版本，直到您使用 <code>recache</code> 方法显式清除该缓存为止。</p>
+<h4><a id="%E7%BC%93%E5%AD%98%E5%92%8C%E5%9B%BE%E5%83%8F%E6%95%B0%E6%8D%AE%E4%BF%9D%E7%95%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>缓存和图像数据保留</h4>
+<p>由于缓存会导致内存中有图像数据的多个副本，因此，一旦创建了缓存副本，<code>NSImage</code> 通常会删除原始图像数据。消除原始图像数据可以节省内存并提高性能，并且在您不打算更改图像大小或属性的情况下非常适合。如果您确实打算更改图像大小或属性，则可能要禁用此行为。启用数据保留功能可以通过基于原始图像数据（而不是当前缓存的副本）的更改来防止图像降级。</p>
+<p>要保留特定图像的图像数据，必须将 <code>setDataRetained:</code> 消息发送到 <code>NSImage</code> 对象。最好在创建图像对象后立即发送此消息。如果在渲染图像或锁定焦点之后发送消息，则 Cocoa 可能需要多次读取图像数据。</p>
+<h4><a id="%E5%88%86%E5%88%AB%E7%BC%93%E5%AD%98%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>分别缓存图像</h4>
+<p>为了提高性能，大多数应用程序图像的缓存都在一个或多个屏幕外窗口中进行。这些窗口充当应用程序的图像存储库，并且不与其他应用程序共享。Cocoa 自动管理它们，并根据当前图像属性为其分配图像。</p>
+<p>默认情况下，Cocoa 尝试通过将多个图像放入单个窗口来减少屏幕外窗口的数量。对于尺寸不经常变化的图像，此技术通常比将每个图像存储在其自己的窗口中更快。对于大小经常变化的图像，最好通过向图像对象发送 <code>setCachedSeparately:</code> 消息来单独缓存图像。</p>
+<h3><a id="%E5%9B%BE%E5%83%8F%E5%B0%BA%E5%AF%B8%E5%92%8C%E5%88%86%E8%BE%A8%E7%8E%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像尺寸和分辨率</h3>
+<p><code>NSImage</code> 和 <code>NSImageRep</code> 都定义了用于获取和设置图像大小的方法。但是，每种类型的对象的尺寸含义可能会有所不同。对于 <code>NSImage</code>，大小始终以用户坐标空间为单位指定。因此，始终以 1 英寸的正方形呈现 72 x 72 点的图像。对于 <code>NSImageRep</code>，大小通常与本机或缓存位图的大小相关。对于与分辨率无关的图像表示，将创建一个缓存的位图，其大小与 <code>NSImage</code> 返回的大小匹配。但是，对于真正的位图图像，其大小等于位图图像的宽度和高度（以像素为单位）。</p>
+<p>如果从数据对象或文件创建图像，则 <code>NSImage</code> 对象将从提供的数据中获取其图像大小信息。例如，对于 EPS 数据，大小是从边界矩形获取的，而对于 TIFF 数据，大小是从 <code>ImageLength</code> 和 <code>ImageWidth</code> 字段获取的。如果创建空白图像，则必须在初始化 <code>NSImage</code> 对象时自行设置图像大小。</p>
+<p>您可以随时使用 <code>NSImage</code> 或 <code>NSImageRep</code> 的 <code>setSize:</code> 方法更改图像的大小。方法的 <code>NSImage</code> 版本返回的大小表示用户坐标空间中图像的尺寸。因此，更改此值会更改在您的视图之一中绘制图像的大小。如果存在，此更改通常仅影响图像数据的缓存副本。更改图像表示对象的大小会更改用于保存图像数据的实际位数。此更改主要影响位图图像，并可能导致图像的内存中副本丢失数据。</p>
+<p>如果图像表示形式中的数据大小小于将要呈现的矩形，则必须缩放图像以适合目标矩形。对于与分辨率无关的图像（例如 PDF 图像），缩放问题不大。但是，对于位图图像，必须对位图中的像素值进行插值以填充额外的空间。表 5-4 列出了可用的插值设置。</p>
+<p>表 5-4：图像插值常数</p>
+<table>
+<thead>
+<tr>
+<th>插值常数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NSImageInterpolationDefault</code></td>
+<td>使用上下文的默认插值</td>
+</tr>
+<tr>
+<td><code>NSImageInterpolationNone</code></td>
+<td>无插值。</td>
+</tr>
+<tr>
+<td><code>NSImageInterpolationLow</code></td>
+<td>快速，低质量的插值。</td>
+</tr>
+<tr>
+<td><code>NSImageInterpolationMedium</code></td>
+<td>中等质量，比劣质插值慢。</td>
+</tr>
+<tr>
+<td><code>NSImageInterpolationHigh</code></td>
+<td>最高质量，比中等质量插值慢。</td>
+</tr>
+</tbody>
+</table>
+<p>前面的插值设置可以控制插值算法的质量和速度。若要更改当前插值设置，请使用 <code>NSGraphicsContext</code> 的 <code>setImageInterpolation:</code> 方法。</p>
+<blockquote>
+<p>注意：缩放比例仅影响图像数据的内存中副本。它不会更改磁盘上存储的数据。</p>
+</blockquote>
+<p>禁用图像中的数据保留后，对图像进行多次缩放会严重降低生成的图像质量。通过缩放使图像变小是有损操作。如果随后通过缩放使图像再次变大，则结果将基于图像的缩小版本。</p>
+<p>如果需要几种不同尺寸的图像，则可能需要创建多个图像表示对象，每种尺寸对应一个对象，以避免任何有损行为。或者，可以使用 <code>setDataRetained:</code> 方法来确保缓存系统可以访问原始图像数据。</p>
+<h3><a id="%E5%9B%BE%E5%83%8F%E5%9D%90%E6%A0%87%E7%B3%BB%E7%BB%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像坐标系统</h3>
+<p>类似于视图，<code>NSImage</code> 对象使用其自己的坐标系来管理其内容，在这种情况下，该内容就是图像数据本身。此内部坐标系独立于包含图像的任何包含视图。尽管您可能认为了解此坐标系对于在视图中绘制图像很重要，但实际上并非如此。内部坐标系的目的是使图像数据本身定向。因此，您唯一需要了解的内部坐标系就是通过将焦点锁定在 <code>NSImage</code> 对象上并绘制到其中来创建新图像。</p>
+<p>图像对象有两种可能的方向：标准方向和翻转方向。创建新的空 <code>NSImage</code> 对象时，可以根据要绘制图像数据的方式设置方向。默认情况下，图像使用标准的笛卡尔坐标（非翻转）坐标系，但是您可以通过在绘制之前调用 <code>NSImage</code> 的 <code>setFlipped:</code> 方法来强制它们使用翻转的坐标系。但是，在将焦点锁定在图像上并开始绘图之前，必须始终设置图像方向。在 <code>lockFocus</code> 调用之后更改坐标系的方向无效。此外，在再次解除焦点锁定之后调用<code>setFlipped:</code> 方法可能不会获得理想的结果，应该避免。</p>
+<p>在视图中绘制图像时，可以将图像视为只是其中包含一些数据的矩形。无论其内部坐标系的方向如何，您都始终相对于当前视图的坐标系放置图像。图 5-1 以非翻转视图显示了两个图像。用于绘制每幅图像的代码使用图中所示的坐标点，这些坐标点位于视图的（未翻转）坐标系中。但是，由于第一张图片内部使用了翻转的坐标系，因此其内容上下颠倒。</p>
+<p>图 5-1：未翻转视图中的图像方向</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/5-1.png" alt="" /></p>
+<h3><a id="%E7%BB%98%E5%9B%BE%E4%B8%8E%E5%90%88%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘图与合成</h3>
+<p><code>NSImage</code> 类提供了不同的方法组，以方便将图像绘制到当前上下文。通常可以将两种主要方法分类为“绘图”方法与“合成”方法。<code>NSImage</code> 有三种“绘制”方法：</p>
+<ul>
+<li><code>drawAtPoint:fromRect:operation:fraction：</code></li>
+<li><code>drawInRect:fromRect:操作:fraction：</code></li>
+<li><code>drawRepresentation:inRect：</code></li>
+</ul>
+<p>由于其基本安全性，绘制方法是 NSImage 最常用的方法之一。图像通常在离屏窗口中渲染，然后根据需要复制到屏幕上。在某些情况下，出于效率原因，可以将多个图像合成到同一窗口中。绘制方法使用额外的安全检查，以确保仅在您的视图中绘制了当前图像的内容。合成方法并非如此，其中有以下几种：</p>
+<ul>
+<li><code>compositeToPoint:operation:</code></li>
+<li><code>compositeToPoint:fromRect:operation:</code></li>
+<li><code>compositeToPoint:fromRect:operation:fraction:</code></li>
+<li><code>compositeToPoint:operation:fraction:</code></li>
+</ul>
+<p>这些方法比绘图方法更有效，因为它们对图像边界执行的检查较少。但是，这些方法确实具有您需要了解的其他行为。最重要的行为是，合成方法会撤消在绘制之前应用于 CTM 的任何比例或旋转因子（但不限制平移因子）。如果要在翻转视图中绘制或将缩放或旋转值手动应用于当前上下文，则这些方法将忽略这些转换。尽管这似乎是一个问题，但实际上它可能是一个非常有用的工具。例如，如果您的程序正在缩放图形元素，则可能要向转换中添加缩放值以进行缩放（至少是暂时的）。如果您的元素使用基于图像的选择处理方法，则可以使用合成方法来防止这些处理方法与其余图形元素一起缩放。</p>
+<p>关于合成方法要记住的另一件事是，它们都不能让您将图像缩放到目标矩形。Cocoa 将整个图像（或其指定部分）逐位合成到指定位置。这与 <code>drawInRect:fromRect:operation:fraction:</code> 方法相反，后者使您可以将全部或部分图像缩放到视图中指定的目标矩形。</p>
+<blockquote>
+<p>注意：<code>dissolveToPoint:fraction:</code> 和 <code>dissolveToPoint:fromRect:fraction:</code> 方法的行为与相应的合成方法相似。通常，它们的使用受到更多限制，并且可以通过 Core Image 获得更好的溶解图像支持。</p>
+</blockquote>
+<h2><a id="%E6%94%AF%E6%8C%81%E7%9A%84%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>支持的图像文件格式</h2>
+<p>Cocoa 内部支持许多常见的图像格式，并且可以通过使用 Image I/O 框架（<code>ImageIO.framework</code>）从许多其他格式导入图像数据。</p>
+<h3><a id="%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基本格式</h3>
+<p>表 5-5 列出了 Cocoa 原生支持的格式。（文件名扩展名的大写版本也可以识别。）</p>
+<p>表 5-5：Cocoa 支持的文件格式</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>文件拓展名</th>
+<th>UTI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portable Document Format (PDF)</td>
+<td>.pdf</td>
+<td>com.adobe.pdf</td>
+</tr>
+<tr>
+<td>Encapsulated PostScript (EPS)</td>
+<td>.eps, .epi, .epsf, .epsi, .ps</td>
+<td></td>
+</tr>
+<tr>
+<td>Tagged Image File Format (TIFF)</td>
+<td>.tiff, .tif</td>
+<td>public.tiff</td>
+</tr>
+<tr>
+<td>Joint Photographic Experts Group (JPEG), JPEG-2000</td>
+<td>.jpg, .jpeg, .jpe</td>
+<td>public.jpeg, public.jpeg-2000</td>
+</tr>
+<tr>
+<td>Graphic Interchange Format (GIF)</td>
+<td>.gif</td>
+<td>com.compuserve.gif</td>
+</tr>
+<tr>
+<td>Portable Network Graphic (PNG)</td>
+<td>.png</td>
+<td>public.png</td>
+</tr>
+<tr>
+<td>Macintosh Picture Format (PICT)</td>
+<td>.pict, .pct, .pic</td>
+<td>com.apple.pict</td>
+</tr>
+<tr>
+<td>Windows Bitmap Format (DIB)</td>
+<td>.bmp, .BMPf</td>
+<td>com.microsoft.bmp</td>
+</tr>
+<tr>
+<td>Windows Icon Format</td>
+<td>.ico</td>
+<td>com.microsoft.ico</td>
+</tr>
+<tr>
+<td>Icon File Format</td>
+<td>.icns</td>
+<td>com.apple.icns</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="tiff%E5%8E%8B%E7%BC%A9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>TIFF 压缩</h3>
+<p>只要压缩算法是表 5-6 中描述的四种方案之一，就可以从压缩数据中读取 TIFF 图像。</p>
+<p>表 5-6：TIFF 压缩设置</p>
+<table>
+<thead>
+<tr>
+<th>压缩</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LZW</td>
+<td>压缩和解压缩而无信息丢失，实现高达 5：1 的压缩比。压缩和解压缩可能比 PackBits 方案要慢一些。</td>
+</tr>
+<tr>
+<td>PackBits</td>
+<td>压缩和解压缩不会丢失信息，但是可能无法实现与 LZW 相同的压缩率。</td>
+</tr>
+<tr>
+<td>JPEG</td>
+<td>TIFF 文件不再支持 JPEG 压缩，并且将忽略此因素。</td>
+</tr>
+<tr>
+<td>CCITTFAX</td>
+<td>使用国际传真压缩标准 CCITT3 和 CCITT4 压缩和解压缩1位灰度图像。</td>
+</tr>
+</tbody>
+</table>
+<p><code>NSImage</code> 对象还可以使用任何这些方案来生成压缩的 TIFF 数据。要获取 TIFF 数据，请使用 <code>NSImage</code> 的 <code>TIFFRepresentationUsingCompression:factor:</code> 方法。</p>
+<h3><a id="%E6%94%AF%E6%8C%81%E5%85%B6%E4%BB%96%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>支持其他文件格式</h3>
+<p>在 OS X v10.4 和更高版本中，<code>NSImage</code> 使用 <code>Image I/O</code> 框架支持许多其他文件格式。要获取受支持的文件扩展名的完整列表，请使用 <code>NSImage</code> 的 <code>imageFileTypes</code> 类方法。受支持的文件格式列表在继续增长，但是表 5-7 列出了一些可以导入的更常见的格式。</p>
+<p>表5-7：Cocoa 支持的其他格式</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>文件拓展名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adobe RAW</td>
+<td>.dng</td>
+</tr>
+<tr>
+<td>Canon 2 RAW</td>
+<td>.cr2</td>
+</tr>
+<tr>
+<td>Canon RAW</td>
+<td>.crw</td>
+</tr>
+<tr>
+<td>FlashPix</td>
+<td>.fpx, .fpix</td>
+</tr>
+<tr>
+<td>Fuji RAW</td>
+<td>.raf</td>
+</tr>
+<tr>
+<td>Kodak RAW</td>
+<td>.dcr</td>
+</tr>
+<tr>
+<td>MacPaint</td>
+<td>.ptng, .pnt, .mac</td>
+</tr>
+<tr>
+<td>Minolta RAW</td>
+<td>.mrw</td>
+</tr>
+<tr>
+<td>Nikon RAW</td>
+<td>.nef</td>
+</tr>
+<tr>
+<td>Olympus RAW</td>
+<td>.orf</td>
+</tr>
+<tr>
+<td>OpenEXR</td>
+<td>.exr</td>
+</tr>
+<tr>
+<td>Photoshop</td>
+<td>.psd</td>
+</tr>
+<tr>
+<td>QuickTime Import Format</td>
+<td>.qti, .qtif</td>
+</tr>
+<tr>
+<td>Radiance</td>
+<td>.hdr</td>
+</tr>
+<tr>
+<td>SGI</td>
+<td>.sgi</td>
+</tr>
+<tr>
+<td>Sony RAW</td>
+<td>.srf</td>
+</tr>
+<tr>
+<td>Targa</td>
+<td>.targa, .tga</td>
+</tr>
+<tr>
+<td>Windows Cursor</td>
+<td>.cur</td>
+</tr>
+<tr>
+<td>XWindow bitmap</td>
+<td>.xbm</td>
+</tr>
+</tbody>
+</table>
+<p>Image I/O 框架是 Quartz 的一部分，尽管实际框架是 Application Services 框架的一部分。Image I/O 处理多种文件格式的导入和导出。要直接使用 Quartz，请使用 <code>CGImageSourceRef</code> 不透明类型读取图像数据，并使用 <code>CGImageDestinationRef</code> 类型写入图像数据。有关使用 Image I/O 框架读取和写入图像的更多信息，请参见 <a href="https://developer.apple.com/documentation/imageio/cgimagesource-r84">CGImageSource 参考</a>和 <a href="https://developer.apple.com/documentation/imageio/cgimagedestination">CGImageDestination 参考</a>。</p>
+<h2><a id="%E5%9B%BE%E5%83%8F%E4%BD%BF%E7%94%A8%E5%87%86%E5%88%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图像使用准则</h2>
+<p>以下是一些准则，可帮助您更有效地处理图像：</p>
+<ul>
+<li>尽可能使用 <code>NSImage</code> 接口。<code>NSImage</code> 的目标是简化与图像数据的交互。直接使用图像表示仅应在需要时进行。</li>
+<li>将 <code>NSImage</code> 及其图像表示形式视为不可变的对象。<code>NSImage</code> 的目标是提供一种在目标画布上显示图像的有效方法。避免直接操纵图像表示的数据，尤其是在存在操纵数据的替代方法时，例如将图像和某些其他内容合成到新的图像对象中时。</li>
+<li>对于基于屏幕的绘图，最好使用 <code>NSImage</code> 的内置缓存机制。使用 <code>NSCachedImageRep</code> 对象比具有相同数据的 <code>NSBitmapImageRep</code> 对象更有效。缓存的图像表示使用 <code>CGImageRef</code> 对象存储图像数据，可以通过 Quartz 将其直接存储在视频卡上。</li>
+<li>将同一图像的多个表示形式（可能以不同的大小）存储在单个 NSImage 中几乎没有好处。现代硬件功能强大，足以快速调整大小和缩放图像。考虑存储多个表示的唯一原因是这些表示中的每个表示是否都包含图像的自定义版本，或者您的应用程序支持高分辨率显示。</li>
+<li>如果启用了缓存，并且您直接修改了图像表示对象，请确保调用拥有的 <code>NSImage</code> 对象的 <code>recache</code> 方法。Cocoa 尽可能依靠缓存的内容来提高性能，并且在修改图像表示时不会自动重新创建其缓存。您必须告诉图像对象显式重新创建其缓存。</li>
+<li>避免重新创建系统已提供的插图。OS X 使您可以在自己的界面中包含几张标准的艺术品。这些艺术品的范围从标准图标到可以集成到控件中的其他元素。您可以使用 <code>imageNamed:</code> 方法加载标准图像。有关标准图稿的列表，请参见 <a href="https://developer.apple.com/documentation/appkit/nsimage">NSImage类参考</a>中的“常量”部分。</li>
+<li>如果您的应用程序支持高分辨率显示，请遵循 <a href="https://developer.apple.com/library/archive/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012302">OS X高分辨率准则</a>中的准则，以提供和命名图像资源的标准和高分辨率版本。该文档还概述了从 OS X v10.7.4 开始对 <code>NSImage</code> 类的添加和更改。</li>
+</ul>
+<p>OS X 定义了几种处理图像的技术。尽管 <code>NSImage</code> 类是用于创建，处理和绘制图像的良好通用类，但有时使用其他成像技术可能更容易或更有效。例如，与其通过随时间绘制每个图像的部分透明版本来手动将一个图像溶解到另一个图像，使用 Core Image 为您执行溶解操作将更加有效。有关其他图像技术以及何时使用它们的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/QuartzOpenGL/QuartzOpenGL.html#//apple_ref/doc/uid/TP40003290-CH211-SW2">选择正确的成像技术</a>。</p>
+<h2><a id="%E5%88%9B%E5%BB%BAnsimage%E5%AF%B9%E8%B1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建 NSImage 对象</h2>
+<p>在绘制图像之前，必须创建或加载图像数据。Cocoa 支持多种技术来创建新图像和加载现有图像。</p>
+<h3><a id="%E5%8A%A0%E8%BD%BD%E7%8E%B0%E6%9C%89%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>加载现有图像</h3>
+<p>对于现有图像，可以使用 NSImage 方法直接从文件或URL加载图像。打开图像文件时， <code>NSImage</code> 将自动创建与该文件中的数据类型最匹配的图像表示形式。Cocoa 内部支持多种文件格式。在 OS X v10.4 和更高版本中，Cocoa 使用Image I/O 框架支持更多文件格式。有关支持的文件类型的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIIFBJG">支持的图像文件格式</a>。</p>
+<p>以下示例显示了如何从文件加载现有图像。重要的是要记住，从现有文件加载的图像主要用于渲染。如果要直接操作数据，请将其复制到屏幕外窗口或其他本地数据结构中，然后在其中进行操作。</p>
+<pre><code class="language-objective-c">NSString* imageName = [[NSBundle mainBundle]
+                    pathForResource:@&quot;image1&quot; ofType:@&quot;JPG&quot;];
+NSImage* tempImage = [[NSImage alloc] initWithContentsOfFile:imageName];
+</code></pre>
+<h3><a id="%E5%8A%A0%E8%BD%BD%E5%91%BD%E5%90%8D%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>加载命名图像</h3>
+<p>对于经常使用的图像，您可以使用应用程序套件的命名图像注册表来加载和存储它们。该注册表提供了一种快速方便的方法来检索图像，而无需每次都创建新的 NSImage 对象。您可以将映像显式添加到此注册表中，也可以使用注册表本身来加载已知的系统或应用程序特定的映像，例如：</p>
+<ul>
+<li>存储在 Application Kit 框架的 <code>Resources</code> 目录中的系统映像</li>
+<li>您应用程序的图标或其他图片位于主 bundle 的 <code>Res​​ources</code> 目录中。</li>
+</ul>
+<p>要从注册表中检索图像，请使用 <code>NSImage的imageNamed:</code> 类方法。此方法在注册表中查找与您提供的名称关联的图像。如果未找到，它将在 Application Kit 的共享资源中查找映像。之后，它将在应用程序 bundle 的 <code>Res​​ources</code> 目录中查找文件，最后检查 Application Kit bundle。如果找到图像文件，则会加载该图像，然后将其添加到注册表中，并返回相应的 <code>NSImage</code> 对象。只要您的代码将相应的图像对象保留在某个位置，随后尝试检索相同的图像文件就会返回已经加载的 <code>NSImage</code> 对象。</p>
+<p>要检索您的应用程序图标，请提供带有常量 <code>NSImageNameApplicationIcon</code> 的图像（在 v10.6 之前的 OS X 版本上，您可以使用字符串 <code>@“NSApplicationIcon”</code>）。如果您的应用程序的自定义图标包含一个，则返回该图标；否则，Cocoa 返回系统提供的通用应用程序图标。有关可用于加载其他标准系统图像的图像名称的列表，请参见 <a href="https://developer.apple.com/documentation/appkit/nsimage">NSImage 类参考</a>中的“常量”部分。</p>
+<p>除了加载现有的图像文件，您还可以通过向 <code>NSImage</code> 对象发送 <code>setName:</code> 消息来将图像显式添加到注册表。<code>setName:</code> 方法以指定名称将映像添加到注册表。如果图像是动态创建的或不在应用程序包中，则可以使用此方法。</p>
+<p>注意：在将图像显式添加到注册表时，选择的名称与应用程序捆绑包中任何图像的名称都不匹配。如果选择捆绑资源使用的名称，则显式添加的映像将取代该资源。但是，您仍然可以使用 <code>NSBundle</code> 的方法加载资源。</p>
+<h3><a id="%E9%80%9A%E8%BF%87%E9%94%81%E5%AE%9A%E7%84%A6%E7%82%B9%E7%BB%98%E5%88%B6%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>通过锁定焦点绘制图像</h3>
+<p>通过将焦点锁定在 <code>NSImage</code> 对象上并将其他图像或路径绘制到图像上下文中，可以以编程方式创建图像。尽管您也可以将生成的图像数据保存到文件中，但是该技术对于创建要渲染到屏幕上的图像最有用。</p>
+<p>清单 5-1 显示了如何创建一个新的空白图像并对其进行配置以进行绘图。创建空白图像时，必须指定新图像的大小（以像素为单位）。如果将焦点锁定在包含现有内容的图像上，则新内容将与旧内容合成。绘制时，可以使用在绘制到视图时通常使用的任何例程。</p>
+<p>清单 5-1：绘制图像</p>
+<pre><code class="language-objective-c">NSImage* anImage = [[NSImage alloc] initWithSize:NSMakeSize(100.0,  100.0)];
+[anImage lockFocus];
+ 
+// Do your drawing here...
+ 
+[anImage unlockFocus];
+ 
+// Draw the image in the current context.
+[anImage drawAtPoint:NSMakePoint(0.0, 0.0)
+            fromRect: NSMakeRect(0.0, 0.0, 100.0, 100.0)
+            operation: NSCompositeSourceOver
+            fraction: 1.0];
+</code></pre>
+<p>绘制图像会创建一个 <code>NSCachedImageRep</code> 对象，或者使用现有的缓存图像表示（如果存在）。即使使用 <code>lockFocusOnRepresentation:</code> 方法锁定特定的图像表示形式，也不会锁定该表示形式本身。而是锁定与该图像表示形式关联的缓存的屏幕外窗口。这种行为似乎令人困惑，但是却强化了图像及其图像表示的不变性的概念。</p>
+<p>出于效率和安全原因，图像及其表示形式被认为是不变的。如果考虑存储在应用程序 bundle 中的图像文件，您是否真的要对原始图像进行永久更改？<code>NSImage</code> 及其图像表示会更改该数据的副本，而不是更改原始图像数据。对于基于屏幕的绘图，修改数据的缓存副本也更加有效，因为数据已经采用了可以在屏幕上显示的格式。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8%E5%9F%BA%E4%BA%8E%E5%9D%97%E7%9A%84%E7%BB%98%E5%88%B6%E6%96%B9%E6%B3%95%E7%BB%98%E5%88%B6%E5%B1%8F%E5%B9%95%E5%A4%96%E5%9B%BE%E5%83%8F%E4%BB%A5%E6%94%AF%E6%8C%81%E9%AB%98%E5%88%86%E8%BE%A8%E7%8E%87%E6%98%BE%E7%A4%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用基于块的绘制方法绘制屏幕外图像以支持高分辨率显示</h3>
+<p>如果您的应用程序使用 <code>NSImage</code> 类的 <code>lockFocus</code> 和 <code>unlockFocus</code> 方法进行屏幕外绘制，请考虑改用 <code>imageWithSize:flipped:drawingHandler:</code> 方法（在 OS X v10.8 中可用）。如果使用锁定焦点方法进行绘制，则可能会得到意想不到的结果，要么获得绘制时看起来不正确的低分辨率 <code>NSImage</code> 对象，要么获得位图中像素比实际期待多 2x 的图像。</p>
+<p>使用 <code>imageWithSize:flipped:drawingHandler:</code> 方法可确保您在标准和高分辨率下获得正确的结果。绘图处理程序是一个块，只要将图像绘制到该图形上以及在发生任何线程的任何线程上，都可以调用它。您应该确保以线程安全的方式完成在块内访问的任何状态。</p>
+<p>块中的代码应该与您在 <code>lockFocus</code> 和 <code>unlockFocus</code> 方法之间使用的代码相同。</p>
+<h3><a id="%E5%88%9B%E5%BB%BA%E4%BD%8D%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建位图</h3>
+<p>在 Cocoa 中有几种不同的创建位图的方法。这些技术中的一些比其他的更方便，并且某些可能并非在所有版本的 OS X 中都可用，因此您应该仔细考虑每一种。以下列表总结了最常见的技术以及您可能会使用它们的情况：</p>
+<ul>
+<li>
+<p>要从现有 <code>CIImage</code> 对象的内容（在 OS X v10.5 和更高版本中）创建位图，请使用 <code>NSBitmapImageRep的initWithCIImage:</code> 方法。</p>
+</li>
+<li>
+<p>要从 Quartz 图像的内容创建位图（在 OS X v10.5 和更高版本中），请使用 <code>NSBitmapImageRep的initWithCGImage:</code> 方法。使用此方法初始化位图时，应将返回的位图视为只读对象。此外，您应避免直接访问位图数据，因为这样做需要将 <code>CGImageRef</code> 数据解压缩到单独的一组缓冲区中。</p>
+</li>
+<li>
+<p>要捕获现有视图或图像的内容，请使用以下技术之一：</p>
+<ul>
+<li>将焦点锁定在所需对象上，并使用 <code>NSBitmapImageRep</code> 的<code>initWithFocusedViewRect:</code> 方法。</li>
+<li>在 OS X v10.4 和更高版本中，请使用 <code>NSView</code> 的 <code>bitmapImageRepForCachingDisplayInRect:</code> 和 <code>cacheDisplayInRect:toBitmapImageRep:</code> 方法。第一种方法创建适合用于捕获视图内容的位图图像表示，而第二种方法将视图内容绘制到位图。只要记得在捕获新位图之前清除旧位图，就可以重用位图图像表示对象来定期更新视图内容。</li>
+</ul>
+</li>
+<li>
+<p>要直接绘制到位图中，请使用所需的参数创建一个新的 <code>NSBitmapImageRep</code> 对象，然后使用 <code>NSGraphicsContext</code> 的 <code>graphicsContextWithBitmapImageRep:</code> 方法创建一个绘制上下文。将新上下文设为当前上下文并绘制。此技术仅在 OS X v10.4 及更高版本中可用。
+或者，您可以创建一个 <code>NSImage</code> 对象（或一个离屏窗口），将其绘制到其中，然后捕获图像内容。OS X 的所有版本均支持此技术。</p>
+</li>
+<li>
+<p>要逐位创建位图，请使用所需参数创建一个新的 <code>NSBitmapImageRep</code> 对象，然后直接操作像素。您可以使用 <code>bitmapData</code> 方法获取原始像素缓冲区。<code>NSBitmapImageRep</code> 还定义了获取和设置单个像素值的方法。此技术是最费力的工作，但可以使您对位图内容的控制最多。例如，如果要自己解码原始图像数据并将其传输到位图图像表示形式，则可以使用它。</p>
+</li>
+</ul>
+<p>以下各节提供了有关如何使用前面列表中的前两种技术的示例。有关如何操作位图的信息，请参见 <a href="https://developer.apple.com/documentation/appkit/nsbitmapimagerep">NSBitmapImageRep 类参考</a>。</p>
+<h4><a id="%E6%8D%95%E8%8E%B7%E8%A7%86%E5%9B%BE%E6%88%96%E5%9B%BE%E5%83%8F%E7%9A%84%E5%86%85%E5%AE%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>捕获视图或图像的内容</h4>
+<p>创建位图的一种简单方法是捕获现有视图或图像的内容。捕获视图时，视图可以属于屏幕上的窗口，也可以完全分离，而不是完全在屏幕上。捕获图像时，Cocoa 选择为目标位图提供最佳匹配的图像表示。</p>
+<p>在尝试捕获视图的内容之前，您应该考虑调用视图的 <code>canDraw</code> 方法以查看是否应绘制视图。在视图当前处于隐藏状态或未与有效窗口关联的情况下，Cocoa 视图从此方法返回 <code>NO</code>。如果试图捕获视图的当前状态，则可以使用 <code>canDraw</code> 方法来防止代码在隐藏视图时捕获它。</p>
+<p>获得视图或图像后，将焦点锁定在其上，然后使用 <code>NSBitmapImageRep</code> 的 <code>initWithFocusedViewRect:</code> 方法捕获内容。使用此方法时，可以指定要从视图或图像捕获的确切矩形。因此，您可以捕获所有内容或仅捕获一部分；您无法缩放捕获的内容。  <code>initWithFocusedViewRect:</code> 方法捕获的位与聚焦图像或视图中的位完全相同。</p>
+<p>清单 5-2 显示了如何从现有图像创建位图表示。该示例从自定义例程获取要捕获的图像，将焦点锁定在该例程上，并创建 <code>NSBitmapImageRep</code> 对象。您自己的实现将需要用代码替换对 <code>myGetCurrentImage</code> 的调用，以创建或获取程序使用的图像。</p>
+<p>清单 5-2：捕获现有图像的内容</p>
+<pre><code class="language-objective-c">NSImage* image = [self myGetCurrentImage];
+NSSize size = [image size];
+[image lockFocus];
+ 
+NSBitmapImageRep* rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:
+                        NSMakeRect(0,0,size.width,size.height)];
+ 
+[image unlockFocus];
+</code></pre>
+<p>要捕获屏幕视图的内容，您将非常类似于前面的示例使用代码。将焦点锁定在视图上之后，您将使用 <code>initWithFocusedViewRect:</code> 方法创建 <code>NSBitmapImageRep</code> 对象。</p>
+<p>要捕获分离（非屏幕）视图的内容，必须先为该视图创建一个离屏窗口，然后再尝试捕获其内容。  <code>window</code> 对象提供了一个后备缓冲区，用于保存视图的呈现内容。只要您不将窗口订购到屏幕上，为窗口指定的原点实际上就无关紧要。清单 5-3 中的示例为原点坐标使用了较大的负值（只是为了确保窗口不可见），但也可以轻松地使用坐标（0，0）。</p>
+<p>清单 5-3：绘制到屏幕外的窗口</p>
+<pre><code class="language-objective-c">NSRect offscreenRect = NSMakeRect(-10000.0, -10000.0,
+                            windowSize.width, windowSize.height);
+NSWindow* offscreenWindow = [[NSWindow alloc]
+                initWithContentRect:offscreenRect
+                styleMask:NSBorderlessWindowMask
+                backing:NSBackingStoreRetained
+                defer:NO];
+ 
+[offscreenWindow setContentView:myView];
+[[offscreenWindow contentView] display]; // Draw to the backing  buffer
+ 
+// Create the NSBitmapImageRep
+[[offscreenWindow contentView] lockFocus];
+NSBitmapImageRep* rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:
+                NSMakeRect(0, 0, windowSize.width, windowSize.height)];
+ 
+// Clean up and delete the window, which is no longer needed.
+[[offscreenWindow contentView] unlockFocus];
+[offscreenWindow release];
+</code></pre>
+<h4><a id="%E7%9B%B4%E6%8E%A5%E7%BB%98%E5%9B%BE%E5%88%B0%E4%BD%8D%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>直接绘图到位图</h4>
+<p>在 OS X v10.4 及更高版本中，可以创建位图图像表示对象并直接绘制到该对象。此技术很简单，不需要创建任何无关的对象，例如图像或窗口。但是，如果您的代码需要在 OS X 的早期版本中运行，则不能使用此技术。</p>
+<p>清单 5-4 创建了一个具有所需位深，分辨率和色彩空间的新 <code>NSBitmapImageRep</code> 对象。然后，它使用位图创建一个新的图形上下文对象，并使该上下文成为当前上下文。</p>
+<p>清单5-4：直接绘制到位图</p>
+<pre><code class="language-objective-c">NSRect offscreenRect = NSMakeRect(0.0, 0.0, 500.0, 500.0);
+NSBitmapImageRep* offscreenRep = nil;
+ 
+offscreenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
+                        pixelsWide:offscreenRect.size.width
+                        pixelsHigh:offscreenRect.size.height
+                        bitsPerSample:8
+                        samplesPerPixel:4
+                        hasAlpha:YES
+                        isPlanar:NO
+                        colorSpaceName:NSCalibratedRGBColorSpace
+                        bitmapFormat:0
+                        bytesPerRow:(4 * offscreenRect.size.width)
+                        bitsPerPixel:32];
+ 
+[NSGraphicsContext saveGraphicsState];
+[NSGraphicsContext setCurrentContext:[NSGraphicsContext
+                        graphicsContextWithBitmapImageRep:offscreenRep]];
+ 
+// Draw your content...
+ 
+[NSGraphicsContext restoreGraphicsState];
+</code></pre>
+<p>绘制完成后，可以将位图图像表示对象添加到 <code>NSImage</code> 对象，并像显示其他任何图像一样显示它。您可以在 OpenGL 代码中将此图像表示对象用作纹理，或使用 <code>NSBitmapImageRep</code> 方法检查位图的位。</p>
+<h3><a id="%E5%88%9B%E5%BB%BApdf%E6%88%96-eps%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建 PDF 或 EPS 图像表示</h3>
+<p>两者创建 PDF 或 EPS 数据图像表示的过程是相同的。在这两种情况下，您都将自定义 <code>NSView</code> 对象与 Cocoa 打印系统一起使用以生成所需的数据。然后，根据生成的数据创建所需类型的图像表示。</p>
+<p><code>NSView</code> 类定义了两种基于视图内容生成数据的便捷方法：</p>
+<ul>
+<li>对于 PDF 数据，请使用 <code>NSView</code> 的 <code>dataWithPDFInsideRect:</code> 方法。</li>
+<li>对于 EPS 数据，请使用 <code>NSView的dataWithEPSInsideRect:</code> 方法。</li>
+</ul>
+<p>将这些消息之一发送到视图时，Cocoa 将启动打印系统，该系统将驱动数据生成过程。打印系统处理大多数数据生成过程，并根据需要向视图对象发送适当的消息。 例如，Cocoa 向每个需要绘制的页面发送一条 <code>drawRect:</code> 消息到您的视图。打印系统还调用其他方法来计算页面范围和边界。</p>
+<blockquote>
+<p>注意：<code>NSView</code> 类提供了默认的分页方案。要提供自定义方案，您的视图必须至少覆盖<code>KnowsPageRange:</code> 和 <code>rectForPage:</code> 方法。有关打印和分页的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Printing/osxp_aboutprinting/osxp_aboutprt.html#//apple_ref/doc/uid/10000083i">Mac版打印编程指南</a>。</p>
+</blockquote>
+<p>打印系统完成后，调用 <code>dataWithPDFInsideRect:</code> 或 <code>dataWithEPSInsideRect:</code> 的代码将接收带有 PDF 或 EPS 数据的 <code>NSData</code> 对象。然后，您必须将此对象传递给 <code>NSEPSImageRep</code> 或 <code>NSPDFImageRep的imageRepWithData:</code> 方法，以初始化新的图像表示对象，然后可以将其添加到 <code>NSImage</code> 对象。</p>
+<p>清单 5-5 显示了根据某些视图内容创建 PDF 图像的基本步骤。视图本身必须是知道如何绘制所需内容的视图。这可以是单独设计的视图，仅用于以任何所需的分页方式绘制所需的内容，也可以是其中一个窗口中的现有视图。</p>
+<p>清单5-5：从视图创建 PDF 数据</p>
+<pre><code class="language-objective-c">MyPDFView* myView = GetMyPDFRenderView();
+NSRect viewBounds = [myView bounds];
+ 
+NSData* theData = [myView dataWithPDFInsideRect:viewBounds];
+NSPDFImageRep* pdfRep = [NSPDFImageRep imageRepWithData:theData];
+ 
+// Create a new image to hold the PDF representation.
+NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
+[pdfImage addRepresentation:pdfRep];
+</code></pre>
+<p>如果您选择使用现有的屏幕视图，则视图的绘图代码应区分为屏幕或打印系统绘制的内容，并相应地调整内容。使用 <code>currentGraphicDrawingToScreen</code> 类方法或 <code>NSGraphicsContext</code> 的 <code>isDrawingToScreen</code> 实例方法来确定当前上下文是针对屏幕还是基于打印的画布。对于生成 PDF 或 EPS 数据的操作，这些方法返回 <code>NO</code>。</p>
+<blockquote>
+<p>重要：在打印环境中进行绘制时，唯一受支持的合成运算符是 <code>NSCompositeCopy</code> 和 <code>NSCompositeSourceOver</code>。如果需要使用任何其他运算符来呈现内容，则必须先将它们合成到图像或屏幕外窗口，然后使用一种受支持的运算符将结果图像呈现到打印上下文。</p>
+</blockquote>
+<h3><a id="%E4%BD%BF%E7%94%A8quartz%E9%95%9C%E5%83%8F%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-nsimage" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 Quartz 镜像创建一个 NSImage</h3>
+<p><code>NSImage</code> 类不提供任何直接方法来包装来自 Quartz 图像对象的数据。如果您有 <code>CGImageRef</code> 对象，则创建相应可可图像的最简单方法是将焦点锁定在 <code>NSImage</code> 对象上，并使用 <code>CGContextDrawImage</code> 函数绘制 Quartz 图像。<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIBFFII">锁定焦点绘制图像</a>中介绍了如何执行此操作的基本技术。</p>
+<h2><a id="%E5%A4%84%E7%90%86%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>处理图像</h2>
+<p>拥有图像后，可以使用多种方式使用它。您最简单的操作就是将其绘制为程序用户界面的一部分的视图。您还可以通过以多种方式修改图像来进一步处理图像。以下各节向您展示如何执行与图像相关的几个常见任务。</p>
+<h3><a id="%E5%B0%86%E5%9B%BE%E5%83%8F%E7%BB%98%E5%88%B6%E5%88%B0%E8%A7%86%E5%9B%BE%E4%B8%AD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将图像绘制到视图中</h3>
+<p><code>NSImage</code> 类定义了几种将图像绘制到当前上下文中的方法。两种最常用的方法是：</p>
+<ul>
+<li><code>drawAtPoint:fromRect:operation:fraction:</code></li>
+<li><code>drawInRect:fromRect:operation:fraction:</code></li>
+</ul>
+<p>这些方法提供了一个用于渲染图像的简单界面，但是更重要的是，它们确保仅绘制图像内容。其他方法，例如 <code>CompositeToPoint:operation:</code> 方法及其变体，在绘制图像时速度很快，但是它们在绘制之前不会检查图像的边界。如果绘图矩形超出了图像范围，则可能会绘制不属于图像的内容。如果图像驻留在共享的屏幕外窗口上（很多人这样做），甚至可以绘制其他图像的一部分。有关这些方法之间的区别的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-SW7">图形与合成</a>。</p>
+<p>除了一个例外，所有绘图和合成方法都选择最适合目标画布的图像表示形式-请参阅如<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIGEIFF">何选择图像表示形式</a>。一个例外是 <code>drawRepresentation:inRect:</code> 方法，该方法使用您指定的图像表示对象。有关使用这些方法的更多信息，请参见 <code>NSImage</code> 参考。</p>
+<p>图像支持与其他可可内容相同的合成选项集，并具有相同的结果。有关合成选项的完整列表及其效果的说明，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIDBEEB">设置合成选项</a>。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%83%8F%E7%BB%98%E5%88%B6%E5%8F%AF%E8%B0%83%E6%95%B4%E5%A4%A7%E5%B0%8F%E7%9A%84%E7%BA%B9%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用图像绘制可调整大小的纹理</h3>
+<p>如果要实现可调整大小的自定义控件，并且希望控件具有在调整控件大小时不会变形的带纹理的背景，则通常会将背景部分分解为几个不同的图像并将它们合成在一起。尽管某些图像将包含固定大小的内容，但即使将其调整大小或平铺后，也需要将其他图像设计为呈现平滑的纹理。但是，当需要绘制图像时，应避免自己绘制。相反，您应该使用 OS X v10.5 中引入的以下 AppKit 函数：</p>
+<ul>
+<li><code>NSDrawThreePartImage</code></li>
+<li><code>NSDrawNinePartImage</code></li>
+</ul>
+<p>在高分辨率屏幕上清晰地绘制多部分图像可能非常具有挑战性。如果您不小心在整数边界上正确对齐图像，则生成的纹理可能包含像素裂缝或其他视觉伪像。AppKit 函数考虑了在任何情况下正确绘制多部分图像所需的所有因素，包括使用分辨率独立比例因子为 1.0 以外的情况。</p>
+<p>图 5-2 显示了如何为水平可调整大小的控件组合三部分的图像。两个端盖是固定尺寸的图像，可为背景边缘提供所需的装饰。然后，中心填充部分会适当调整大小，以适合您传递到 <code>NSDrawThreePartImage</code> 函数中的边界矩形。（如果希望控件在垂直方向上可调整大小，则可以将这些图像垂直堆叠而不是水平堆叠。）使用此功能绘制背景后，可以根据需要在背景上分层放置其他内容。</p>
+<p>图 5-2：绘制三部分图像</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/5-2.png" alt="" /></p>
+<p>图 5-3 显示了如何为可垂直和水平调整大小的控件组合九个部分的图像。在这种情况下，角块的大小保持不变，但是剩余的五个填充图像的大小各不相同，以适合当前的边界矩形。</p>
+<p>图 5-3：绘制九部分图像</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/5-3.png" alt="" /></p>
+<p>有关这些功能的更多信息，请参见 <a href="https://developer.apple.com/documentation/appkit/functions">Application Kit 功能参考</a>中的相关描述。</p>
+<h3><a id="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAopengl%E7%BA%B9%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建一个 OpenGL 纹理</h3>
+<p>在 OpenGL 中，纹理是绘制对象表面的一种方法。对于复杂或逼真的表面，应用纹理可能比使用原始形状渲染相同的内容更容易。Cocoa 中的几乎所有视图或图像都可以用来创建 OpenGL 纹理。从视图或图像中，创建一个位图图像表示对象（如捕获视图或图像的内容中所述），然后使用该对象创建纹理。</p>
+<p>清单 5-6 显示了一个用于从 <code>NSImage</code> 对象创建纹理的独立方法。创建 <code>NSBitmapImageRep</code> 对象后，此方法将配置一些与纹理相关的参数，创建一个新的纹理对象，然后将位图数据与该对象关联。此方法可处理 24 位 RGB 和 32 位 RGBA 图像，但是您可以随时对其进行修改以支持其他图像格式。您必须传递一个指向 <code>texName</code> 的有效 <code>GLuint</code> 变量的指针，但该参数中存储的值可以为 0。如果指定非零值，则标识符与纹理对象相关联，以后可用于标识纹理；否则，将在 <code>texName</code> 参数中返回一个标识符给您。</p>
+<p>清单 5-6：从图像创建 OpenGL 纹理</p>
+<pre><code class="language-objective-c">- (void)textureFromImage:(NSImage*)theImg textureName:(GLuint*)texName
+{
+    NSBitmapImageRep* bitmap = [NSBitmapImageRep alloc];
+    int samplesPerPixel = 0;
+    NSSize imgSize = [theImg size];
+ 
+    [theImg lockFocus];
+    [bitmap initWithFocusedViewRect:
+                    NSMakeRect(0.0, 0.0, imgSize.width, imgSize.height)];
+    [theImg unlockFocus];
+ 
+    // Set proper unpacking row length for bitmap.
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, [bitmap pixelsWide]);
+ 
+    // Set byte aligned unpacking (needed for 3 byte per pixel bitmaps).
+    glPixelStorei (GL_UNPACK_ALIGNMENT, 1);
+ 
+    // Generate a new texture name if one was not provided.
+    if (*texName == 0)
+        glGenTextures (1, texName);
+    glBindTexture (GL_TEXTURE_RECTANGLE_EXT, *texName);
+ 
+    // Non-mipmap filtering (redundant for texture_rectangle).
+    glTexParameteri(GL_TEXTURE_RECTANGLE_EXT, GL_TEXTURE_MIN_FILTER,  GL_LINEAR);
+    samplesPerPixel = [bitmap samplesPerPixel];
+ 
+    // Nonplanar, RGB 24 bit bitmap, or RGBA 32 bit bitmap.
+    if(![bitmap isPlanar] &amp;&amp;
+        (samplesPerPixel == 3 || samplesPerPixel == 4))
+    {
+        glTexImage2D(GL_TEXTURE_RECTANGLE_EXT, 0,
+            samplesPerPixel == 4 ? GL_RGBA8 : GL_RGB8,
+            [bitmap pixelsWide],
+            [bitmap pixelsHigh],
+            0,
+            samplesPerPixel == 4 ? GL_RGBA : GL_RGB,
+            GL_UNSIGNED_BYTE,
+            [bitmap bitmapData]);
+    }
+    else
+    {
+        // Handle other bitmap formats.
+    }
+ 
+    // Clean up.
+    [bitmap release];
+}
+</code></pre>
+<p>在前面的代码中，还有其他几点值得一提：</p>
+<ul>
+<li><code>GL_TEXTURE_RECTANGLE_EXT</code> 用于非二次幂纹理支持，Rage 128 硬件不支持。</li>
+<li>对于不支持 <code>GL_TEXTURE_RECTANGLE_EXT</code> 的硬件，可以使用 <code>gluScaleImage()</code> 函数将非 PoT 纹理缩放为 PoT 尺寸。</li>
+<li>调用此方法时，当前上下文必须是有效的 OpenGL 上下文。有关 OpenGL 图形上下文的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/QuartzOpenGL/QuartzOpenGL.html#//apple_ref/doc/uid/TP40003290-CH211-BAAECJDJ">在应用程序中使用 OpenGL</a>。</li>
+<li>完成后，纹理将绑定到 <code>texName</code> 中的值。如果您为 <code>texName</code> 参数指定 0，则会为您生成一个新的纹理 ID，并在 <code>texName</code> 中返回。</li>
+</ul>
+<p>有关 Apple 对 OpenGL 的支持的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/OpenGL-MacProgGuide/opengl_intro/opengl_intro.html#//apple_ref/doc/uid/TP40001987">Mac OpenGL 编程指南</a>。</p>
+<h3><a id="%E5%BA%94%E7%94%A8%E6%A0%B8%E5%BF%83%E5%9B%BE%E5%83%8F%E6%BB%A4%E9%95%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用核心图像滤镜</h3>
+<p>在 OS X v10.4 和更高版本中，“核心映像”过滤器是一种快速有效的方法，可以在不更改映像本身的情况下修改映像。核心图像滤镜使用图形加速来对图像应用实时效果，例如高斯模糊，失真和色彩校正。由于在将内容合成到屏幕时会应用过滤器，因此它们不会修改实际的图像数据。</p>
+<p>核心图像过滤器在 <code>CIImage</code> 对象上运行。如果您已有一个 <code>CIImage</code> 对象，则可以简单地对其应用任何所需的过滤器，然后使用它来创建 <code>NSCIImageRep</code> 对象。然后，您可以将此图像表示对象添加到 <code>NSImage</code> 对象，并在视图中绘制结果。在 OS X v10.5 和更高版本中，还可以使用 <code>NSBitmapImageRep</code> 的 <code>initWithCIImage:</code> 方法将已处理的图像直接呈现为位图表示形式。</p>
+<p>如果还没有 <code>CIImage</code> 对象，则需要使用程序的现有内容创建一个。第一步是为要修改的内容创建位图图像表示，创建位图中介绍了该过程。拥有 <code>NSBitmapImageRep</code> 对象后，请使用 <code>CIImage的initWithBitmapImageRep:</code> 方法创建一个 <code>Core Image</code> 图像对象。</p>
+<p>有关如何将 Core Image 过滤器应用于 <code>CIImage</code> 对象的信息，请参阅 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185">Core Image 编程指南</a>中的“使用 Core Image 过滤器”。</p>
+<h3><a id="%E8%8E%B7%E5%8F%96%E5%92%8C%E8%AE%BE%E7%BD%AE%E4%BD%8D%E5%9B%BE%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取和设置位图属性</h3>
+<p>每个 <code>NSBitmapImageRep</code> 对象都包含一个字典，用于定义位图的相关属性。这些属性标识有关位图的重要信息，例如位图的压缩方式，颜色配置文件（如果有的话），当前的伽玛等级，关联的EXIF数据等。当您从现有图像文件创建新的 <code>NSBitmapImageRep</code> 时，其中许多属性会自动设置。您还可以使用 <code>NSBitmapImageRep</code> 的 <code>valueForProperty:</code> 和 <code>setProperty:withValue:</code> 方法访问和修改这些属性。</p>
+<p>有关可以获取和设置位图的属性的完整列表，请参见 <a href="https://developer.apple.com/documentation/appkit/nsbitmapimagerep">NSBitmapImageRep 类参考</a>。</p>
+<h3><a id="%E5%B0%86%E4%BD%8D%E5%9B%BE%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%85%B6%E4%BB%96%E6%A0%BC%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将位图转换为其他格式</h3>
+<p><code>NSBitmapImageRep</code> 类提供了将位图数据转换为几种标准格式的内置支持。要将位图图像转换为其他格式，可以使用以下任何一种方法：</p>
+<ul>
+<li><code>+TIFFRepresentationOfImageRepsInArray:</code></li>
+<li><code>+TIFFRepresentationOfImageRepsInArray:usingCompression:factor:</code></li>
+<li><code>-TIFFRepresentation</code></li>
+<li><code>-TIFFRepresentationUsingCompression:factor:</code></li>
+<li><code>+representationOfImageRepsInArray:usingType:properties:</code></li>
+<li><code>-representationUsingType:properties:</code></li>
+</ul>
+<p>第一组方法为位图生成 TIFF 数据。对于所有其他受支持的格式，请使用 <code>presentationOfImageRepsInArray:usingType:properties:</code> 和 <code>representationUsingType:properties:</code> 方法。这些方法支持将位图数据转换为 BMP，GIF，JPEG，PNG 和 TIFF 文件格式。</p>
+<p>前面所有方法均返回带有格式化图像数据的 <code>NSData</code> 对象。您可以将此数据写出到文件中，或使用它创建一个 <code>newNSBitmapImageRep</code> 对象。</p>
+<h3><a id="%E5%B0%86%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8E%E5%9B%BE%E5%83%8F%E7%9B%B8%E5%85%B3%E8%81%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将自定义颜色配置文件与图像相关联</h3>
+<p>您可以将自定义 ColorSync 配置文件与 <code>NSBitmapImageRep</code> 对象相关联，该对象包含通过解码 TIFF，JPEG，GIF 或 PNG文 件而产生的像素数据。要将数据与位图图像表示形式关联，请使用 <code>NSBitmapImageRep</code> 的 <code>setProperty:withValue:</code> 方法和 <code>NSImageColorSyncProfileData</code> 属性。清单 5-7 显示了如何加载 ColorSync 数据并将其与位图图像表示关联的示例。</p>
+<p>清单 5-7：将ColorSync配置文件添加到图像</p>
+<pre><code class="language-objective-c">@implementation NSBitmapImageRep (MoreColorMethods)
+- (NSBitmapImageRep *) imageRepWithProfileAtPath:(NSString *) pathToProfile
+{
+    id result = [self copy];
+ 
+    // Build an NSData object using the specified ColorSync profile
+    id profile = [NSData dataWithContentsOfFile: pathToProfile];
+ 
+    // Set the ColorSync profile for the object
+    [result setProperty:NSImageColorSyncProfileData withValue:profile];
+ 
+    return [result autorelease];
+}
+@end
+</code></pre>
+<p>在 OS X v10.5 中，还可以将自定义 ICC 颜色配置文件与 NSBitmapImageRep 对象相关联。为此，必须使用校准的 RGB 颜色空间（<code>NSCalibratedRGBColorSpace</code>）初始化 <code>NSBitmapImageRep</code> 实例。之后，您加载配置文件，并将相应的数据对象与 <code>NSImageColorSyncProfileData</code> 项完全相关联，就像对 ColorSync 配置文件进行的操作一样。</p>
+<h3><a id="%E5%9C%A8%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4%E4%B9%8B%E9%97%B4%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在色彩空间之间转换</h3>
+<p>Cocoa 没有提供任何直接方法将图像从一种色彩空间转换为另一种色彩空间。尽管 Cocoa 完全支持现有图像文件附带的色彩空间，但是无法直接使用 <code>NSImage</code> 转换图像数据。相反，您必须结合使用 Quartz 和 Cocoa 来转换图像数据。</p>
+<h4><a id="%E5%88%9B%E5%BB%BA%E7%9B%AE%E6%A0%87%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建目标图像</h4>
+<p>转换现有图像的色彩空间需要使用 <code>Quartz</code> 来建立使用目标色彩空间的绘图上下文。一旦有了具有所需色彩空间的 <code>CGContextRef</code> 对象，就可以使用它来配置 Cocoa 绘图环境并绘制图像。</p>
+<p>清单 5-8 显示了如何使用自定义颜色空间创建 Quartz 位图上下文。该函数接收一个 <code>CMProfileRef</code> 对象，该对象可以从 ColorSync Manager 或 <code>NSColorSpace</code> 的 <code>colorSyncProfile</code> 方法获得。它使用颜色配置文件确定颜色空间中的通道数。一旦知道位图所需的通道总数（包括 alpha ），它就会创建并返回匹配的位图上下文。</p>
+<p>清单 5-8：使用自定义颜色配置文件创建位图</p>
+<pre><code class="language-objective-c">CGContextRef CreateCGBitmapContextWithColorProfile(size_t width,
+                size_t height,
+                CMProfileRef profile,
+                CGImageAlphaInfo alphaInfo)
+{
+    size_t bytesPerRow = 0;
+    size_t alphaComponent = 0;
+ 
+    // Get the type of the color space.
+    CMAppleProfileHeader header;
+    if (noErr != CMGetProfileHeader(profile, &amp;header))
+        return nil;
+ 
+    // Get the color space info from the profile.
+    CGColorSpaceRef csRef = CGColorSpaceCreateWithPlatformColorSpace(profile);
+    if (csRef == NULL)
+        return NULL;
+ 
+    // Add 1 channel if there is an alpha component.
+    if (alphaInfo != kCGImageAlphaNone)
+        alphaComponent = 1;
+ 
+    // Check the major color spaces.
+    OSType space = header.cm2.dataColorSpace;
+    switch (space)
+    {
+        case cmGrayData:
+            bytesPerRow = width;
+ 
+            // Quartz doesn’t support alpha for grayscale bitmaps.
+            alphaInfo = kCGImageAlphaNone;
+            break;
+ 
+        case cmRGBData:
+            bytesPerRow = width * (3 + alphaComponent);
+            break;
+ 
+        case cmCMYKData:
+            bytesPerRow = width * 4;
+ 
+            // Quartz doesn’t support alpha for CMYK bitmaps.
+            alphaInfo = kCGImageAlphaNone;
+            break;
+ 
+        default:
+            return NULL;
+    }
+ 
+    // Allocate the memory for the bitmap.
+    void*   bitmapData = malloc(bytesPerRow * height);
+ 
+    CGContextRef    theRef = CGBitmapContextCreate(bitmapData, width,
+                                    height, 8,  bytesPerRow,
+                                    csRef, alphaInfo);
+ 
+    // Cleanup if an error occurs; otherwise, the caller is responsible
+    // for releasing the bitmap data.
+    if ((!theRef) &amp;&amp; bitmapData)
+        free(bitmapData);
+ 
+    CGColorSpaceRelease(csRef);
+    return theRef;
+}
+</code></pre>
+<p>一旦有了 Quartz 位图上下文，就可以创建一个新的 Cocoa 图形上下文对象并将其用于绘图。要创建 <code>NSGraphicsContext</code> 对象，请使用 <code>graphicsContextWithGraphicsPort:flipped:</code> 方法，该方法将 <code>CGContextRef</code> 对象作为参数。然后，您可以使用 <code>setCurrentContext:</code> 方法使其变为当前状态并开始绘制。 完成绘制后，可以使用Quartz创建一个包含结果的 <code>CGImageRef</code> 对象。清单 5-9 显示了此过程。</p>
+<p>清单 5-9：将位图转换为其他颜色空间</p>
+<pre><code class="language-objective-c">- (CGImageRef) convertBitmapImageRep:(NSBitmapImageRep*)theRep toColorSpace:(NSColorSpace*)colorspace
+{
+    if (!theRep)
+        return nil;
+ 
+    // Map the Cocoa constants returned by -bitmapFormat to their
+    // Quartz equivalents.
+    CGImageAlphaInfo alphaInfo = GetAlphaInfoFromBitmapImageRep(theRep);
+ 
+    // Get the rest of the image info.
+    NSSize imageSize = [theRep size];
+    size_t width = imageSize.width;
+    size_t height = imageSize.height;
+    CMProfileRef profile = (CMProfileRef)[colorspace colorSyncProfile];
+ 
+    // Create a new 8-bit bitmap context based on the image info.
+    CGContextRef cgContext = CreateCGBitmapContextWithColorProfile(width,
+                                     height, profile, alphaInfo);
+ 
+    if (cgContext == NULL)
+        return NULL;
+ 
+    // Create an NSGraphicsContext that draws into the CGContext.
+    NSGraphicsContext *graphicsContext = [NSGraphicsContext
+             graphicsContextWithGraphicsPort:cgContext flipped:NO];
+ 
+    // Make the NSGraphicsContext current and draw into it.
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:graphicsContext];
+ 
+    // Create a new image for rendering the original bitmap.
+    NSImage*  theImage = [[[NSImage alloc] initWithSize:imageSize] autorelease];
+    [theImage addRepresentation:theRep];
+ 
+    // Draw the original image in the Quartz bitmap context.
+    NSRect imageRect = NSMakeRect(0.0, 0.0, imageSize.width, imageSize.height);
+    [theImage drawAtPoint:NSMakePoint(0.0, 0.0)
+                fromRect:imageRect
+                operation: NSCompositeSourceOver
+                fraction: 1.0];
+    [NSGraphicsContext restoreGraphicsState];
+ 
+    // Create a CGImage from the CGContext's contents.
+    CGImageRef cgImage = CGBitmapContextCreateImage(cgContext);
+ 
+    // Release the context. Note that this does not release the bitmap data.
+    CGContextRelease(cgContext);
+ 
+    return cgImage;
+}
+</code></pre>
+<p>有两种方法可以从 <code>CGImageRef</code> 类型获取 <code>NSImage</code> 对象。在 OS X v10.5 和更高版本中，可以使用其 initWithCGImage: 方法创建一个 NSBitmapImageRep 对象，然后将该图像表示形式添加到 NSImage 对象。但是，如果您的代码需要在 OS X v10.4 或更早的版本中运行，则可以将焦点锁定在 NSImage 对象上，并使用 CGContextDrawImage 函数将 Quartz 图像绘制到该图像中。后一种技术创建图像数据的副本，比使用 initWithCGImage: 方法需要更多的精力，但在 OS X 的所有版本上都可用。清单 5-10 显示了一个示例方法，该方法演示了两种方法，但始终使用目标平台的最佳方法进行操作。</p>
+<p>清单 5-10：使用 <code>CGImageRef</code> 对象创建一个 <code>NSImage</code> 对象</p>
+<pre><code class="language-objective-c">- (NSImage*)imageFromCGImageRef:(CGImageRef)image
+{
+    NSImage* newImage = nil;
+ 
+#if MAC_OS_X_VERSION_MAX_ALLOWED &gt;= MAC_OS_X_VERSION_10_5
+    NSBitmapImageRep*    newRep = [[NSBitmapImageRep alloc] initWithCGImage:image];
+    NSSize imageSize;
+ 
+    // Get the image dimensions.
+    imageSize.height = CGImageGetHeight(image);
+    imageSize.width = CGImageGetWidth(image);
+ 
+    newImage = [[NSImage alloc] initWithSize:imageSize];
+    [newImage addRepresentation:newRep];
+ 
+#else
+ 
+    NSRect imageRect = NSMakeRect(0.0, 0.0, 0.0, 0.0);
+    CGContextRef imageContext = nil;
+ 
+    // Get the image dimensions.
+    imageRect.size.height = CGImageGetHeight(image);
+    imageRect.size.width = CGImageGetWidth(image);
+ 
+    // Create a new image to receive the Quartz image data.
+    newImage = [[NSImage alloc] initWithSize:imageRect.size];
+    [newImage lockFocus];
+ 
+    // Get the Quartz context and draw.
+    imageContext = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+    CGContextDrawImage(imageContext, *(CGRect*)&amp;imageRect, image);
+    [newImage unlockFocus];
+ 
+#endif
+ 
+    return [newImage autorelease];
+}
+</code></pre>
+<h4><a id="%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用自定义颜色配置文件</h4>
+<p>如果您已有一个 ICC 配置文件，并且想将该配置文件与图像相关联，则必须使用 ColorSync Manager 进行。如果使用 Quartz 图形上下文，则使用 ICC 配置文件获取创建 <code>CGImageRef</code> 对象所需的色彩空间信息。然后，您可以使用该色彩空间信息来创建适当的上下文以渲染图像。</p>
+<p>清单 5-11 显示了如何从 ICC 配置文件创建 <code>CGColorSpaceRef</code> 对象。这段代码使用了几种 ColorSync Manager 功能来创建 <code>CMProfileRef</code> 对象，然后您可以从中提取色彩空间对象。OS X 在 <code>/System/Library/ColorSync/Profiles/</code> 目录中包含几个标准的 ICC 配置文件。</p>
+<p>清单 5-11：从自定义颜色配置文件创建颜色空间</p>
+<pre><code class="language-objective-c">CGColorSpaceRef CreateColorSpaceForProfileAtPath(NSString* path)
+{
+    CMProfileLocation profileLoc;
+    CMProfileRef profileRef;
+    CGColorSpaceRef csRef = NULL;
+ 
+    // Specify where the ICC profile data file is located.
+    profileLoc.locType = cmPathBasedProfile;
+    strncpy(profileLoc.u.pathLoc.path, [path fileSystemRepresentation],  255);
+ 
+    // Get the ColorSync profile information from the data file.
+    CMOpenProfile(&amp;profileRef, &amp;profileLoc);
+ 
+    // Use the profile to create the color space object.
+    csRef = CGColorSpaceCreateWithPlatformColorSpace(profileRef);
+    CMCloseProfile(profileRef);
+ 
+    return csRef;
+}
+</code></pre>
+<p>有关 ColorSync 及其功能的更多信息，请参见 <a href="https://developer.apple.com/documentation/applicationservices/colorsync_manager">ColorSync Manager 参考</a>。</p>
+<h3><a id="%E4%BD%8D%E5%9B%BE%E7%9A%84alpha%E5%80%BC%E9%A2%84%E4%B9%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>位图的 Alpha 值预乘</h3>
+<p>尽管预乘 Alpha 值曾经是渲染位图时提高性能的常用方法，但不建议在 OS X 中运行的程序中使用该技术。预乘涉及将位图的 Alpha 通道中的值与相应的像素值相乘并将结果存储回位图的源文件。预乘法的目的是减少将位图与其他内容合成时执行的计算数量。在 OS X 中，预乘法实际上可以导致更多的计算。</p>
+<p>在 OS X 中，颜色校正是操作系统不可或缺的。为了正确处理颜色，ColorSync 需要原始像素颜色值。如果位图包含预乘的颜色值，则 ColorSync 必须先撤消预乘，然后才能检查颜色。这个额外的步骤为系统增加了大量工作，因为每次检查颜色时都必须执行此步骤。</p>
+<p>考虑对位图进行 Alpha 值预乘的唯一原因是数据是否已经预乘，以这种方式保留对程序的数据模型有利。即使这样，您也应该进行一些性能测试，以查看使用预乘位图是否会损害您的整体应用程序性能。Cocoa 将色彩管理纳入了框架的许多部分。如果您的代码路径使用框架的这些部分，则可能会发现更改模型很有用。</p>
+<h2><a id="%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E5%9B%BE%E5%83%8F%E8%A1%A8%E7%A4%BA%E5%BD%A2%E5%BC%8F%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建新的图像表示形式类</h2>
+<p>如果要添加对新图像格式的支持或从其他类型的源信息生成图像，则可能需要将 <code>NSImageRep</code> 子类化。尽管 Cocoa 直接支持许多图像格式，并且通过 Image IO 框架间接支持许多图像格式，但是子类 <code>NSImageRep</code> 可以使您控制图像数据的处理，同时保持与 <code>NSImage</code> 类的紧密集成。如果决定子类化，则应提供以下方法的实现：</p>
+<ul>
+<li><code>imageUnfilteredTypes</code></li>
+<li><code>canInitWithData:</code></li>
+<li><code>initWithData:</code></li>
+<li><code>draw</code></li>
+</ul>
+<p>这些方法提供了父 <code>NSImageRep</code> 类与您的子类进行交互所需的基本接口。这些方法提供有关类支持的图像数据格式的信息，以及用于初始化对象和绘制图像的入口点。</p>
+<p>在使用您的子类之前，必须在应用程序包中注册它。您应该在应用程序执行的早期执行此操作，方法是调用 <code>NSImageRep</code> 的 r<code>egisterImageRepClass:</code> 类方法。注册您的课程可以使 Cocoa 知道您的课程存在并且可以处理一组特定的文件类型。您对 <code>imageUnfilteredTypes</code> 方法的实现应返回与类直接支持的图像文件类型相对应的 UTI 类型数组。</p>
+<p>您应该始终覆盖的另一个方法是 <code>canInitWithData:</code> 方法。一旦您的图像表示形式类别被识别为处理特定类型的数据，当收到适当类型的数据时，Cocoa 可能会通知它。那时，Cocoa 将数据对象传递给 <code>canInitWithData:</code> 方法。您使用此方法的实现应快速检查数据并确认它可以真正处理格式。</p>
+<blockquote>
+<p>注意：如果您的子类能够从单个文件中读取多个图像，则还应该实现 <code>imageRepsWithData:</code> 方法。此方法必须解析图像数据并检查它是否确实包含多个图像。对于每个单独的图像，您应该创建子类的实例，并使用图像数据的适当子集对其进行初始化。</p>
+</blockquote>
+<p>一旦选择了您的类来处理图像数据，Cocoa 就会查找 <code>initWithData:</code> 方法，并使用该方法用图像数据初始化您的对象。此方法的实现应保留数据并使用它来初始化对象。稍后，您的 <code>draw</code> 方法可能会被调用以在当前上下文中呈现数据。您的 <code>draw</code> 方法应在当前原点以及 <code>NSImageRep</code> 父类指定的当前大小和设置下呈现数据。</p>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E9%A2%9C%E8%89%B2%E5%92%8C%E9%80%8F%E6%98%8E%E5%BA%A6.html">&laquo; 上一章：颜色和透明度</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E5%85%88%E8%BF%9B%E7%9A%84%E7%BB%98%E5%9B%BE%E6%8A%80%E6%9C%AF.html">下一章：先进的绘图技术 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

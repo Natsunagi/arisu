@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第二章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第二章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/09</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形上下文</h1>
+<p>图形上下文是 Cocoa 应用程序中绘图基础结构的基本部分。顾名思义，图形上下文为后续的绘制操作提供了上下文。它标识当前的绘图目标（屏幕，打印机，文件等），基础画布的坐标系和边界以及与目标关联的任何图形属性。</p>
+<p>对于您在 Cocoa中 所做的大多数绘图，您都不需要自己创建图形上下文。Cocoa 中的正常绘图周期会自动创建并配置一个图形上下文供您使用。但是，对于某些高级绘图，您可能需要在绘图之前创建自己的图形上下文。</p>
+<p>在 Cocoa 应用程序中，几乎所有类型的画布的图形上下文都由 <code>NSGraphicsContext</code> 类表示。您可以使用图形上下文对象来操纵图形属性并获取有关当前图形环境的信息。</p>
+<blockquote>
+<p>注意：对于 OpenGL 绘图，可以将 <code>NSOpenGLContext</code> 类而不是 <code>NSGraphicsContext</code> 用于图形上下文对象。 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/QuartzOpenGL/QuartzOpenGL.html#//apple_ref/doc/uid/TP40003290-CH211-BAAECJDJ">在应用程序中使用 OpenGL</a> 中介绍了 OpenGL 绘图和 <code>NSOpenGLContext</code> 类的使用。</p>
+</blockquote>
+<p>本章概述了 Cocoa 图形上下文以及如何在应用程序中使用它们。它包括有关如何创建自定义图形上下文以及何时合适的信息。</p>
+<h2><a id="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87%E5%9F%BA%E7%A1%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形上下文基础</h2>
+<p>任何图形上下文对象的主要工作是维护有关绘图环境当前状态的信息。在 Quartz 中，图形上下文对象与窗口，位图，PDF 文件或其他输出设备关联，并维护该设备的信息。对于 Cocoa 图形上下文也是如此，但是由于 Cocoa 绘图基于视图，因此在调用视图的 <code>drawRect:</code> 方法之前会对绘图环境进行一些其他更改。</p>
+<p>在调用视图的 <code>drawRect:</code> 方法时，Cocoa 已确保您进行的所有图形调用都不会超出视图范围。它保存图形状态，以简化以后撤消其更改的过程。它将适当的变换添加到当前变换矩阵，以将图形原点放置在视图的原点。它还将裁剪区域设置为视图的可见边界，以防止任何渲染的内容进入其他视图。您的视图实际上显示的有效对象，至少在调用另一个视图的 <code>drawRect:</code> 方法之前。</p>
+<p>当前上下文集中在您的视图上时，您可以绘制路径，图像，文本或所需的任何其他内容。您还可以更改当前图形环境的属性，以获得所需的外观。最终，您绘制的内容被发送到 Quartz Compositor，在这里它与窗口中其他视图中的内容组合在一起并刷新到屏幕或输出设备。</p>
+<p>在您的 <code>drawRect:</code> 方法返回之后，Cocoa 将经历为下一个视图重置绘图环境的过程。它会还原您对绘图环境所做的任何更改，并为下一个视图设置坐标变换和剪切区域，从而为其提供一个原始的工作环境。然后，此过程将在应用程序的每个更新周期中重复进行。</p>
+<h3><a id="%E5%BD%93%E5%89%8D%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>当前上下文</h3>
+<p>对于给定的窗口，Cocoa 应用程序中的每个线程都有其自己的图形上下文对象。您可以使用 <code>NSGraphicsContext</code> 的 <code>currentContext</code> 方法从代码中访问此对象，如以下示例所示：</p>
+<pre><code class="language-objective-c">NSGraphicsContext* aContext = [NSGraphicsContext currentContext];
+</code></pre>
+<p><code>currentContext</code> 方法始终返回适用于当前绘图环境的 Cocoa 图形上下文对象。该对象跟踪当前的图形状态，使您可以保存和恢复图形状态信息，并可以修改许多图形状态属性。您对图形状态所做的更改会影响所有后续的图形调用。如果您多次更改属性，则仅使用最新设置。</p>
+<p>要保存当前图形状态，请使用 <code>NSGraphicsContext</code> 的 <code>saveGraphicsState</code> 方法。此方法本质上将当前状态的副本压入堆栈，使您可以自由更改当前状态。当您想恢复到先前的状态时，只需调用 <code>restoreGraphicsState</code> 方法即可将当前图形状态（包括自上次保存以来的所有更改）从堆栈中弹出并恢复先前的状态。</p>
+<p>如果您计划显着更改当前图形状态，则最好在进行更改之前保存当前状态。通常，修改一个或两个属性可能不适合保存图形状态，因为您可以轻松地重置或更改这些单独的属性。但是，如果要更改一个或两个以上的属性，通常更容易保存和恢复整个图形状态。您可以在代码中根据需要多次调用 <code>saveGraphicsState</code> 方法，以保存当前图形状态的快照，但是必须确保在每次调用与对 <code>restoreGraphicsState</code> 的匹配调用之间取得平衡。</p>
+<blockquote>
+<p>注意：<code>saveGraphicsState</code> 和 <code>restoreGraphicsState</code> 方法可作为类方法和实例方法使用。类方法版本仅保存和还原当前上下文的图形状态。实例方法使您可以保存特定上下文对象的状态，尽管在大多数情况下这应该是当前上下文。</p>
+</blockquote>
+<p>下面的示例显示一个简单的 <code>drawRect:</code> 方法，该方法遍历开发人员定义的对象的数组，每个对象都使用一组不同的属性进行绘制。图形状态在每次循环迭代期间都会保存和恢复，以确保每个对象都从相同的图形状态开始。</p>
+<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+{
+    NSGraphicsContext* theContext = [NSGraphicsContext currentContext];
+ 
+    int i;
+    int numObjects = [myObjectArray count];
+ 
+    // Iterate over an array of objects
+    // Set the attributes for each before drawing
+    for (i = 0; i &lt; numObjects; i++)
+    {
+        [theContext saveGraphicsState];
+ 
+        // Set the drawing attributes
+ 
+        // Draw the object
+ 
+        [theContext restoreGraphicsState];
+    }
+}
+</code></pre>
+<blockquote>
+<p>警告：保存和还原图形状态时，必须平衡对 <code>saveGraphicsState</code> 的所有调用与对 <code>restoreGraphicsState</code> 的相应调用。否则，可能会导致使用该视图的所有窗口的外观发生意外更改。</p>
+</blockquote>
+<h3><a id="%E5%9B%BE%E5%BD%A2%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形状态信息</h3>
+<p>每个 Cocoa 图形上下文对象都维护有关绘图环境当前状态的信息。该信息的范围从全局渲染设置到用于渲染当前路径的属性，与 Quartz 保存的状态信息相同。只要保存当前图形状态，就保存表 2-1 中列出的设置的副本。</p>
+<p>表 2-1：图形状态信息</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center">属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">当前转换矩阵（CTM）</td>
+<td>将视图坐标系中的点映射到目标设备坐标系中的点。Cocoa 在调用视图的 <code>drawRect:</code> 方法之前先修改 CTM。您可以使用 <code>NSAffineTransform</code> 对象进一步修改 CTM，以更改图形原点，缩放画布或旋转坐标系。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIDJJBI">坐标系和变换</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">裁剪区域</td>
+<td>指定可以通过图形调用绘制的画布区域。Cocoa 在调用其 <code>drawRect:</code> 方法之前，将裁剪区域修改为视图的可见区域。您可以使用 <code>NSBezierPath</code> 对象进一步裁剪可见区域。有关更多信息，请参见设置<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIIADBC">剪切区域</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">线宽</td>
+<td>指定路径的宽度。默认线宽为1.0，但是您可以使用 <code>NSBezierPath</code> 对象修改此值。 有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCECBJC">线宽</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">线连接样式</td>
+<td>指定如何将两条连接的线连接在一起。默认联接样式为 <code>NSMiterLineJoinStyle</code>，但是您可以使用 <code>NSBezierPath</code> 对象修改此值。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCEIDJI">线连接样式</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">线破折号样式</td>
+<td>定义线条的折线图案，包括样式的初始阶段。没有默认的破折号样式，导致出现实线。您可以使用 <code>NSBezierPath</code> 对象修改路径的破折号样式。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIEBIIB">设置路径属性</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">线斜接限制</td>
+<td>确定何时应使用斜角而不是斜接来连接线。仅当线连接样式设置为 <code>NSMiterLineJoinStyle</code> 时适用。斜接的长度除以线宽。如果结果值大于斜接限制，则使用斜角。默认值为 10.0，但是您可以使用 <code>NSBezierPath</code> 对象修改此值。有关更多信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCFHEIF">斜接限制</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">平面度值</td>
+<td>指定渲染曲线的精度。（这也是最大的误差容限，以像素为单位。）数字越小，曲线越平滑，但要进行更多的计算。在不同的渲染设备上，此值的解释可能会略有不同。默认值为 0.6，但是您可以使用 <code>NSBezierPath</code> 对象修改此值。 有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCBBHIG">线条平坦度</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">笔触颜色</td>
+<td>指定用于渲染路径的颜色。此颜色仅适用于路径线本身，而不适用于路径包含的区域。您可以使用系统支持的任何颜色空间指定颜色。此值包括 alpha 信息。颜色信息由 <code>NSColor</code> 类管理。 有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIDFCGD">设置颜色和图案</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">填充颜色</td>
+<td>指定用于填充路径包围的区域的颜色。您可以使用系统支持的任何颜色空间指定颜色。此值包括 alpha 信息。颜色信息由 <code>NSColor</code> 类管理。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIDFCGD">设置颜色和图案</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">阴影</td>
+<td>指定要应用于渲染内容的阴影属性。您可以使用 <code>NSShadow</code> 类设置阴影。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-SW1">将阴影添加到绘制的路径</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">渲染意图</td>
+<td>指定用于将色域内的颜色映射到当前颜色空间的色域的技术。Cocoa 不支持直接设置此属性。相反，您必须使用 Quartz。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJEBCFF">将物理颜色映射到颜色空间</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">字体名称</td>
+<td>指定在绘制文本时使用的字体。您可以使用 <code>NSFont</code> 类修改字体信息。有关图形文本的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIHBCAG">文本属性</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">字体大小</td>
+<td>指定在绘制文本时要使用的字体大小。您可以使用 <code>NSFont</code> 类修改字体信息。有关图形文本的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIHBCAG">文本属性</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">字体间距</td>
+<td>指定在绘制文本时使用的字符间距。（此属性仅受 Cocoa 间接支持。）有关图形文本的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIHBCAG">文本属性</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">文字绘图模式</td>
+<td>指定如何呈现文本。（此属性仅受 Cocoa 间接支持。）有关图形文本的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIHBCAG">文本属性</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">图像插值质量</td>
+<td>指定渲染期间用于插值图像的过程。您可以使用 <code>NSGraphicsContext</code> 类更改此设置。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-SW2">图像大小和分辨率</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">合成操作</td>
+<td>指定用于将源材料和目标材料复合在一起的过程。（Cocoa 支持的合成操作与 Quartz 混合模式有关，但是在用法和行为上有所不同。）您可以使用 <code>NSGraphicsContext</code> 类为该设置设置默认值。某些渲染方法和功能可能会让您指定其他选项。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIDBEEB">设置合成选项</a>。</td>
+</tr>
+<tr>
+<td style="text-align: center">全局Alpha</td>
+<td>除了给定颜色的 Alpha 值外，还指定要应用的全局 Alpha（透明度）值。 Cocoa 不直接支持此属性。如果要设置它，则必须使用 Quartz 中的 <code>CGContextSetAlpha</code> 函数。</td>
+</tr>
+<tr>
+<td style="text-align: center">抗锯齿设置</td>
+<td>指定路径在跨越像素边界时是否使用锯齿来平滑线。您可以使用 <code>NSGraphicsContext</code> 类更改此设置。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIJJCBB">设置消除锯齿选项</a>。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：用于填充路径的绕线规则不会存储为当前图形状态的一部分。您可以为 <code>NSBezierPath</code> 对象设置默认的缠绕规则，但这会影响使用这些对象呈现的内容。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BAJIJJGD">缠绕规则</a>。</p>
+</blockquote>
+<h3><a id="%E5%B1%8F%E5%B9%95%E7%94%BB%E5%B8%83%E5%92%8C%E6%89%93%E5%8D%B0%E7%94%BB%E5%B8%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>屏幕画布和打印画布</h3>
+<p>从广义上讲，Cocoa 图形上下文对象提供两种类型的画布：基于屏幕的画布和基于打印的画布。基于屏幕的图形上下文将内容呈现到窗口，视图或图像，其结果通常显示在屏幕上。基于打印的图形上下文用于将内容呈现到打印机假脱机文件，PDF 文件，PostScript 文件，EPS 文件或通常与打印系统关联的其他介质。</p>
+<p>对于几乎所有基于屏幕和基于打印的绘图，Cocoa 都会自动提供适当的图形上下文对象。Cocoa 在所有视图更新期间以及响应用户打印文档时提供图形上下文对象。但是，在某些情况下，必须手动创建图形上下文对象，包括以下情况：</p>
+<ul>
+<li>使用 OpenGL 命令渲染视图内容</li>
+<li>绘制到屏幕外的位图</li>
+<li>创建 PDF 或 EPS 数据</li>
+<li>以编程方式启动打印作业</li>
+</ul>
+<p>使用 <code>NSGraphicsContext</code> 的类方法，可以创建图形上下文对象以绘制到基于屏幕的画布。但是，您不能将这些方法用于基于打印的画布。Cocoa 通过 Cocoa 打印系统路由所有打印操作，该系统处理为您设置图形上下文对象的任务。这意味着，如果要生成 PDF 数据，EPS 数据或打印到打印机，则必须使用 <code>NSPrintOperation</code> 类的方法为目标创建打印作业。这也意味着，如果您想为基于打印的画布生成格式良好的输出，则视图应提供最少的打印支持。</p>
+<blockquote>
+<p>注意：尽管 Cocoa 确实提供了一些对自动创建 OpenGL 图形上下文的支持，但是默认像素格式选项通常受到限制。在大多数情况下，您将需要使用绘制所需的像素格式选项创建自定义 OpenGL 图形上下文。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/QuartzOpenGL/QuartzOpenGL.html#//apple_ref/doc/uid/TP40003290-CH211-BAAIFCFA">创建 OpenGL 图形上下文</a>。</p>
+</blockquote>
+<p>您可以使用 <code>NSGraphicsContext</code> 的 <code>isDrawingToScreen</code> 实例方法或 <code>currentContextDrawingToScreen</code> 类方法来确定当前图形上下文所管理的画布类型。对于基于打印的画布，您可以使用 <code>attribute</code> 方法获取有关画布的其他信息，例如，该画布是用于生成 PDF 还是 EPS 文件。</p>
+<p>有关获取基于屏幕的画布和基于打印的画布的上下文的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIGDIAA">创建图形上下文</a>。</p>
+<h3><a id="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8Cquartz" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形上下文和 Quartz</h3>
+<p>Cocoa 中的 <code>NSGraphicsContext</code> 类是 Quartz 图形上下文（<code>CGContextRef</code> 数据类型）的包装。两种类型都管理相同的基本信息，实际上，许多 <code>NSGraphicsContext</code> 方法都简单地调用它们的 Quartz 等效项。这种关系使您可以轻松地在应用程序中执行任何与 Quartz 相关的绘图。这也意味着，每当您拥有 Cocoa 图形上下文（<code>NSGraphicsContext</code> 类的实例）时，您也会拥有 Quartz 图形上下文。</p>
+<p>有关如何使用 Cocoa 图形上下文调用 Quartz 函数的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/QuartzOpenGL/QuartzOpenGL.html#//apple_ref/doc/uid/TP40003290-CH211-BAAJDFGJ">在应用程序中使用 Quartz</a>。</p>
+<h2><a id="%E4%BF%AE%E6%94%B9%E5%BD%93%E5%89%8D%E5%9B%BE%E5%BD%A2%E7%8A%B6%E6%80%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改当前图形状态</h2>
+<p>在视图的 <code>drawRect:</code> 方法中，您可能要做的第一件事就是修改当前的绘图环境。例如，您可能要配置当前的工程图颜色，修改裁剪区域，变换坐标系，等等。可以使用 <code>NSGraphicsContext</code> 的方法直接设置许多属性，但是某些属性需要使用其他对象。以下各节列出了可用的图形属性以及如何修改它们。</p>
+<blockquote>
+<p>重要：保存和恢复当前图形状态是一项相对昂贵的操作，应尽可能少地执行。通常，您应该尝试保存和恢复图形状态，仅是要一次或在没有其他选择时撤消多个更改，例如重置剪切路径。对于单个更改，直接设置新值通常比保存和恢复整个图形状态更有效。</p>
+</blockquote>
+<h3><a id="%E8%AE%BE%E7%BD%AE%E9%A2%9C%E8%89%B2%E5%92%8C%E5%9B%BE%E6%A1%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置颜色和图案</h3>
+<p>Cocoa 为各种不同颜色空间中的颜色提供支持。<code>NSColor</code> 类默认情况下支持 RGB，CMYK 和灰度颜色空间，但也可以支持由 ICC 和 ColorSync 配置文件定义的自定义颜色空间。您指定的颜色包括适用于颜色空间的颜色通道，以及用于定义颜色透明度的可选 alpha 组件。</p>
+<p>要设置当前笔触或填充属性，请创建一个 N<code>SColor</code> 对象，并向其发送 <code>set</code>，<code>setStroke</code> 或 <code>setFill</code> 消息。笔触和填充属性定义路径及其所包围区域的颜色或样式。当前的笔触和填充颜色会影响除文本以外的所有绘制内容，文本内容需要应用文本属性；请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJIBFGC">将颜色应用于文本</a>。</p>
+<p>有关颜色以及如何创建颜色的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJDFIFE">颜色和透明度</a>。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AE%E8%B7%AF%E5%BE%84%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置路径属性</h3>
+<p>要修改路径属性的值，请使用 <code>NSBezierPath</code> 类。使用此类的方法，可以设置线宽，线连接样式，线划线样式，线帽样式，斜接限制，平坦度和缠绕规则属性。所有这些属性都会影响 Cocoa 绘制路径的方式。</p>
+<p>路径属性有两种形式：全局和特定于路径。当您使用 <code>NSBezierPath</code> 中的类方法设置属性的“default”值时，您正在设置全局属性。全局属性是路径对象的全局属性（与图形状态相反），因此设置全局属性会影响您使用 <code>NSBezierPath</code> 类渲染的所有路径，但不会影响基于 Quartz 的路径。要覆盖单个路径对象的全局属性，应设置特定于路径的值。例如，要设置全局线宽，请使用 <code>NSBezierPath</code> 的 <code>setDefaultLineWidth:</code> 类方法。要设置特定 <code>NSBezierPath</code> 对象的线宽，请使用其 <code>setLineWidth:</code> 实例方法。</p>
+<p>有关如何同时设置默认属性和特定于路径的属性以及如何查看呈现的内容的外观的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCDEJGD">路径属性</a>。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AE%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置文本属性</h3>
+<p>对于 Cocoa 中大多数基于字符串的图形，您直接将文本属性应用于字符串，而不是依赖于全局字体设置。Cocoa 字符串对象和 Cocoa 文本系统均支持使用属性来修改字符串的外观。对于 <code>NSAttributedString</code> 对象，可以将属性直接应用于字符串中的字符范围。对于常规的 <code>NSString</code> 对象，在绘制时将属性应用于整个字符串。</p>
+<p>如果要设置存储在图形状态中的全局字体设置（例如，对于使用 Quartz 绘制图形的字符串），则可以使用 <code>NSFont</code> 对象设置字体系列和大小。创建字体对象后，可以使用其 <code>set</code> 方法将字体信息应用于当前图形状态。</p>
+<p>有关文本的绘图选项的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIEEIGC">文本</a>。有关 Cocoa 文本系统的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/TextFonts/Conceptual/CocoaTextArchitecture/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009459">Cocoa Text Architecture Guide</a>。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AE%E5%90%88%E6%88%90%E9%80%89%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置合成选项</h3>
+<p>渲染每个视觉元素时，需要确定该元素如何与周围的任何内容交互。您可能希望元素在当前内容之上或之下分层，或者以有趣的方式与之合并。您可以使用不同的合成选项来指定此行为。</p>
+<p>合成选项指定如何将源内容中的颜色与绘图目标中的现有内容混合。对于完全不透明的颜色，大多数合成选项仅掩盖或覆盖源内容和目标内容的不同部分。但是，使用部分透明的颜色，可以实现有趣的混合效果。</p>
+<p>Cocoa 合成选项与 Quartz 中使用的混合模式不同，尽管两者执行的任务基本相同。Cocoa 选项是从 NextStep 环境继承的，而 Quartz 混合模式是新的基于 PDF 的渲染模型的一部分。尽管具有历史原因，Cocoa 选项仍然是一种非常强大的合成内容方式，甚至比 Quartz 相对更容易理解。</p>
+<blockquote>
+<p>重要说明：尽管有相似之处，但 Cocoa 合成选项和 Quartz 混合模式之间没有直接映射。此外，在绘制到基于打印的画布时，应仅使用 <code>NSCompositeCopy</code> 或 <code>NSCompositeSourceOver</code> 运算符。（对于 PDF 内容，您应仅使用 <code>NSCompositeSourceOver</code> 运算符或 <code>Quartz</code> 混合模式。）如果需要使用任何其他合成运算符，则应将内容呈现为图像，然后使用以下其中一种将图像绘制到打印上下文中支持的运营商。如果您的应用程序严重依赖于 PDF 混合模式，则可能需要在绘图中使用 Quartz。</p>
+</blockquote>
+<p>图 2-1 显示了 Cocoa 合成选项以及它们如何影响渲染的内容。在图的顶部是正在渲染的源和目标内容。叶子的叶脉是完全透明的，而叶子的其余部分是不透明的。在目标图像中，颜色呈现为部分不透明。下面是每个受支持的合成操作的结果。</p>
+<p>图 2-1：Cocoa 中的合成操作</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/2-1.png" alt="" /></p>
+<p>表 2-2 列出了用于在合成操作期间计算像素颜色的数学方程式。在每个等式中，R 是结果颜色（预乘），S 是源颜色，D 是目标颜色，Sa 是源颜色的 alpha 值，Da 是目标颜色的 alpha 值。 对于这些计算，所有颜色分量值和 alpha 值都在 0 到 1 的范围内。</p>
+<p>表 2-2：用于合成颜色的数学方程式</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NSCompositeClear</td>
+<td>R = 0</td>
+</tr>
+<tr>
+<td>NSCompositeCopy</td>
+<td>R = S</td>
+</tr>
+<tr>
+<td>NSCompositeSourceOver</td>
+<td>R = S + D * (1 - Sa)</td>
+</tr>
+<tr>
+<td>NSCompositeSourceIn</td>
+<td>R = S * Da</td>
+</tr>
+<tr>
+<td>NSCompositeSourceOut</td>
+<td>R = S * (1 - Da)</td>
+</tr>
+<tr>
+<td>NSCompositeSourceAtop</td>
+<td>R = S * Da + D * (1 - Sa)</td>
+</tr>
+<tr>
+<td>NSCompositeDestinationOver</td>
+<td>R = S *  (1 - Da) + D</td>
+</tr>
+<tr>
+<td>NSCompositeDestinationIn</td>
+<td>R = D * Sa</td>
+</tr>
+<tr>
+<td>NSCompositeDestinationOut</td>
+<td>R = D * (1 - Sa)</td>
+</tr>
+<tr>
+<td>NSCompositeDestinationAtop</td>
+<td>R = S * (1 - Da) + D * Sa</td>
+</tr>
+<tr>
+<td>NSCompositeXOR</td>
+<td>R = S * (1 - Da) + D * (1 - Sa)</td>
+</tr>
+<tr>
+<td>NSCompositePlusDarker</td>
+<td>R = MAX(0, (1 - D) + (1 - S))</td>
+</tr>
+<tr>
+<td>NSCompositePlusLighter</td>
+<td>R = MIN(1, S + D)</td>
+</tr>
+</tbody>
+</table>
+<p>若要设置当前的合成操作，请使用 <code>NSGraphicsContext</code> 的 <code>setCompositingOperation:</code> 方法。如果未指定其他运算符，则此设置将使用全局合成选项。默认的合成选项是 <code>NSCompositeSourceOver</code>。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AE%E5%89%AA%E5%88%87%E5%8C%BA%E5%9F%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置剪切区域</h3>
+<p>裁剪区域是将图形限制为视图的特定部分的有用方法。您可以使用裁剪区域来遮盖视图中不想修改的部分，而不是在屏幕外创建复杂的图形，然后将其精确地合成到视图中。例如，您可以使用剪切区域来防止绘图命令在某些已经渲染的内容上绘图。同样，您可以使用裁剪区域来裁剪要渲染的图像的特定部分。</p>
+<p>在调用视图的 <code>drawRect:</code> 方法之前，Cocoa 会配置当前图形上下文的剪切区域以匹配视图的可见区域。这样可以防止视图的绘图代码在视图边界之外（可能在其他视图之上）呈现内容。</p>
+<p>您可以通过向当前剪贴区域添加形状来进一步限制视图的可绘制区域。每当将新形状添加到当前修剪区域时，Cocoa 都会确定形状与当前修剪区域的交集，并将结果用作新修剪区域。此行为意味着在绘制之前，通常只应向剪辑区域添加一个形状。您添加的形状可以是单个 <code>NSBezierPath</code> 对象中的单个矩形，多个矩形或多个复杂子路径的组合。</p>
+<p>对于简单的矩形形状，最简单的裁剪方法是使用 <code>NSRectClip</code> 函数。要指定多个矩形区域，请改用 <code>NSRectClipList</code> 函数。要将视图裁剪到非矩形区域，必须使用 <code>NSBezierPath</code> 对象。您创建的路径可以是任意复杂的，并且包含多个矩形和非矩形区域。找到所需的路径后，请使用对象的 <code>addClip</code> 方法将生成的形状添加到当前的剪切区域。（有关如何创建路径的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-SW4">绘制基本形状</a>。）</p>
+<p>图 2-2 显示了对图像应用剪切路径的效果。顶部图像显示了要剪切的图像以及剪切形状所使用的路径，在这种情况下，剪切路径由单个 <code>NSBezierPath</code> 对象内的两个形状组成。尽管两种情况下的夹子形状都相同，但最终的夹子区域却不同。这是因为在计算裁剪区域时，裁剪会考虑当前的绕线规则。</p>
+<p>图 2-2：剪切路径和缠绕规则</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/2-2.png" alt="" /></p>
+<p>以下示例显示如何创建图 2-2 中所示的剪辑区域。剪辑区域由重叠的正方形和圆形组成，因此您只需向 Bezier 路径对象添加具有适当大小的矩形和椭圆形，然后调用 <code>addClip</code> 方法即可。</p>
+<pre><code class="language-objective-c">// If you plan to do more drawing later, it's a good idea
+// to save the graphics state before clipping.
+[NSGraphicsContext saveGraphicsState];
+ 
+// Create the path and add the shapes
+NSBezierPath* clipPath = [NSBezierPath bezierPath];
+[clipPath appendBezierPathWithRect:NSMakeRect(0.0, 0.0, 100.0, 100.0)];
+[clipPath appendBezierPathWithOvalInRect:NSMakeRect(50.0, 50.0, 100.0,  100.0)];
+ 
+// Add the path to the clip shape.
+[clipPath addClip];
+ 
+// Draw the image.
+ 
+[NSGraphicsContext restoreGraphicsState];
+</code></pre>
+<p>警告：尽管您也可以使用 <code>NSBezierPath</code> 的 <code>setClip</code> 方法来修改剪切区域，但是不建议这样做。s<code>etClip</code> 方法将整个裁剪区域替换为您指定的区域。如果新的剪切区域超出了视图范围，则可能导致部分内容溢出到相邻视图中。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AE%E6%8A%97%E9%94%AF%E9%BD%BF%E9%80%89%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置抗锯齿选项</h3>
+<p>Cocoa 图形上下文以与 Quartz 对应版本相同的方式支持抗锯齿。抗锯齿是人为地校正位图图像中文本或形状周围的锯齿状（或锯齿状）边缘的过程。这些锯齿状的边缘主要出现在较低分辨率的位图中，在此位置更容易看到单个像素。为了消除锯齿状的边缘，Cocoa 对围绕形状轮廓的像素使用了不同的颜色。它使用的颜色是原始像素颜色和形状轮廓颜色的混合。通过以这种方式混合颜色，形状的边缘显得更加平滑。图 2-3 显示了相同图像的锯齿和反锯齿。</p>
+<p>图 2-3：锯齿和反锯齿内容的比较</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/2-3.png" alt="" /></p>
+<p>若要启用或禁用抗锯齿，请使用 <code>NSGraphicsContext</code> 的 <code>setShouldAntialias:</code> 方法。即使禁用了抗锯齿功能，它仍可能看起来像可可正在使用别名绘制内容一样。在非像素边界上绘制内容时，Cocoa 可能会选择将线划分为多个像素，这会给人以锯齿的印象。有关如何避免这种情况的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCICIJAJ">制作像素精确绘图</a>。</p>
+<h2><a id="%E5%88%9B%E5%BB%BA%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建图形上下文</h2>
+<p>您在应用程序中执行的绘图类型将确定是需要显式创建任何图形上下文对象还是仅使用 Cocoa 提供的图形对象。如果您所做的只是绘制视图，则可以仅使用 Cocoa 提供的上下文。对于基于屏幕的绘图和基于打印的绘图都是如此。但是，如果您的应用程序执行任何其他类型的绘图，则可能需要自己创建图形上下文。</p>
+<p>以下各节提供有关如何以及何时为您的内容创建 Cocoa 图形上下文的信息。</p>
+<h3><a id="%E5%88%9B%E5%BB%BA%E5%9F%BA%E4%BA%8E%E5%B1%8F%E5%B9%95%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建基于屏幕的上下文</h3>
+<p>如果要在视图的正常更新周期之外进行任何绘图，则必须显式创建图形上下文对象。您可能会使用此技术绘制屏幕外窗口或位图，然后将生成的位复制到其他位置。您也可以使用它从辅助线程绘制窗口。<code>NSGraphicsContext</code> 类包含用于创建专门用于窗口和位图图像的新图形上下文对象的方法。</p>
+<p>要绘制到窗口，可以使用 <code>NSGraphicsContext</code> 的 <code>graphicsContextWithWindow:</code> 方法。返回的上下文将初始化为窗口本身，而不是特定的视图。实际上，如果窗口包含许多子视图，则可能不希望使用此技术。为了正确绘制视图，您需要手动遍历子视图列表，并为每个视图配置绘制环境，不建议这样做。相反，您将使用此技术绘制到屏幕外缓冲区。</p>
+<blockquote>
+<p>重要说明：由于大多数 OS X 窗口已经是双缓冲的，因此请勿仅使用屏幕外窗口或位图来更新窗口的内容。这样做浪费了内存（通过添加第三个缓冲区），并且需要执行额外的复制操作才能将位从屏幕外窗口传输到窗口缓冲区。</p>
+</blockquote>
+<p>要绘制到位图，您有两个选择。如果您的代码在 OS X v10.4 和更高版本中运行，则可以使用 <code>graphicsContextWithBitmapImageRep:</code> 方法来创建专注于 <code>NSBitmapImageRep</code> 对象的上下文对象。然后将您所做的图形直接渲染到位图。如果您的代码必须在 OS X 的早期版本上运行，则必须将焦点锁定在视图上或使用屏幕外的窗口，然后捕获视图或窗口的内容。有关如何创建位图的信息和示例，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCICHFGA">创建位图</a>。</p>
+<h3><a id="%E5%88%9B%E5%BB%BApdf%E6%88%96-postscript%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建 PDF 或 PostScript 上下文</h3>
+<p>与基于屏幕的上下文不同，如果要为 PDF，EPS 或基于打印的画布创建图形上下文，则不要直接这样做。所有基于打印的操作都必须通过 Cocoa 打印系统，该系统处理设置打印页面和运行打印作业所需的工作。</p>
+<p>创建 PDF 或 EPS 文件的最简单方法是使用 <code>NSView</code> 的 <code>dataWithPDFInsideRect:</code> 和 <code>dataWithEPSInsideRect:</code> 方法。这些方法自动配置打印作业，并使用视图的现有工程图代码生成 PDF 或 EPS 数据。有关更多信息和如何使用这些方法的示例，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-SW1">创建 PDF 或 EPS 图像表示形式</a>。</p>
+<p>要手动创建打印作业，请使用 <code>NSPrintOperation</code> 类。此类提供了几种用于为特定视图创建打印作业并将该作业输出到打印机，PDF 文件或 EPS 文件的方法。一旦有了 <code>NSPrintOperation</code> 类的实例，就可以设置打印信息，并使用 <code>runOperation</code> 方法启动打印作业，这时 Cocoa 接管工作。</p>
+<blockquote>
+<p>重要说明：您不能使用 <code>graphicsContextWithAttributes:</code> 方法为 PDF 或 PostScript 画布创建可行的图形上下文。您必须改为通过 Cocoa 印刷系统。</p>
+</blockquote>
+<p>在执行打印作业期间，Cocoa 会调用视图的几种方法来处理页面布局和绘图。所有打印路径都需要调用这些方法，因此将其用于打印也将支持 PDF 和 EPS。有关如何实现这些方法的信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Printing/osxp_aboutprinting/osxp_aboutprt.html#//apple_ref/doc/uid/10000083i">Mac版打印编程指南</a>。</p>
+<h2><a id="%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线程和图形上下文</h2>
+<p>应用程序套件为每个窗口和线程组合维护唯一的图形上下文。因为每个线程对于给定的窗口都有其自己的图形上下文对象，所以可以使用辅助线程绘制到该窗口。但是，有一些警告。</p>
+<p>在 Windows 的正常更新周期中，所有绘图请求都会发送到应用程序的主线程进行处理。当用户事件触发用户界面的更改时，就会发生正常的更新周期。在这种情况下，您可以从应用程序的主线程调用 <code>setNeedsDisplay:</code> 或 <code>setNeedsDisplayInRect:</code> 方法（或方法的显示系列），以使需要重绘的视图部分无效。您不应从任何辅助线程调用这些方法。</p>
+<p>如果要从辅助线程更新窗口或视图，则必须手动将焦点锁定在窗口或视图上并自己启动绘图。锁定焦点可为该窗口的图形上下文配置绘图环境。锁定后，您可以配置绘图环境，照常发出绘图命令，然后将图形上下文的内容刷新到窗口缓冲区。</p>
+<p>为了定期在辅助线程上绘制，您必须自己通知该线程。发送常规通知的最简单方法是使用 <code>NSTimer</code> 或 <code>NSAnimation</code> 对象。有关如何为内容设置动画的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-CJBFEEJA">高级绘图技术</a>。</p>
+<p>在辅助线程上创建位图是线程化绘图代码的一种方法。因为位图是独立的实体，所以可以在辅助线程上安全地创建它们。从线程中，您需要显式创建图形上下文对象（如<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-SW1">创建基于屏幕的上下文</a>中所述），然后发出绘图调用以绘制到位图缓冲区中。有关如何创建位图（包括示例代码）的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCICHFGA">创建位图</a>。</p>
+<blockquote>
+<p>重要提示：尽管允许在辅助线程上进行绘制，但是您应始终仅从应用程序的主线程处理事件和其他用户请求的操作。使用多个线程处理事件可能导致不按顺序处理这些事件，从而可能导致应用程序行为不一致。</p>
+</blockquote>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="Cocoa%20%E7%BB%98%E7%94%BB%E6%8C%87%E5%AF%BC%E6%A6%82%E8%BF%B0.html">&laquo; 上一章：Cocoa 绘画指导概述</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E5%9D%90%E6%A0%87%E7%B3%BB%E5%92%8C%E5%8F%98%E6%8D%A2.html">下一章：坐标系和变换 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

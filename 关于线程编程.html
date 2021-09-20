@@ -305,6 +305,11 @@
 <p>注意：始终记得平衡调用以锁定和解锁库中的互斥锁。您还应该记住锁定库数据结构，而不是依赖调用代码来提供线程安全的环境。</p>
 </blockquote>
 <p>如果您正在开发 Cocoa 库，那么如果您希望在应用程序变为多线程时收到通知，则可以注册为 <code>NSWillBecomeMultiThreadedNotification</code> 的观察者。但是，您不应该依赖于接收此通知，因为它可能会在调用库代码之前调用。</p>
+<div style="padding-top:25px;">
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E7%BA%BF%E7%A8%8B%E7%AE%A1%E7%90%86.html">下一章：线程管理 &raquo;</a> 
+    </div>
+</div>
 
                   </article>
                   <div class="comments-wrap">

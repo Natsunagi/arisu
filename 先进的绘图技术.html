@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第六章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第六章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/11</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E5%85%88%E8%BF%9B%E7%9A%84%E7%BB%98%E5%9B%BE%E6%8A%80%E6%9C%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>先进的绘图技术</h1>
+<p>创建有效而美观的 Mac 应用程序通常需要使用许多不同的技术。除了在视图中绘制路径和图像的基本图形外，还有其他方法可以为您的应用程序创建更复杂的图像。以下各节介绍了 Cocoa 支持的许多最常用的技术。</p>
+<h2><a id="%E5%90%91%E7%BB%98%E5%88%B6%E7%9A%84%E8%B7%AF%E5%BE%84%E6%B7%BB%E5%8A%A0%E9%98%B4%E5%BD%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>向绘制的路径添加阴影</h2>
+<p>Cocoa 通过 NSShadow 类提供对阴影的支持。阴影模仿投射在对象上的光源，使路径看起来好像它们漂浮在视图表面上方。图 6-1 显示了阴影在一些路径上产生的效果。</p>
+<p>图 6-1：渲染路径投射的阴影</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-1.png" alt="" /></p>
+<p>阴影效果由水平和垂直偏移值，模糊值和阴影颜色组成。这些效果结合在一起，给人一种幻觉，即画布上方有一束光照在下面的形状上。偏移和模糊值可有效确定灯光的位置以及画布上方形状的高度。</p>
+<p>阴影位置始终使用视图的基本坐标系，而忽略您对视图中的形状应用的任何变换。这意味着无论您如何操纵视图中的形状，生成阴影的光的外观位置都不会改变。如果要更改光源的外观位置，则必须在绘制内容之前更改阴影对象属性并将更新的阴影对象应用于当前图形上下文。</p>
+<p>要创建阴影，您可以创建一个 <code>NSShadow</code> 对象并调用其方法来设置所需的阴影属性。如果您预期一条或多条路径会相互重叠，则应确保选择一种具有 Alpha值 的颜色；否则，与其他对象相交的阴影可能看起来很平坦并破坏了效果。要应用阴影，请调用其 <code>set</code> 方法。</p>
+<p>清单 6-1 显示了用于为图 6-1 中的路径创建阴影的代码。部分透明的颜色用于允许重叠的路径和阴影。</p>
+<p>清单 6-1：向路径添加阴影</p>
+<pre><code class="language-objective-c">NSGraphicsContext saveGraphicsState];
+ 
+// Create the shadow below and to the right of the shape.
+NSShadow* theShadow = [[NSShadow alloc] init];
+[theShadow setShadowOffset:NSMakeSize(10.0, -10.0)];
+[theShadow setShadowBlurRadius:3.0];
+ 
+// Use a partially transparent color for shapes that overlap.
+[theShadow setShadowColor:[[NSColor blackColor]
+             colorWithAlphaComponent:0.3]];
+ 
+[theShadow set];
+ 
+// Draw your custom content here. Anything you draw
+// automatically has the shadow effect applied to it.
+ 
+[NSGraphicsContext restoreGraphicsState];
+[theShadow release];
+</code></pre>
+<p>阴影效果存储为图形状态的一部分，因此一旦设置，它们就会影响当前上下文中的所有后续渲染命令。要记住这一点很重要，因为它可能会迫使您考虑绘制内容的顺序。例如，如果设置阴影，填充路径，然后描画相同的路径，则不会得到具有轮廓，填充颜色和阴影的单个形状。相反，您得到两个形状（轮廓和填充形状）和两个阴影，每个阴影一个形状。如果在填充路径后对其进行描边，则描边路径的阴影会出现在填充形状的顶部。在图 6-1 中，通过将阴影仅应用于每个路径的填充形状，可以实现所需的效果。</p>
+<p>注意：对多个路径使用单个阴影的另一种方法是使用 Quartz 透明层。有关使用透明层的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066">Quartz 2D 编程指南</a>。</p>
+<h2><a id="%E5%88%9B%E5%BB%BA%E6%B8%90%E5%8F%98%E5%A1%AB%E5%85%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建渐变填充</h2>
+<p>渐变填充（在 Quartz 中也称为阴影）是一种从一种颜色逐渐变为另一种颜色的图案。与 <code>NSColor</code> 支持的基于图像的图案不同，渐变填充不会平铺颜色以填充目标形状。相反，它使用数学函数来计算渐变梯度中各个点的颜色。由于渐变梯度本质上是数学的，因此它们与分辨率无关，并且可以轻松缩放到任何设备。</p>
+<p>图 6-2 显示了一些简单的渐变填充模式。渐变 a 和 b 显示填充不同贝塞尔曲线形状并沿不同角度对齐的线性梯度，而渐变 c 和 d 显示径向梯度。在使用渐变 c 的情况下，渐变被设置为在渐变的开始和结束位置之前和之后绘制，从而在渐变的正中心创建了一个白色圆圈，并在渐变周围形成了一个黑色边框。对于渐变 d，用于绘制渐变的圆的中心点会偏移，从而产生另一种阴影效果。</p>
+<p>图 6-2：不同类型的渐变</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-2.png" alt="" /></p>
+<p>在 OS X v10.5 和更高版本中，Cocoa 使用 NSGradient 类提供了对绘制渐变的支持。如果您的软件在 OS X 的早期版本上运行，则必须使用 Quartz 或 Core Image 来执行渐变填充。</p>
+<h3><a id="%E4%BD%BF%E7%94%A8nsgradient%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 NSGradient 类</h3>
+<p>在 OS X v10.5 和更高版本中，可以使用 <code>NSGradient</code> 类创建复杂的渐变填充图案，而无需编写自己的颜色计算功能。渐变对象是不可变的对象，用于存储有关渐变中颜色的信息，并提供用于将这些颜色绘制到当前上下文的接口。创建 N<code>SGradient</code> 对象时，可以指定一个或多个 <code>NSColor</code> 对象以及一组可选的位置参数。在绘制过程中，渐变对象使用此信息来计算渐变的颜色过渡。</p>
+<p><code>NSGradient</code> 类支持高级绘制方法和原始绘制方法。高级方法提供了一个简单的界面，用于绘制渐变作为 Bezier 路径或矩形的填充图案。如果需要对渐变填充的最终形状和外观进行其他控制，则可以自行设置剪切路径，并使用 <code>NSGradient</code> 的原始绘制方法进行绘制。</p>
+<h4><a id="%E9%85%8D%E7%BD%AE%E6%B8%90%E5%8F%98%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%A2%9C%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置渐变对象的颜色</h4>
+<p><code>NSGradient</code> 类使用色标来确定其渐变填充中颜色变化的位置。色标是 NSColor 对象和 0.0 到 1.0 范围内的浮点数的组合。浮点数表示关联颜色沿着渐变的绘制轴的相对位置，该相对位置可以是径向的也可以是轴向的。</p>
+<p>根据定义，渐变必须至少具有两个色标。通常，这些色标代表渐变的起点和终点。尽管起点通常位于 0.0，终点通常位于 1.0，但情况并非总是如此。您可以在渐变的绘制轴上的任意位置定位起点和终点。在创建渐变时，渐变对象会用起始颜色填充起点之前的区域，并类似地用终止颜色填充终点之后的区域。</p>
+<p>您可以使用同一渐变对象绘制多个渐变填充，并且可以使用同一渐变对象自由地混合创建径向和轴向渐变。尽管在创建渐变对象时配置渐变的颜色，但是仅在绘制渐变时才配置渐变的绘制轴。<code>NSGradient</code> 类定义用于配置渐变的颜色和色标的以下方法。</p>
+<ul>
+<li><code>initWithStartingColor:endingColor:</code></li>
+<li><code>initWithColors:</code></li>
+<li><code>initWithColorsAndLocations:</code></li>
+<li><code>initWithColors:atLocations:colorSpace:</code></li>
+</ul>
+<p>尽管初始化后无法更改渐变对象的颜色，但是可以使用访问器方法获取有关渐变对象包含的颜色的信息。<code>numberOfColorStops</code> 方法返回渐变用于绘制自身的颜色数量，而 <code>getColor:location:atIndex:</code> 方法则检索每种颜色的颜色停止信息。如果您想知道在两个色标之间为渐变绘制什么颜色，可以使用 <code>interpolatedColorAtLocation:</code> 方法获取它。</p>
+<h4><a id="%E7%BB%98%E5%88%B6%E9%AB%98%E7%BA%A7%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制高级路径</h4>
+<p><code>NSGradient</code> 类定义了几种方便的方法来绘制径向和轴向渐变：</p>
+<ul>
+<li><code>drawInRect:angle:</code></li>
+<li><code>drawInRect:relativeCenterPosition:</code></li>
+<li><code>drawInBezierPath:angle:</code></li>
+<li><code>drawInBezierPath:relativeCenterPosition:</code></li>
+</ul>
+<p>通过使用 <code>NSBezierPath</code> 或矩形作为它们的第一个参数，可以很容易地识别出这些便捷方法。绘制渐变时，此参数用作渐变的裁剪区域。您可以使用这些方法在界面中现有形状内绘制渐变填充。</p>
+<p>清单 6-2 显示了一些绘制轴向渐变图案的代码。包含圆角矩形的 <code>NSBezierPath</code> 对象在绘制渐变时充当渐变的剪切区域。图 6-3 显示了所得的梯度。</p>
+<p>清单 6-2：将轴向渐变剪切为圆角矩形</p>
+<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+{
+    NSRect        bounds = [self bounds];
+ 
+    NSBezierPath*    clipShape = [NSBezierPath bezierPath];
+    [clipShape appendBezierPathWithRoundedRect:bounds xRadius:40 yRadius:30];
+ 
+ 
+    NSGradient* aGradient = [[[NSGradient alloc]
+                    initWithColorsAndLocations:[NSColor redColor], (CGFloat)0.0,
+                                            [NSColor orangeColor], (CGFloat)0.166,
+                                            [NSColor yellowColor], (CGFloat)0.33,
+                                            [NSColor greenColor], (CGFloat)0.5,
+                                            [NSColor blueColor], (CGFloat)0.75,
+                                            [NSColor purpleColor], (CGFloat)1.0,
+                                            nil] autorelease];
+ 
+    [aGradient drawInBezierPath:clipShape angle:0.0];
+}
+</code></pre>
+<p>图 6-3：贝塞尔曲线路径内绘制的轴向渐变<img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-3.png" alt="" /></p>
+<h4><a id="%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%A7%8B%E7%BB%98%E5%9B%BE%E4%BE%8B%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用原始绘图例程</h4>
+<p>除了高级便利方法之外，<code>NSGradien</code>t 类还定义了两种用于绘制渐变的基本方法：</p>
+<ul>
+<li><code>drawFromPoint:toPoint:options:</code></li>
+<li><code>drawFromCenter:radius:toCenter:radius:options:</code></li>
+</ul>
+<p>这些方法为您提供了更多关于渐变参数的灵活性，包括将渐变颜色扩展到其起点和终点之外的能力。与高级例程不同，这些方法在绘制之前不会更改剪辑区域。如果在绘制之前未设置自定义剪辑区域，则取决于渐变选项，生成的渐变可能会扩展为填充整个视图。</p>
+<p>清单 6-3 显示了使用 <code>NSGradient</code> 的原始绘制例程在视图中绘制径向渐变的代码。渐变中的第二个圆在水平和垂直方向上都与第一个圆偏移 60 个点，从而导致整个渐变偏向圆的右上角。因为代码为 <code>options</code> 参数传递了值 0，所以渐变不会超出起始和结束颜色，因此不会填充整个视图。图 6-4 显示了此代码产生的梯度。</p>
+<p>清单 6-3：使用基本例程绘制径向渐变</p>
+<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+{
+    NSRect bounds = [self bounds];
+    NSGradient* aGradient = [[[NSGradient alloc]
+                                    initWithStartingColor:[NSColor orangeColor]
+                                    endingColor:[NSColor cyanColor]] autorelease];
+ 
+    NSPoint centerPoint = NSMakePoint(NSMidX(bounds), NSMidY(bounds));
+    NSPoint otherPoint = NSMakePoint(centerPoint.x + 60.0, centerPoint.y + 60.0);
+    CGFloat firstRadius = MIN( ((bounds.size.width/2.0) - 2.0),
+                               ((bounds.size.height/2.0) -2.0) );
+    [aGradient drawFromCenter:centerPoint radius:firstRadius
+                toCenter:otherPoint radius:5.0
+                options:0];
+}
+</code></pre>
+<p>图 6-4：使用基本绘图方法创建的渐变</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-4.png" alt="" /></p>
+<h3><a id="%E5%9C%A8cocoa%E4%B8%AD%E4%BD%BF%E7%94%A8-quartz%E7%9D%80%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在 Cocoa 中使用 Quartz 着色</h3>
+<p>由于 <code>NSGradient</code> 类仅在 OS X v10.5 和更高版本中可用，因此在 OS X 早期版本上运行的软件必须使用 Quartz 或 Core Image 绘制渐变填充。Quartz 使用您提供的数学计算功能支持在不同颜色空间中创建径向和轴向渐变。使用数学函数意味着您使用 Quartz 创建的渐变可以很好地缩放到任何分辨率。另一方面，Core Image 提供了用于创建由径向，轴向或高斯梯度组成的固定分辨率图像的滤镜。但是，由于最终结果是图像，因此对于 PDF 和其他基于打印的图形，Core Image 渐变可能不太理想。</p>
+<p>要在您的 Cocoa 程序中绘制 Quartz 阴影，您可以通过 <code>drawRect:</code> 方法执行以下操作：</p>
+<ol>
+<li>使用 <code>NSGraphicsContext</code> 的 <code>graphicsPort</code> 方法获取 <code>CGContextRef</code>。（您将把这个引用传递给其他 Quartz 函数。）</li>
+<li>使用 Quartz 创建一个 <code>CGShadingRef</code>；请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066">Quartz 2D 编程指南</a>中的“渐变”。</li>
+<li>将当前的剪切路径配置为阴影所需的形状；请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/GraphicsContexts/GraphicsContexts.html#//apple_ref/doc/uid/TP40003290-CH203-BCIIADBC">设置剪切区域</a>。</li>
+<li>使用 <code>CGContextDrawShading</code> 绘制阴影。</li>
+</ol>
+<p>有关使用 Core Image 创建具有渐变填充的图像的信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html#//apple_ref/doc/uid/TP30001185">Core Image 编程指南</a>。</p>
+<h2><a id="%E7%BB%98%E5%88%B6%E5%88%B0%E5%B1%8F%E5%B9%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制到屏幕</h2>
+<p>如果您想接管整个绘图屏幕，可以从 Cocoa 应用程序中接管。进入全屏绘图模式需要两个步骤：</p>
+<ol>
+<li>捕获所需的画面进行绘制。</li>
+<li>配置您的绘图环境。</li>
+</ol>
+<p>捕获屏幕后，配置绘图环境的方式取决于您使用的是 Cocoa 还是 OpenGL 进行绘图。在 OpenGL 中，您将创建一个 <code>NSOpenGLContext</code> 对象并调用其几种方法以进入全屏模式。在 Cocoa 中，您必须创建一个充满屏幕的窗口并配置该窗口。</p>
+<h3><a id="%E6%8D%95%E8%8E%B7%E5%B1%8F%E5%B9%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>捕获屏幕</h3>
+<p>Cocoa 不为捕获和释放屏幕提供直接支持。<code>NSScreen</code> 类提供对有关可用屏幕信息的只读访问。要捕获或操作屏幕，必须使用 Quartz Services 中的功能。</p>
+<p>要捕获所有可用的屏幕，您只需调用 <code>CGCaptureAllDisplays</code> 函数。要捕获单个显示器，必须获取所需显示器的 ID，然后调用 <code>CGDisplayCapture</code> 函数来捕获它。以下示例显示了如何使用 <code>NSScreen</code> 对象提供的信息来捕获系统的主屏幕。</p>
+<pre><code class="language-objective-c">- (BOOL) captureMainScreen
+{
+    // Get the ID of the main screen.
+    NSScreen* mainScreen = [NSScreen mainScreen];
+    NSDictionary* screenInfo = [mainScreen deviceDescription];
+    NSNumber* screenID = [screenInfo objectForKey:@&quot;NSScreenNumber&quot;];
+ 
+    // Capture the display.
+    CGDisplayErr err = CGDisplayCapture([screenID longValue]);
+    if (err != CGDisplayNoErr)
+        return NO;
+ 
+    return YES;
+}
+</code></pre>
+<p>要释放以前捕获的显示，请使用 <code>CGDisplayRelease</code> 函数。如果捕获了所有活动显示，则可以通过调用 <code>CGReleaseAllDisplays</code> 函数来释放所有活动显示。</p>
+<p>有关捕获和操作屏幕的更多信息，请参见 <a href="https://developer.apple.com/documentation/coregraphics/quartz_display_services">Quartz Display Services Reference</a>。</p>
+<h3><a id="opengl%E4%B8%AD%E7%9A%84%E5%85%A8%E5%B1%8F%E7%BB%98%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>OpenGL 中的全屏绘图</h3>
+<p>执行全屏绘制的应用程序往往需要大量图形，因此使用 OpenGL 可以提高渲染速度。在 Cocoa 中，使用 OpenGL 创建全屏上下文很容易。捕获所需的显示后，创建并配置 <code>NSOpenGLContext</code> 对象，然后调用其 <code>setFullScreen</code> 和 <code>makeCurrentContext</code> 方法。调用这些方法后，您的应用程序将立即进入全屏模式，您可以开始绘制内容。</p>
+<p>在 OpenGL 中请求全屏上下文时，上下文的像素格式应包含以下属性：</p>
+<ul>
+<li><code>NSOpenGLPFAFullScreen</code></li>
+<li><code>NSOpenGLPFAScreenMask</code></li>
+<li><code>NSOpenGLPFAAccelerated</code></li>
+<li><code>NSOpenGLPFANoRecovery</code>（仅当共享 OpenGL 图形上下文时）</li>
+</ul>
+<p>清单 6-4 显示了捕获所有显示并为全屏绘制设置 OpenGL 上下文的基本步骤。有关如何创建 <code>NSOpenGLContext</code> 对象的信息，请参见创建 OpenGL 图形上下文。</p>
+<p>清单 6-4：创建 OpenGL 全屏上下文</p>
+<pre><code class="language-objective-c">NSOpenGLContext* CreateScreenContext()
+{
+    CGDisplayErr err;
+ 
+    err = CGCaptureAllDisplays();
+    if (err != CGDisplayNoErr)
+        return nil;
+ 
+    // Create the context object.
+    NSOpenGLContext* glContext = CreateMyGLContext();
+ 
+    // If the context is bad, release the displays.
+    if (!glContext)
+    {
+        CGReleaseAllDisplays();
+        return nil;
+    }
+ 
+    // Go to full screen mode.
+    [glContext setFullScreen];
+ 
+    // Make this context current so that it receives OpenGL calls.
+    [glContext makeCurrentContext];
+ 
+    return glContext;
+}
+</code></pre>
+<p>使用图形上下文进入全屏模式后，您的应用程序将完全控制屏幕。要退出全屏模式，请调用 OpenGL 上下文的 <code>clearDrawable</code> 方法并调用 <code>CGReleaseAllDisplays</code> 函数以将屏幕释放回系统。</p>
+<p>有关向您展示如何使用 OpenGL 和 Cocoa 进入全屏模式的详细示例代码，请参阅 <a href="https://developer.apple.com/library/archive/navigation/redirect.html#//apple_ref/doc/uid/TP30000925-TP30000424-TP30000549">Sample Code &gt; Graphics &amp; Imaging &gt; OpenGL</a> 中的 NSOpenGL 全屏示例。</p>
+<h3><a id="cocoa%E5%85%A8%E5%B1%8F%E7%BB%98%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cocoa 全屏绘图</h3>
+<p>所有 Cocoa 绘制都在一个窗口中进行，但是对于全屏绘制，您创建的窗口有所不同。您需要创建一个跨越整个屏幕区域的无边框窗口，而不是带有标题栏的边框窗口。</p>
+<p>尽管使用 Cocoa 类创建了一个全屏窗口，但仍然必须使用 Quartz Services 捕获显示并正确配置窗口。<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-CJBGBCBH">捕获屏幕</a>中介绍了捕获过程。捕获屏幕后，窗口服务器将打开一个屏蔽窗口，该窗口可隐藏大多数其他内容。要使全屏窗口可见，必须将其水平调整为位于此防护罩上方。您可以使用 <code>CGShieldingWindowLevel</code> 函数获取屏蔽级别，然后将返回的值传递给窗口的 <code>setLevel:</code> 方法。</p>
+<p>清单 6-5 显示了在 <code>NSDocument</code> 的子类中定义的操作方法。document 对象使用此方法捕获主显示并创建窗口以填充该屏幕空间。窗口本身包含用于绘制内容的单个视图（类型为 <code>MyFullScreenView</code>）。（在您自己的代码中，您将用自己的自定义图形视图替换该视图。）对窗口的引用存储在 <code>myScreenWindow</code> 类实例变量中，该变量在首次实例化该类时初始化为 <code>nil</code>。</p>
+<p>清单 6-5：创建 Cocoa 全屏上下文</p>
+<pre><code class="language-objective-c">- (IBAction)goFullScreen:(id)sender
+{
+    // Get the screen information.
+    NSScreen* mainScreen = [NSScreen mainScreen];
+    NSDictionary* screenInfo = [mainScreen deviceDescription];
+    NSNumber* screenID = [screenInfo objectForKey:@&quot;NSScreenNumber&quot;];
+ 
+    // Capture the screen.
+    CGDirectDisplayID displayID = (CGDirectDisplayID)[screenID longValue];
+    CGDisplayErr err = CGDisplayCapture(displayID);
+    if (err == CGDisplayNoErr)
+    {
+        // Create the full-screen window if it doesn’t already  exist.
+        if (!myScreenWindow)
+        {
+            // Create the full-screen window.
+            NSRect winRect = [mainScreen frame];
+            myScreenWindow = [[NSWindow alloc] initWithContentRect:winRect
+                    styleMask:NSBorderlessWindowMask
+                    backing:NSBackingStoreBuffered
+                    defer:NO
+                    screen:[NSScreen mainScreen]];
+ 
+            // Establish the window attributes.
+            [myScreenWindow setReleasedWhenClosed:NO];
+            [myScreenWindow setDisplaysWhenScreenProfileChanges:YES];
+            [myScreenWindow setDelegate:self];
+ 
+            // Create the custom view for the window.
+            MyFullScreenView* theView = [[MyFullScreenView alloc]
+                                             initWithFrame:winRect];
+            [myScreenWindow setContentView:theView];
+            [theView setNeedsDisplay:YES];
+            [theView release];
+        }
+ 
+        // Make the screen window the current document window.
+        // Be sure to retain the previous window if you want to  use it again.
+        NSWindowController* winController = [[self windowControllers]
+                                                 objectAtIndex:0];
+        [winController setWindow:myScreenWindow];
+ 
+        // The window has to be above the level of the shield window.
+        int32_t     shieldLevel = CGShieldingWindowLevel();
+        [myScreenWindow setLevel:shieldLevel];
+ 
+        // Show the window.
+        [myScreenWindow makeKeyAndOrderFront:self];
+    }
+}
+</code></pre>
+<p>要使用 Cocoa 退出全屏模式，只需释放捕获的显示，调整窗口大小以使其不占据整个屏幕，然后将其级别设置回 <code>NSNormalWindowLevel</code>。有关屏蔽窗口的更多信息，请参见 <a href="https://developer.apple.com/documentation/coregraphics/quartz_display_services">Quartz Display Services Reference</a>。</p>
+<h3><a id="%E7%A6%81%E7%94%A8%E5%B1%8F%E5%B9%95%E6%9B%B4%E6%96%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>禁用屏幕更新</h3>
+<p>您可以使用 <code>NSDisableScreenUpdates</code> 和 <code>NSEnableScreenUpdates</code> 函数禁用和重新启用所有屏幕刷新。（在 OS X v10.4 和更高版本中，您还可以使用 <code>NSWindow</code> 的
+<code>disableScreenUpdatesUntilFlush</code> 方法。）您可以使用此技术将刷新同步到父窗口和子窗口。重新启用屏幕更新后，所有窗口将同时（或至少靠近窗口）被刷新。</p>
+<p>为防止系统显示为冻结状态，如果您的应用程序长时间禁用屏幕更新，则系统可能会自动重新启用屏幕更新。如果您禁用屏幕更新 1 秒钟以上，系统将自动重新启用它们。</p>
+<h2><a id="%E4%BD%BF%E7%94%A8nstimer%E5%88%B6%E4%BD%9C%E5%8A%A8%E7%94%BB%E5%86%85%E5%AE%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 NSTimer 制作动画内容</h2>
+<p>默认情况下，仅当用户操作导致某些更改时，Cocoa 才会向您的视图发送 drawRect: 消息。如果您的视图包含动画内容，则您可能希望更定期地更新该内容。对于不确定长度和有限长度的动画，都可以使用计时器来完成。</p>
+<blockquote>
+<p>注意：对于有限长度的动画，您还可以使用 <code>NSAnimation</code> 对象来控制动画时间。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-CJBGBGDJ">使用 Cocoa 动画对象</a>。</p>
+</blockquote>
+<p><code>NSTimer</code> 类提供了一种在应用程序中生成定期事件的机制。当达到预设时间时，计时器对象会向您的应用程序发送一条消息，使您有机会执行任何所需的操作。对于动画，您将使用计时器来告诉应用程序该绘制下一帧了。</p>
+<p>使计时器运行涉及两个步骤。第一步是创建 <code>NSTimer</code> 对象本身，并指定要通知的对象，要发送的消息，通知的时间间隔以及计时器是否重复。第二步是将计时器对象安装在线程的运行循环上。方法 <code>ScheduledTimerWithTimeInterval:invocation:repeats:</code> 和 <code>ScheduledTimerWithTimeInterval:target:selector:userInfo:repeats:</code> 为您执行这两个步骤。<code>NSTimer</code> 的其他方法可以创建计时器，但不要将其安装在运行循环中。</p>
+<p>有关如何创建和使用计时器的信息和示例，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Timers/Timers.html#//apple_ref/doc/uid/10000061i">计时器编程主题</a>。</p>
+<h2><a id="%E4%BD%BF%E7%94%A8cocoa%E5%8A%A8%E7%94%BB%E5%AF%B9%E8%B1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 Cocoa 动画对象</h2>
+<p><code>NSAnimation</code> 和 <code>NSViewAnimation</code> 类为在有限的时间内发生的动画提供复杂的行为。OS X 使用动画对象为用户界面元素实现过渡动画。您可以定义自定义动画对象来为自己的代码实现动画。与 NSTimer 不同，动画通知可以不规则的间隔发生，使您可以创建看起来加快或减速的动画。</p>
+<p>有关如何使用 Cocoa 动画对象的信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/AnimationGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40003592">Cocoa动画编程指南</a>。</p>
+<h2><a id="%E4%BC%98%E5%8C%96%E7%BB%98%E5%9B%BE%E4%BB%A3%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>优化绘图代码</h2>
+<p>以下各节提供一些基本指导，以改善图形代码的整体性能。这些绝对是您在代码中应该做的事情。有关图形优化技术的更全面列表，请参见<a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/Drawing/Articles/DrawingPerformance.html#//apple_ref/doc/uid/10000151i">图形性能准则</a>。</p>
+<h3><a id="%E6%9C%80%E5%B0%8F%E7%BB%98%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>最小绘图</h3>
+<p>即使使用现代图形硬件，绘图仍然是一项昂贵的操作。减少在绘图代码中花费的时间的最好方法是首先只绘制需要的内容。</p>
+<p>在视图更新期间，<code>drawRect:</code> 方法将接收一个矩形，该矩形指定视图中需要更新的部分。此矩形始终限于视图的当前可见部分，在某些情况下甚至可以更小。您的绘图代码应注意此矩形，并避免在其外部绘制内容。由于传递给 <code>drawRect:</code> 的矩形可能是几个较小矩形的并集，因此更好的方法是调用视图的 <code>getRectsBeingDrawn:count:</code> 方法，并将图形限制为该方法返回的矩形的精确列表。</p>
+<h3><a id="%E9%81%BF%E5%85%8D%E5%BC%BA%E5%88%B6%E5%90%8C%E6%AD%A5%E6%9B%B4%E6%96%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>避免强制同步更新</h3>
+<p>使部分视图无效时，应避免使用显示方法族来强制立即更新。这些方法使系统立即将 <code>drawRect:</code> 消息发送到受影响的视图（以及层次结构中的其他视图），而不必等到下一个常规更新周期。如果有几个要更新的区域，这可能会导致您的图形代码执行大量额外工作。</p>
+<p>相反，您应该使用 <code>setNeedsDisplay:</code> 和 <code>setNeedsDisplayInRect:</code> 方法将区域标记为需要更新。当您调用这些方法时，系统会收集您指定的矩形并将它们合并到一个组合的更新区域中，然后在下一个更新周期中进行绘制。</p>
+<p>如果要创建动画内容，还应注意不要触发比屏幕刷新率允许的更频繁的视觉更新。更新速度比刷新率快导致用户看不到代码绘制框架。此外，在 OS X v10.4 及更高版本中不允许更新速度超过刷新率。如果您尝试以比刷新率更快的速度更新屏幕，则窗口服务器可能会阻塞有问题的线程，直到下一个更新周期为止。</p>
+<h3><a id="%E9%87%8D%E7%94%A8%E6%82%A8%E7%9A%84%E5%AF%B9%E8%B1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>重用您的对象</h3>
+<p>如果您有计划多次使用的对象，请考虑将其缓存以备后用。高速缓存消除了每次绘制对象时都需要重新创建对象的需要，从而节省了时间。当然，缓存需要更多的内存，因此请谨慎选择缓存内容。与从磁盘分页相比，在内存中重新创建对象的速度更快。</p>
+<p>许多对象是由 Cocoa 自动缓存的，不需要在您自己的代码中缓存。例如，Cocoa 缓存请求表示常用颜色的 <code>NSColor</code> 对象。</p>
+<h3><a id="%E6%9C%80%E5%B0%8F%E5%8C%96%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>最小化状态变化</h3>
+<p>每次保存图形状态时，都会产生很小的性能损失。每当具有相同渲染属性的对象时，请尝试同时绘制所有对象。如果保存并还原每个对象的图形状态，则可能会浪费一些 CPU 周期。</p>
+<p>使用 Cocoa 立即绘制的方法和功能通常涉及图形状态的变化。例如，当您调用 <code>NSBezierPath</code> 的 <code>stroke</code> 方法时，对象将自动保存图形状态并应用与该路径关联的选项。但是，在构建路径时，图形状态不会改变。因此，如果要使用相同的图形属性绘制多个形状，则用所有形状填充单个 <code>NSBezierPath</code>，然后将它们全部绘制为一组是有利的。</p>
+<blockquote>
+<p>注意：在创建更大，更复杂的贝塞尔曲线路径与为要绘制的每种形状使用单独的对象之间需要权衡。随着路径复杂度的增加，确定填充特征和执行命中检测所需的计算量也随之增加-请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCFGAGF">降低路径复杂度</a>。创建贝塞尔曲线路径时，需要在路径复杂度和图形状态更改之间找到适当的平衡。</p>
+</blockquote>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E5%9B%BE%E5%83%8F.html">&laquo; 上一章：图像</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E6%96%87%E6%9C%AC.html">下一章：先文本 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>

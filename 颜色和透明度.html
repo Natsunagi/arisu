@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+    Cocoa 绘画指导 第四章 - Arisu
+    
+    </title>
+    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+
+    
+    
+    <link href="atom.xml" rel="alternate" title="Arisu" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/style.min.css">
+    <link rel="stylesheet" href="asset/css/doc.css">
+    <script src="asset/app.js"></script>
+</head>
+  <body>
+    <section class="hero">
+      <div class="hero-head">
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+              <div class="container">
+              <div class="navbar-brand">
+                
+                <a target="_self" class="navbar-item " href="index.html">主页</a>
+                
+                <a target="_self" class="navbar-item " href="Apple.html">Apple</a>
+                
+
+                <a role="button" id="navbarSNSRssSwitchBtn" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarSNSRssButtons">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+            
+              <div id="navbarSNSRssButtons" class="navbar-menu">
+                <div class="navbar-start">
+                  
+                </div>
+            
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <!--buttons start-->
+                    <div class="buttons">
+                      
+                        
+                        
+                        
+                        
+                      
+                      <a href="atom.xml" target="_blank" title="RSS">
+                          <span class="icon is-large has-text-black-bis">
+                              <svg class="svg-inline--fa fa-rss fa-w-14 fa-lg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path></svg><!-- <i class="fas fa-rss fa-lg"></i> -->
+                          </span>
+                      </a>
+                    </div>
+                    <!--buttons end-->
+
+                  </div>
+                </div>
+                </div>
+              </div>
+            </nav>
+      </div>
+
+ <div class="hero-body ct-body"></div>
+      
+    </section>
+    <section class="ct-body">
+      <div class="container">
+          <div class="columns is-variable bd-klmn-columns is-4 is-centered">
+              <div class="column is-four-fifths">
+                  <div class="post-body single-content">
+                    
+                    <h1 class="title">
+                            Cocoa 绘画指导 第四章   
+                      </h1>
+                     
+                    
+                      <div class="media">
+                            
+                            <figure class="media-left">
+                              <p class="image is-48x48">
+                                
+                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                
+                              </p>
+                            </figure>
+                            
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                 <span class="date">2020/03/10</span>
+                                  <span class="tran-posted-in">posted in</span>&nbsp; 
+                                  
+                                      <span class="posted-in"><a href='Apple%20Developer%20Documentation.html'>Apple Developer Documentation</a></span>
+                                  
+                                      <span class="posted-in"><a href='Cocoa%20%E7%BB%98%E5%9B%BE%E6%8C%87%E5%AF%BC.html'>Cocoa 绘图指导</a></span>
+                                         
+                                  
+
+                                   
+                                      
+                                  <br />
+                                  <span class="tran-tags">Tags:</span>&nbsp;
+                                  
+                                    <a class="tag is-link is-light" href='tag_%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3.html'>#技术文档</a>
+                                  
+                                    <a class="tag is-link is-light" href='tag_Arisu.html'>#Arisu</a>
+                                     
+
+                                </p>
+                              </div>
+                            </div>
+                         
+                    </div>
+                </div>
+                  <article class="markdown-body single-content">
+                    <h1><a id="%E9%A2%9C%E8%89%B2%E5%92%8C%E9%80%8F%E6%98%8E%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>颜色和透明度</h1>
+<p>创建有趣的图形的关键之一是有效使用颜色和透明度。在 OS X 中，两者均用于传达信息并为您的创作提供内在的吸引力。良好的颜色使用率通常会导致用户满意的界面，并在需要时帮助调出信息。</p>
+<h2><a id="%E5%85%B3%E4%BA%8E%E9%A2%9C%E8%89%B2%E5%92%8C%E9%80%8F%E6%98%8E%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于颜色和透明度</h2>
+<p>Cocoa 中颜色的支持建立在 Quartz 之上。<code>NSColor</code> 类提供了用于在各种颜色空间中创建和处理颜色的接口。其他类提供颜色和颜色空间管理。Cocoa 还提供了提供用于选择颜色的用户界面的类。</p>
+<p>有关 OS X 中颜色，颜色理论和颜色管理的更详尽说明，请参阅<a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/csintro/csintro_intro/csintro_intro.html#//apple_ref/doc/uid/TP30001148">颜色管理概述</a>和<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DrawColor/DrawColor.html#//apple_ref/doc/uid/10000082i">颜色编程主题</a>。</p>
+<h3><a id="%E8%89%B2%E5%BD%A9%E6%A8%A1%E5%9E%8B%E5%92%8C%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>色彩模型和色彩空间</h3>
+<p>人眼在相当窄的电磁波谱带中感知光子。每个光子以定义该光子表示的光的颜色的频率振动。眼睛的生物学特性使其特别易于接受红，蓝和绿光，并且这些原色通常会混合在一起以创建各种可感知的颜色。</p>
+<p>颜色模型是试图描述眼睛所见颜色的几何或数学框架。每个模型包含一个或多个维，它们一起代表可见的光谱。数值固定在每个维度上，从而可以在颜色模型中用数字描述颜色。通过数字表示，可以描述，分类，比较和排序这些颜色。</p>
+<p>色彩空间是色彩模型的实际改编。它指定可以使用特定颜色模型产生的颜色的色域（或范围）。颜色模型确定每个维度中的值之间的关系时，颜色空间将这些值的绝对含义定义为颜色。尽管 <code>NSColor</code> 的访问器方法着重于以下颜色空间，但 Cocoa 支持与 Quartz 2D 相同的颜色空间：</p>
+<ul>
+<li>RGB</li>
+<li>CMYK</li>
+<li>Gray</li>
+</ul>
+<p>在 Cocoa 中，<code>NSColorSpace</code> 类处理与特定颜色空间关联的信息。您可以创建此类的实例来表示各个颜色空间。Cocoa 提供了检索代表标准色彩空间的色彩空间对象的方法。您还可以使用 ColorSync 配置文件参考或国际色彩协会（ICC）配置文件数据创建自定义色彩空间对象。</p>
+<p>有关 OS X 中颜色空间和颜色模型的详细信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/csintro/csintro_intro/csintro_intro.html#//apple_ref/doc/uid/TP30001148">颜色管理概述</a>。</p>
+<h3><a id="%E8%89%B2%E5%BD%A9%E5%AF%B9%E8%B1%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>色彩对象</h3>
+<p>Cocoa 中的 <code>NSColor</code> 类提供创建和管理各种颜色所需的接口。<code>NSColor</code> 类本身是用于创建实际颜色对象的工厂类。<code>NSColor</code> 的类方法创建实际上基于 <code>NSColor</code> 的特定子类的颜色对象，其中每个子类实现特定颜色空间的行为。</p>
+<p>因为一个颜色对象必须代表一个单一的色彩空间，所以不能使用同一对象的所有 <code>NSColor</code> 方法。对于给定的颜色对象，您只能使用与该对象的颜色空间中的颜色相关的方法。例如，如果创建基于 CMYK 的颜色对象，则不能使用 <code>getRed:green:blue:alpha:</code> 方法检索 RGB 值。当前颜色空间中不支持的方法将引发异常。</p>
+<p>有关如何创建和使用颜色的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJBDIFC">创建颜色</a>。</p>
+<h3><a id="%E9%A2%9C%E8%89%B2%E5%88%86%E9%87%8F%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>颜色分量值</h3>
+<p>在 Cocoa 中，将色彩空间值（称为分量）指定为 0.0 到 1.0 范围内的浮点值。当使用来自其他系统的其他颜色值时，必须转换任何不属于支持范围内的值。例如，如果您使用一种颜色系统，其成分的值在 0 到 255 之间，则必须将每个成分值除以 255，以获取适用于 Cocoa 的值。</p>
+<p>您可以使用 <code>NSColor</code> 中的几种方法中的任何一种来检索颜色对象的成分值。存在几种用于检索已知颜色空间的颜色值的方法，例如 RGB，CMYK，HSV（也称为 HSB）和灰色。如果您不知道颜色的颜色空间中的分量数量，则可以使用 <code>numberOfComponents</code> 方法进行查找。然后，您可以使用 <code>getComponents:</code> 方法检索组件值。</p>
+<h3><a id="%E9%80%8F%E6%98%8E%E5%BA%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>透明度</h3>
+<p>除了用于标识颜色空间中特定颜色的成分值之外，OS X 颜色还支持用于标识该颜色透明度的 alpha 成分。</p>
+<p>透明度是一种强大的效果，用于使光线穿过特定区域而不是从特定区域反射出来。当您使用部分透明的颜色渲染对象时，该对象会从其正下方的对象中拾取某种颜色。它选择的颜色数量取决于颜色的 Alpha 分量值和合成模式。</p>
+<p>与颜色分量一样，将 alpha 分量指定为 0.0 到 1.0 范围内的浮点值。您可以将 alpha 分量视为指定从对象表面反射回的光量。Alpha 值 1.0 表示所有光的 100％ 反射，等效于对象是不透明的。alpha 值 0.0 表示光的反射率为 0％，所有颜色均来自下面的内容。 alpha 值 0.5 表示 50％ 的反射，一半的颜色从对象反射，另一半来自下面的内容。</p>
+<p>创建颜色对象时，可以指定透明度。如果使用组件值创建颜色，则可以直接指定 Alpha 值。如果您有一个现有的颜色对象，则可以使用 <code>colorWithAlphaComponent:</code> 方法创建一个新的颜色对象，该对象的颜色分量与原始颜色分量相同，但具有您指定的 alpha 值。</p>
+<h3><a id="%E5%9B%BE%E6%A1%88%E9%A2%9C%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图案颜色</h3>
+<p>除了创建单色之外，您还可以使用图像创建图案颜色。图案颜色最适合用作填充颜色，但也可以用作描边颜色。渲染后，您指定的图像将绘制在路径或其填充区域上，而不是纯色上。如果图像太小而无法填充给定区域，则将其垂直和水平平铺，如图 4-1 所示。</p>
+<p>图 4-1：用图案绘图</p>
+<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/4-1.png" alt="" /></p>
+<p>有关如何创建图案颜色的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJBDIFC">创建颜色</a>。</p>
+<h3><a id="%E9%A2%9C%E8%89%B2%E6%B8%85%E5%8D%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>颜色清单</h3>
+<p>颜色列表是类似于字典的对象（由 <code>NSColorList</code> 类实现），其中包含由键标识的 <code>NSColor</code> 对象的有序列表。您可以通过键从颜色列表中检索颜色。您还可以通过将颜色放置在列表中的特定索引处来组织颜色。</p>
+<p>颜色列表可作为一种工具来帮助您管理任何特定于文档的颜色。它们还用于自定义颜色面板中显示的颜色列表。您可以使用 <code>NSColorPanel</code> 的 <code>attachColorList:</code> 方法将应用程序使用的所有颜色添加到面板。</p>
+<p>有关使用颜色列表和颜色面板的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DrawColor/DrawColor.html#//apple_ref/doc/uid/10000082i">颜色编程主题</a>。</p>
+<h3><a id="%E9%A2%9C%E8%89%B2%E5%8C%B9%E9%85%8D" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>颜色匹配</h3>
+<p>Cocoa 尽可能使用 ColorSync 提供自动颜色匹配。颜色匹配可确保您用来绘制内容的颜色在不同设备上看起来相同。</p>
+<p>Cocoa 提供了使用 <code>NSColorSpace</code> 类创建和获取颜色配置文件信息的全面支持。Cocoa 支持 ColorSync 配置文件参考和 ICC 配置文件，以及针对 RGB，CMYK 和灰色空间的已校准和特定于设备的配置文件。因为颜色匹配是自动的，所以除了使用所需的颜色外，您的代码中无需执行任何其他操作。</p>
+<p>有关 ColorSync 的信息，请参见 <a href="https://developer.apple.com/documentation/applicationservices/colorsync_manager">ColorSync Manager 参考</a>。有关 ICC 配置文件的信息，请访问国际色彩协会网站：<a href="http://www.color.org/">http：//www.color.org/</a>。</p>
+<h2><a id="%E5%88%9B%E5%BB%BA%E9%A2%9C%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建颜色</h2>
+<p><code>NSColor</code> 类支持创建几种不同类型的颜色对象：</p>
+<ul>
+<li>常用颜色，例如红色，绿色，黑色或白色</li>
+<li>系统颜色，例如当前控件颜色或突出显示颜色，其值由用户首选项设置</li>
+<li>属于指定色彩空间的校准色彩</li>
+<li>属于指定设备颜色空间的设备颜色</li>
+<li>图案颜色</li>
+</ul>
+<p>要创建大多数颜色对象，只需使用适当的 <code>NSColor</code> 类方法。该类定义用于创建预设颜色或使用您指定的值创建颜色的方法。要创建图案颜色，请加载或创建所需的图像，然后将其传递到 <code>NSColor</code> 的 <code>colorWithPatternImage:</code> 方法。有关更多信息，请参见 <code>NSColor</code> 类参考。有关如何加载和创建图像的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIBBFGJ">图像</a>。</p>
+<blockquote>
+<p>重要：切勿直接分配和初始化 <code>NSColor</code> 对象。 因为它是基类，所以 <code>NSColor</code> 的实现是最少的，并且在需要实际颜色信息的情况下仅引发异常。</p>
+</blockquote>
+<p>在 OS X v10.5 及更高版本中，Cocoa 通过 <code>NSGradient</code> 类提供了对渐变填充模式的支持。在 10.5 版之前，如果要使用渐变来填充或描边路径，则必须改用 Quartz。有关如何创建和使用渐变的示例，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-SW9">创建渐变填充</a>。</p>
+<h2><a id="%E4%BD%BF%E7%94%A8%E9%A2%9C%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用颜色</h2>
+<p>拥有 <code>NSColor</code> 对象后，可以将其应用于当前上下文的笔触或填充颜色。设置后，您在当前上下文中绘制的任何形状都将采用该颜色。您也可以在程序可能需要的任何计算中使用颜色成分信息。</p>
+<h3><a id="%E5%B0%86%E9%A2%9C%E8%89%B2%E5%BA%94%E7%94%A8%E4%BA%8E%E7%BB%98%E5%88%B6%E7%9A%84%E5%86%85%E5%AE%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将颜色应用于绘制的内容</h3>
+<p>描边和填充颜色会修改基于路径的形状的外观，例如使用 <code>NSBezierPath</code> 类或 <code>NSRectFill</code> 等函数绘制的形状。笔触颜色适用于路径本身，填充颜色适用于该路径限制的区域。</p>
+<p>要设置当前的笔触或填充属性，请使用表 4-1 中列出的 NSColor 方法之一。</p>
+<p>表 4-1：更改颜色属性的方法</p>
+<table>
+<thead>
+<tr>
+<th><code>NSColor</code> 方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>set</code></td>
+<td>将笔触和填充颜色设置为相同的值。</td>
+</tr>
+<tr>
+<td><code>setFill</code></td>
+<td>设置填充颜色。</td>
+</tr>
+<tr>
+<td><code>setStroke</code></td>
+<td>设置笔触颜色。</td>
+</tr>
+</tbody>
+</table>
+<p>例如，以下代码将描边颜色设置为黑色，而将填充颜色设置为背景颜色以进行控件。</p>
+<pre><code class="language-objective-c">[[NSColor blackColor] setStroke];
+[[NSColor controlBackgroundColor] setFill];
+</code></pre>
+<p>当前上下文中的所有后续绘制操作将使用指定的颜色。如果您不想为笔触或填充绘制任何颜色，则可以将当前笔触或填充设置为完全透明的颜色，可以通过调用 <code>NSColor</code> 的 <code>clearColor</code> 方法获得该颜色。您还可以通过将任何其他颜色的 alpha 设置为 0 来创建透明颜色。</p>
+<blockquote>
+<p>注意：笔触和填充颜色不会影响文本的外观。 要将颜色应用于文本，必须更改与文本关联的属性。</p>
+</blockquote>
+<h3><a id="%E5%B0%86%E9%A2%9C%E8%89%B2%E5%BA%94%E7%94%A8%E4%BA%8E%E6%96%87%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将颜色应用于文本</h3>
+<p>与许多图形操作不同，文本不是使用当前的笔触和填充颜色绘制的。相反，要将颜色应用于文本，必须将颜色属性应用于相应字符串对象的字符。</p>
+<p>要将颜色应用于 <code>NSAttributedString</code> 对象中的一系列字符，请将 <code>NSForegroundColorAttributeName</code> 属性应用于这些字符。此属性将相应的 <code>NSColor</code> 对象作为其值。</p>
+<p>要将颜色应用于 <code>NSString</code> 对象的字符，请像对待 <code>NSAttributedString</code> 对象一样应用 <code>NSForegroundColorAttributeName</code> 属性。应用程序的区别在于，应用于 <code>NSString</code> 对象的属性会影响整个字符串，而不影响指定的字符范围。</p>
+<p><a href="https://developer.apple.com/documentation/appkit">应用程序工具包框架参考</a>中的 <code>NSAttributedString</code> 应用程序工具包添加参考中列出了这两种字符串类型的可用属性集。有关如何更改属性字符串的属性的示例，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/AttributedStrings/AttributedStrings.html#//apple_ref/doc/uid/10000036i">属性字符串编程指南</a>中的<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/TextAttributes/ChangingAttrStrings.html#//apple_ref/doc/uid/20000162">更改属性字符串</a>。有关绘制文本的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIEEIGC">文本</a>。</p>
+<h3><a id="%E8%8E%B7%E5%8F%96%E9%A2%9C%E8%89%B2%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取颜色的组成部分</h3>
+<p>如果您的程序以任何方式处理颜色，则可能需要了解所用颜色的组件值。NSColor 提供以下访问器方法来检索颜色的成分值：</p>
+<ul>
+<li><code>numberOfComponents</code></li>
+<li><code>getComponents:</code></li>
+<li><code>getRed:green:blue:alpha:</code></li>
+<li><code>getCyan:magenta:yellow:black:alpha:</code></li>
+<li><code>getHue:saturation:brightness:alpha:</code></li>
+<li><code>getWhite:alpha:</code></li>
+</ul>
+<p><code>NSColor</code> 类还提供用于访问单个组件值的方法，而不是所有组件一起使用的方法。有关更多信息，请参见 <code>NSColor</code> 类参考。</p>
+<p>重要说明：向 <code>NSColor</code> 对象询问在其当前颜色的颜色空间中未定义的组件是编程错误，并且发出此类请求会引发异常。如果需要一组特定的组件，则应首先使用 <code>colorUsingColorSpaceName:</code> 方法将颜色转换为适当的颜色空间。有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJIAHDJ">在色彩空间之间转换</a>。</p>
+<h3><a id="%E9%80%89%E6%8B%A9%E9%A2%9C%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>选择颜色</h3>
+<p>需要向用户提供颜色选择器界面的应用程序可以使用色井或颜色面板。色井是显示单一颜色的控件。您可以将此控件嵌入到窗口中，并使用它来显示当前选定的颜色。单击时，色井将显示系统颜色面板，该面板提供了用于选择颜色的界面。您还可以单独使用颜色面板来提示用户输入颜色。</p>
+<p>有关如何在应用程序中使用色井和颜色面板的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DrawColor/DrawColor.html#//apple_ref/doc/uid/10000082i">颜色编程主题</a>。</p>
+<h2><a id="%E4%BD%BF%E7%94%A8%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用色彩空间</h2>
+<p>色彩空间可帮助您的程序在整个创建和渲染过程中保持色彩逼真度。尽管大多数程序可能永远都不需要担心颜色空间，但是在某些情况下（例如，在操作颜色分量值之前），您可能需要了解当前的颜色空间。</p>
+<h3><a id="%E5%9C%A8%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4%E4%B9%8B%E9%97%B4%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在色彩空间之间转换</h3>
+<p>您可以使用 <code>NSColor</code> 的 <code>colorUsingColorSpaceName:</code> 方法在颜色空间之间进行转换。此方法使用您指定的颜色空间创建一个表示相同颜色的新颜色对象。要将颜色从 RGB 转换为 CMYK，可以使用类似于以下代码：</p>
+<pre><code class="language-objective-c">NSColor* rgbColor = [NSColor colorWithCalibratedRed:1.0 green: 0.5  blue: 0.5  alpha:0.75];
+ 
+NSColor* cmykColor = [rgbColor colorUsingColorSpace:[NSColorSpace  genericCMYKColorSpace]];
+</code></pre>
+<h3><a id="%E5%B0%86%E7%89%A9%E7%90%86%E9%A2%9C%E8%89%B2%E6%98%A0%E5%B0%84%E5%88%B0%E9%A2%9C%E8%89%B2%E7%A9%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将物理颜色映射到颜色空间</h3>
+<p>实际在输出设备上显示的颜色（或色域）范围因设备而异。在渲染期间，Cocoa 尝试将您在代码中指定的颜色尽可能地与目标设备中可用的颜色匹配。但是，有时它会以不同的方式映射颜色，以便强调颜色的不同方面，这在复制该颜色时可能更为重要。用于颜色的映射称为渲染意图，这是大多数开发人员很少需要更改的东西。</p>
+<p>因为大多数开发人员不需要更改渲染意图，所以不能直接从 Cocoa 设置属性。如果您的应用程序需要对颜色管理的更多控制，则必须使用 Quartz 更改渲染意图。表 4-2 列出了 Quartz 支持的渲染意图。</p>
+<p>表 4-2：Quartz 渲染意图</p>
+<table>
+<thead>
+<tr>
+<th>渲染意图</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kCGRenderingIntentDefault</code></td>
+<td>使用默认的渲染意图设置。在这种模式下，Quartz 对所有图形使用相对比色意图，但采样图像除外。对于采样的图像，Quartz 使用感知渲染意图。</td>
+</tr>
+<tr>
+<td><code>kCGRenderingIntentAbsoluteColorimetric</code></td>
+<td>此渲染意图不会对颜色进行白点调整。在屏幕显示上看起来是白色的颜色可能会在打印的介质上复制为蓝色（因为屏幕上的白色实际上具有蓝色）。此意图对于在另一设备上模拟一个设备或渲染徽标（精确复制颜色非常重要）很有用。</td>
+</tr>
+<tr>
+<td><code>kCGRenderingIntentRelativeColorimetric</code></td>
+<td>此渲染意图使用来自源和目标的白点信息，并调整颜色信息，以使源的白点映射到目标的白点。色域内的颜色也会相应调整。此意图通常用于艺术线条图形。</td>
+</tr>
+<tr>
+<td><code>kCGRenderingIntentPerceptual</code></td>
+<td>这种渲染意图产生令人愉悦的视觉效果，并以绝对的色彩再现为代价来保留色彩之间的关系。该意图通常用于摄影图像。</td>
+</tr>
+<tr>
+<td><code>kCGRenderingIntentSaturation</code></td>
+<td>这种渲染意图试图使颜色的饱和度最大化。此意图主要用于业务图表或图形。</td>
+</tr>
+</tbody>
+</table>
+<p>要更改渲染意图，必须为当前绘图环境获取一个 Quartz 图形上下文，并调用 <code>CGContextSetRenderingIntent</code> 函数，如以下示例所示：</p>
+<pre><code class="language-objective-c">- (void) drawRect:(NSRect)rect
+{
+    CGContextRef theCG = [[NSGraphicsContext currentContext] graphicsPort];
+ 
+    // Change the rendering intent.
+    CGContextSetRenderingIntent(theCG, kCGRenderingIntentPerceptual);
+ 
+    // Draw your content.
+}
+</code></pre>
+<div style="padding-top:25px;">
+    <div style="float:left;">
+        <a style="text-decoration:none" href="%E5%9D%90%E6%A0%87%E7%B3%BB%E5%92%8C%E5%8F%98%E6%8D%A2.html">&laquo; 上一章：坐标系和变换</a>
+    </div>
+    <div style="float:right">
+        <a style="text-decoration:none" href="%E5%9B%BE%E5%83%8F.html">下一章：图像 &raquo;</a> 
+    </div>
+</div>
+
+                  </article>
+                  <div class="comments-wrap">
+                    <div class="share-comments">
+                      
+
+                      
+
+                      
+                    </div>
+                  </div><!-- end comments wrap -->
+              </div>
+            </div><!-- end columns -->
+      </div><!-- end container -->
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+              Copyright &copy; 2019
+              Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+              Theme used <a target="_blank" href="https://bulma.io/">Bulma CSS</a>.
+          </p>
+        </div>
+      </footer>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="asset/prism.js"></script>
+
+
+
+  
+    
+
+
+
+
+  </body>
+</html>
