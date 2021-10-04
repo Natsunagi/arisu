@@ -151,7 +151,7 @@
 <h3><a id="%E5%9B%BE%E6%A1%88%E9%A2%9C%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图案颜色</h3>
 <p>除了创建单色之外，您还可以使用图像创建图案颜色。图案颜色最适合用作填充颜色，但也可以用作描边颜色。渲染后，您指定的图像将绘制在路径或其填充区域上，而不是纯色上。如果图像太小而无法填充给定区域，则将其垂直和水平平铺，如图 4-1 所示。</p>
 <p>图 4-1：用图案绘图</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/4-1.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/4-1.png" alt="" /></p>
 <p>有关如何创建图案颜色的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Color/Color.html#//apple_ref/doc/uid/TP40003290-CH205-BAJBDIFC">创建颜色</a>。</p>
 <h3><a id="%E9%A2%9C%E8%89%B2%E6%B8%85%E5%8D%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>颜色清单</h3>
 <p>颜色列表是类似于字典的对象（由 <code>NSColorList</code> 类实现），其中包含由键标识的 <code>NSColor</code> 对象的有序列表。您可以通过键从颜色列表中检索颜色。您还可以通过将颜色放置在列表中的特定索引处来组织颜色。</p>
@@ -204,7 +204,7 @@
 </tbody>
 </table>
 <p>例如，以下代码将描边颜色设置为黑色，而将填充颜色设置为背景颜色以进行控件。</p>
-<pre><code class="language-objective-c">[[NSColor blackColor] setStroke];
+<pre><code class="language-objectivec">[[NSColor blackColor] setStroke];
 [[NSColor controlBackgroundColor] setFill];
 </code></pre>
 <p>当前上下文中的所有后续绘制操作将使用指定的颜色。如果您不想为笔触或填充绘制任何颜色，则可以将当前笔触或填充设置为完全透明的颜色，可以通过调用 <code>NSColor</code> 的 <code>clearColor</code> 方法获得该颜色。您还可以通过将任何其他颜色的 alpha 设置为 0 来创建透明颜色。</p>
@@ -235,7 +235,7 @@
 <p>色彩空间可帮助您的程序在整个创建和渲染过程中保持色彩逼真度。尽管大多数程序可能永远都不需要担心颜色空间，但是在某些情况下（例如，在操作颜色分量值之前），您可能需要了解当前的颜色空间。</p>
 <h3><a id="%E5%9C%A8%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4%E4%B9%8B%E9%97%B4%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在色彩空间之间转换</h3>
 <p>您可以使用 <code>NSColor</code> 的 <code>colorUsingColorSpaceName:</code> 方法在颜色空间之间进行转换。此方法使用您指定的颜色空间创建一个表示相同颜色的新颜色对象。要将颜色从 RGB 转换为 CMYK，可以使用类似于以下代码：</p>
-<pre><code class="language-objective-c">NSColor* rgbColor = [NSColor colorWithCalibratedRed:1.0 green: 0.5  blue: 0.5  alpha:0.75];
+<pre><code class="language-objectivec">NSColor* rgbColor = [NSColor colorWithCalibratedRed:1.0 green: 0.5  blue: 0.5  alpha:0.75];
  
 NSColor* cmykColor = [rgbColor colorUsingColorSpace:[NSColorSpace  genericCMYKColorSpace]];
 </code></pre>
@@ -274,7 +274,7 @@ NSColor* cmykColor = [rgbColor colorUsingColorSpace:[NSColorSpace  genericCMYKCo
 </tbody>
 </table>
 <p>要更改渲染意图，必须为当前绘图环境获取一个 Quartz 图形上下文，并调用 <code>CGContextSetRenderingIntent</code> 函数，如以下示例所示：</p>
-<pre><code class="language-objective-c">- (void) drawRect:(NSRect)rect
+<pre><code class="language-objectivec">- (void) drawRect:(NSRect)rect
 {
     CGContextRef theCG = [[NSGraphicsContext currentContext] graphicsPort];
  

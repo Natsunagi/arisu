@@ -135,7 +135,7 @@
 <p>在您的 <code>drawRect:</code> 方法返回之后，Cocoa 将经历为下一个视图重置绘图环境的过程。它会还原您对绘图环境所做的任何更改，并为下一个视图设置坐标变换和剪切区域，从而为其提供一个原始的工作环境。然后，此过程将在应用程序的每个更新周期中重复进行。</p>
 <h3><a id="%E5%BD%93%E5%89%8D%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>当前上下文</h3>
 <p>对于给定的窗口，Cocoa 应用程序中的每个线程都有其自己的图形上下文对象。您可以使用 <code>NSGraphicsContext</code> 的 <code>currentContext</code> 方法从代码中访问此对象，如以下示例所示：</p>
-<pre><code class="language-objective-c">NSGraphicsContext* aContext = [NSGraphicsContext currentContext];
+<pre><code class="language-objectivec">NSGraphicsContext* aContext = [NSGraphicsContext currentContext];
 </code></pre>
 <p><code>currentContext</code> 方法始终返回适用于当前绘图环境的 Cocoa 图形上下文对象。该对象跟踪当前的图形状态，使您可以保存和恢复图形状态信息，并可以修改许多图形状态属性。您对图形状态所做的更改会影响所有后续的图形调用。如果您多次更改属性，则仅使用最新设置。</p>
 <p>要保存当前图形状态，请使用 <code>NSGraphicsContext</code> 的 <code>saveGraphicsState</code> 方法。此方法本质上将当前状态的副本压入堆栈，使您可以自由更改当前状态。当您想恢复到先前的状态时，只需调用 <code>restoreGraphicsState</code> 方法即可将当前图形状态（包括自上次保存以来的所有更改）从堆栈中弹出并恢复先前的状态。</p>
@@ -144,7 +144,7 @@
 <p>注意：<code>saveGraphicsState</code> 和 <code>restoreGraphicsState</code> 方法可作为类方法和实例方法使用。类方法版本仅保存和还原当前上下文的图形状态。实例方法使您可以保存特定上下文对象的状态，尽管在大多数情况下这应该是当前上下文。</p>
 </blockquote>
 <p>下面的示例显示一个简单的 <code>drawRect:</code> 方法，该方法遍历开发人员定义的对象的数组，每个对象都使用一组不同的属性进行绘制。图形状态在每次循环迭代期间都会保存和恢复，以确保每个对象都从相同的图形状态开始。</p>
-<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+<pre><code class="language-objectivec">- (void)drawRect:(NSRect)rect
 {
     NSGraphicsContext* theContext = [NSGraphicsContext currentContext];
  
@@ -304,7 +304,7 @@
 </blockquote>
 <p>图 2-1 显示了 Cocoa 合成选项以及它们如何影响渲染的内容。在图的顶部是正在渲染的源和目标内容。叶子的叶脉是完全透明的，而叶子的其余部分是不透明的。在目标图像中，颜色呈现为部分不透明。下面是每个受支持的合成操作的结果。</p>
 <p>图 2-1：Cocoa 中的合成操作</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/2-1.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/2-1.png" alt="" /></p>
 <p>表 2-2 列出了用于在合成操作期间计算像素颜色的数学方程式。在每个等式中，R 是结果颜色（预乘），S 是源颜色，D 是目标颜色，Sa 是源颜色的 alpha 值，Da 是目标颜色的 alpha 值。 对于这些计算，所有颜色分量值和 alpha 值都在 0 到 1 的范围内。</p>
 <p>表 2-2：用于合成颜色的数学方程式</p>
 <table>
@@ -377,9 +377,9 @@
 <p>对于简单的矩形形状，最简单的裁剪方法是使用 <code>NSRectClip</code> 函数。要指定多个矩形区域，请改用 <code>NSRectClipList</code> 函数。要将视图裁剪到非矩形区域，必须使用 <code>NSBezierPath</code> 对象。您创建的路径可以是任意复杂的，并且包含多个矩形和非矩形区域。找到所需的路径后，请使用对象的 <code>addClip</code> 方法将生成的形状添加到当前的剪切区域。（有关如何创建路径的信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-SW4">绘制基本形状</a>。）</p>
 <p>图 2-2 显示了对图像应用剪切路径的效果。顶部图像显示了要剪切的图像以及剪切形状所使用的路径，在这种情况下，剪切路径由单个 <code>NSBezierPath</code> 对象内的两个形状组成。尽管两种情况下的夹子形状都相同，但最终的夹子区域却不同。这是因为在计算裁剪区域时，裁剪会考虑当前的绕线规则。</p>
 <p>图 2-2：剪切路径和缠绕规则</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/2-2.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/2-2.png" alt="" /></p>
 <p>以下示例显示如何创建图 2-2 中所示的剪辑区域。剪辑区域由重叠的正方形和圆形组成，因此您只需向 Bezier 路径对象添加具有适当大小的矩形和椭圆形，然后调用 <code>addClip</code> 方法即可。</p>
-<pre><code class="language-objective-c">// If you plan to do more drawing later, it's a good idea
+<pre><code class="language-objectivec">// If you plan to do more drawing later, it's a good idea
 // to save the graphics state before clipping.
 [NSGraphicsContext saveGraphicsState];
  
@@ -399,7 +399,7 @@ NSBezierPath* clipPath = [NSBezierPath bezierPath];
 <h3><a id="%E8%AE%BE%E7%BD%AE%E6%8A%97%E9%94%AF%E9%BD%BF%E9%80%89%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置抗锯齿选项</h3>
 <p>Cocoa 图形上下文以与 Quartz 对应版本相同的方式支持抗锯齿。抗锯齿是人为地校正位图图像中文本或形状周围的锯齿状（或锯齿状）边缘的过程。这些锯齿状的边缘主要出现在较低分辨率的位图中，在此位置更容易看到单个像素。为了消除锯齿状的边缘，Cocoa 对围绕形状轮廓的像素使用了不同的颜色。它使用的颜色是原始像素颜色和形状轮廓颜色的混合。通过以这种方式混合颜色，形状的边缘显得更加平滑。图 2-3 显示了相同图像的锯齿和反锯齿。</p>
 <p>图 2-3：锯齿和反锯齿内容的比较</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/2-3.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/2-3.png" alt="" /></p>
 <p>若要启用或禁用抗锯齿，请使用 <code>NSGraphicsContext</code> 的 <code>setShouldAntialias:</code> 方法。即使禁用了抗锯齿功能，它仍可能看起来像可可正在使用别名绘制内容一样。在非像素边界上绘制内容时，Cocoa 可能会选择将线划分为多个像素，这会给人以锯齿的印象。有关如何避免这种情况的更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCICIJAJ">制作像素精确绘图</a>。</p>
 <h2><a id="%E5%88%9B%E5%BB%BA%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建图形上下文</h2>
 <p>您在应用程序中执行的绘图类型将确定是需要显式创建任何图形上下文对象还是仅使用 Cocoa 提供的图形对象。如果您所做的只是绘制视图，则可以仅使用 Cocoa 提供的上下文。对于基于屏幕的绘图和基于打印的绘图都是如此。但是，如果您的应用程序执行任何其他类型的绘图，则可能需要自己创建图形上下文。</p>

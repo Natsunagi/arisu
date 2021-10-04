@@ -124,7 +124,7 @@
 <p>文本渲染是一种特殊的图形类型，它是大多数应用程序的重要组成部分。Cocoa 提供了一系列应可满足大多数开发人员需求的呈现文本的选项。以下各节简要介绍了这些选项。有关更多详细信息，您应该在 <code>Reference Library &gt; Cocoa &gt; Text &amp; Fonts</code> 中查看文档。</p>
 <h2><a id="%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>文本属性</h2>
 <p>Cocoa 支持使用 <code>NSFont</code> 类以编程方式获取字体信息。您可以将字体作为属性应用于字符串，也可以使用它们在当前上下文中设置默认字体。Cocoa 文本系统还使用字体对象来格式化文本。您可以使用所需字体的名称和大小从 Cocoa 请求 <code>NSFont</code> 对象，如以下示例所示。</p>
-<pre><code class="language-objective-c">NSFont* font1= [NSFont fontWithName:@&quot;Helvetica&quot; size:9.0];
+<pre><code class="language-objectivec">NSFont* font1= [NSFont fontWithName:@&quot;Helvetica&quot; size:9.0];
 NSFont* font2 = [NSFont fontWithName:@&quot;Helvetica Bold&quot;  size:10.0];
 </code></pre>
 <p><code>NSFont</code> 类不提供编程方式来修改其他文本属性，例如字符间距和文本绘制模式。但是，Cocoa 确实提供了可以显示给用户的系统字体面板。用户可以在此面板中更改当前字体属性。您还可以使用 Cocoa 文本系统设置大多数文本选项，如<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCICEJCJ">高级文本绘图</a>中所述。</p>

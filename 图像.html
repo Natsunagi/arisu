@@ -333,7 +333,7 @@
 <p>图像对象有两种可能的方向：标准方向和翻转方向。创建新的空 <code>NSImage</code> 对象时，可以根据要绘制图像数据的方式设置方向。默认情况下，图像使用标准的笛卡尔坐标（非翻转）坐标系，但是您可以通过在绘制之前调用 <code>NSImage</code> 的 <code>setFlipped:</code> 方法来强制它们使用翻转的坐标系。但是，在将焦点锁定在图像上并开始绘图之前，必须始终设置图像方向。在 <code>lockFocus</code> 调用之后更改坐标系的方向无效。此外，在再次解除焦点锁定之后调用<code>setFlipped:</code> 方法可能不会获得理想的结果，应该避免。</p>
 <p>在视图中绘制图像时，可以将图像视为只是其中包含一些数据的矩形。无论其内部坐标系的方向如何，您都始终相对于当前视图的坐标系放置图像。图 5-1 以非翻转视图显示了两个图像。用于绘制每幅图像的代码使用图中所示的坐标点，这些坐标点位于视图的（未翻转）坐标系中。但是，由于第一张图片内部使用了翻转的坐标系，因此其内容上下颠倒。</p>
 <p>图 5-1：未翻转视图中的图像方向</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/5-1.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/5-1.png" alt="" /></p>
 <h3><a id="%E7%BB%98%E5%9B%BE%E4%B8%8E%E5%90%88%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘图与合成</h3>
 <p><code>NSImage</code> 类提供了不同的方法组，以方便将图像绘制到当前上下文。通常可以将两种主要方法分类为“绘图”方法与“合成”方法。<code>NSImage</code> 有三种“绘制”方法：</p>
 <ul>
@@ -556,7 +556,7 @@
 <h3><a id="%E5%8A%A0%E8%BD%BD%E7%8E%B0%E6%9C%89%E5%9B%BE%E5%83%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>加载现有图像</h3>
 <p>对于现有图像，可以使用 NSImage 方法直接从文件或URL加载图像。打开图像文件时， <code>NSImage</code> 将自动创建与该文件中的数据类型最匹配的图像表示形式。Cocoa 内部支持多种文件格式。在 OS X v10.4 和更高版本中，Cocoa 使用Image I/O 框架支持更多文件格式。有关支持的文件类型的信息，请参阅<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Images/Images.html#//apple_ref/doc/uid/TP40003290-CH208-BCIIFBJG">支持的图像文件格式</a>。</p>
 <p>以下示例显示了如何从文件加载现有图像。重要的是要记住，从现有文件加载的图像主要用于渲染。如果要直接操作数据，请将其复制到屏幕外窗口或其他本地数据结构中，然后在其中进行操作。</p>
-<pre><code class="language-objective-c">NSString* imageName = [[NSBundle mainBundle]
+<pre><code class="language-objectivec">NSString* imageName = [[NSBundle mainBundle]
                     pathForResource:@&quot;image1&quot; ofType:@&quot;JPG&quot;];
 NSImage* tempImage = [[NSImage alloc] initWithContentsOfFile:imageName];
 </code></pre>
@@ -574,7 +574,7 @@ NSImage* tempImage = [[NSImage alloc] initWithContentsOfFile:imageName];
 <p>通过将焦点锁定在 <code>NSImage</code> 对象上并将其他图像或路径绘制到图像上下文中，可以以编程方式创建图像。尽管您也可以将生成的图像数据保存到文件中，但是该技术对于创建要渲染到屏幕上的图像最有用。</p>
 <p>清单 5-1 显示了如何创建一个新的空白图像并对其进行配置以进行绘图。创建空白图像时，必须指定新图像的大小（以像素为单位）。如果将焦点锁定在包含现有内容的图像上，则新内容将与旧内容合成。绘制时，可以使用在绘制到视图时通常使用的任何例程。</p>
 <p>清单 5-1：绘制图像</p>
-<pre><code class="language-objective-c">NSImage* anImage = [[NSImage alloc] initWithSize:NSMakeSize(100.0,  100.0)];
+<pre><code class="language-objectivec">NSImage* anImage = [[NSImage alloc] initWithSize:NSMakeSize(100.0,  100.0)];
 [anImage lockFocus];
  
 // Do your drawing here...
@@ -624,7 +624,7 @@ NSImage* tempImage = [[NSImage alloc] initWithContentsOfFile:imageName];
 <p>获得视图或图像后，将焦点锁定在其上，然后使用 <code>NSBitmapImageRep</code> 的 <code>initWithFocusedViewRect:</code> 方法捕获内容。使用此方法时，可以指定要从视图或图像捕获的确切矩形。因此，您可以捕获所有内容或仅捕获一部分；您无法缩放捕获的内容。  <code>initWithFocusedViewRect:</code> 方法捕获的位与聚焦图像或视图中的位完全相同。</p>
 <p>清单 5-2 显示了如何从现有图像创建位图表示。该示例从自定义例程获取要捕获的图像，将焦点锁定在该例程上，并创建 <code>NSBitmapImageRep</code> 对象。您自己的实现将需要用代码替换对 <code>myGetCurrentImage</code> 的调用，以创建或获取程序使用的图像。</p>
 <p>清单 5-2：捕获现有图像的内容</p>
-<pre><code class="language-objective-c">NSImage* image = [self myGetCurrentImage];
+<pre><code class="language-objectivec">NSImage* image = [self myGetCurrentImage];
 NSSize size = [image size];
 [image lockFocus];
  
@@ -636,7 +636,7 @@ NSBitmapImageRep* rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:
 <p>要捕获屏幕视图的内容，您将非常类似于前面的示例使用代码。将焦点锁定在视图上之后，您将使用 <code>initWithFocusedViewRect:</code> 方法创建 <code>NSBitmapImageRep</code> 对象。</p>
 <p>要捕获分离（非屏幕）视图的内容，必须先为该视图创建一个离屏窗口，然后再尝试捕获其内容。  <code>window</code> 对象提供了一个后备缓冲区，用于保存视图的呈现内容。只要您不将窗口订购到屏幕上，为窗口指定的原点实际上就无关紧要。清单 5-3 中的示例为原点坐标使用了较大的负值（只是为了确保窗口不可见），但也可以轻松地使用坐标（0，0）。</p>
 <p>清单 5-3：绘制到屏幕外的窗口</p>
-<pre><code class="language-objective-c">NSRect offscreenRect = NSMakeRect(-10000.0, -10000.0,
+<pre><code class="language-objectivec">NSRect offscreenRect = NSMakeRect(-10000.0, -10000.0,
                             windowSize.width, windowSize.height);
 NSWindow* offscreenWindow = [[NSWindow alloc]
                 initWithContentRect:offscreenRect
@@ -660,7 +660,7 @@ NSBitmapImageRep* rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:
 <p>在 OS X v10.4 及更高版本中，可以创建位图图像表示对象并直接绘制到该对象。此技术很简单，不需要创建任何无关的对象，例如图像或窗口。但是，如果您的代码需要在 OS X 的早期版本中运行，则不能使用此技术。</p>
 <p>清单 5-4 创建了一个具有所需位深，分辨率和色彩空间的新 <code>NSBitmapImageRep</code> 对象。然后，它使用位图创建一个新的图形上下文对象，并使该上下文成为当前上下文。</p>
 <p>清单5-4：直接绘制到位图</p>
-<pre><code class="language-objective-c">NSRect offscreenRect = NSMakeRect(0.0, 0.0, 500.0, 500.0);
+<pre><code class="language-objectivec">NSRect offscreenRect = NSMakeRect(0.0, 0.0, 500.0, 500.0);
 NSBitmapImageRep* offscreenRep = nil;
  
 offscreenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
@@ -698,7 +698,7 @@ offscreenRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
 <p>打印系统完成后，调用 <code>dataWithPDFInsideRect:</code> 或 <code>dataWithEPSInsideRect:</code> 的代码将接收带有 PDF 或 EPS 数据的 <code>NSData</code> 对象。然后，您必须将此对象传递给 <code>NSEPSImageRep</code> 或 <code>NSPDFImageRep的imageRepWithData:</code> 方法，以初始化新的图像表示对象，然后可以将其添加到 <code>NSImage</code> 对象。</p>
 <p>清单 5-5 显示了根据某些视图内容创建 PDF 图像的基本步骤。视图本身必须是知道如何绘制所需内容的视图。这可以是单独设计的视图，仅用于以任何所需的分页方式绘制所需的内容，也可以是其中一个窗口中的现有视图。</p>
 <p>清单5-5：从视图创建 PDF 数据</p>
-<pre><code class="language-objective-c">MyPDFView* myView = GetMyPDFRenderView();
+<pre><code class="language-objectivec">MyPDFView* myView = GetMyPDFRenderView();
 NSRect viewBounds = [myView bounds];
  
 NSData* theData = [myView dataWithPDFInsideRect:viewBounds];
@@ -734,16 +734,16 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 <p>在高分辨率屏幕上清晰地绘制多部分图像可能非常具有挑战性。如果您不小心在整数边界上正确对齐图像，则生成的纹理可能包含像素裂缝或其他视觉伪像。AppKit 函数考虑了在任何情况下正确绘制多部分图像所需的所有因素，包括使用分辨率独立比例因子为 1.0 以外的情况。</p>
 <p>图 5-2 显示了如何为水平可调整大小的控件组合三部分的图像。两个端盖是固定尺寸的图像，可为背景边缘提供所需的装饰。然后，中心填充部分会适当调整大小，以适合您传递到 <code>NSDrawThreePartImage</code> 函数中的边界矩形。（如果希望控件在垂直方向上可调整大小，则可以将这些图像垂直堆叠而不是水平堆叠。）使用此功能绘制背景后，可以根据需要在背景上分层放置其他内容。</p>
 <p>图 5-2：绘制三部分图像</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/5-2.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/5-2.png" alt="" /></p>
 <p>图 5-3 显示了如何为可垂直和水平调整大小的控件组合九个部分的图像。在这种情况下，角块的大小保持不变，但是剩余的五个填充图像的大小各不相同，以适合当前的边界矩形。</p>
 <p>图 5-3：绘制九部分图像</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/5-3.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/5-3.png" alt="" /></p>
 <p>有关这些功能的更多信息，请参见 <a href="https://developer.apple.com/documentation/appkit/functions">Application Kit 功能参考</a>中的相关描述。</p>
 <h3><a id="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAopengl%E7%BA%B9%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建一个 OpenGL 纹理</h3>
 <p>在 OpenGL 中，纹理是绘制对象表面的一种方法。对于复杂或逼真的表面，应用纹理可能比使用原始形状渲染相同的内容更容易。Cocoa 中的几乎所有视图或图像都可以用来创建 OpenGL 纹理。从视图或图像中，创建一个位图图像表示对象（如捕获视图或图像的内容中所述），然后使用该对象创建纹理。</p>
 <p>清单 5-6 显示了一个用于从 <code>NSImage</code> 对象创建纹理的独立方法。创建 <code>NSBitmapImageRep</code> 对象后，此方法将配置一些与纹理相关的参数，创建一个新的纹理对象，然后将位图数据与该对象关联。此方法可处理 24 位 RGB 和 32 位 RGBA 图像，但是您可以随时对其进行修改以支持其他图像格式。您必须传递一个指向 <code>texName</code> 的有效 <code>GLuint</code> 变量的指针，但该参数中存储的值可以为 0。如果指定非零值，则标识符与纹理对象相关联，以后可用于标识纹理；否则，将在 <code>texName</code> 参数中返回一个标识符给您。</p>
 <p>清单 5-6：从图像创建 OpenGL 纹理</p>
-<pre><code class="language-objective-c">- (void)textureFromImage:(NSImage*)theImg textureName:(GLuint*)texName
+<pre><code class="language-objectivec">- (void)textureFromImage:(NSImage*)theImg textureName:(GLuint*)texName
 {
     NSBitmapImageRep* bitmap = [NSBitmapImageRep alloc];
     int samplesPerPixel = 0;
@@ -822,7 +822,7 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 <h3><a id="%E5%B0%86%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A2%9C%E8%89%B2%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8E%E5%9B%BE%E5%83%8F%E7%9B%B8%E5%85%B3%E8%81%94" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>将自定义颜色配置文件与图像相关联</h3>
 <p>您可以将自定义 ColorSync 配置文件与 <code>NSBitmapImageRep</code> 对象相关联，该对象包含通过解码 TIFF，JPEG，GIF 或 PNG文 件而产生的像素数据。要将数据与位图图像表示形式关联，请使用 <code>NSBitmapImageRep</code> 的 <code>setProperty:withValue:</code> 方法和 <code>NSImageColorSyncProfileData</code> 属性。清单 5-7 显示了如何加载 ColorSync 数据并将其与位图图像表示关联的示例。</p>
 <p>清单 5-7：将ColorSync配置文件添加到图像</p>
-<pre><code class="language-objective-c">@implementation NSBitmapImageRep (MoreColorMethods)
+<pre><code class="language-objectivec">@implementation NSBitmapImageRep (MoreColorMethods)
 - (NSBitmapImageRep *) imageRepWithProfileAtPath:(NSString *) pathToProfile
 {
     id result = [self copy];
@@ -844,7 +844,7 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 <p>转换现有图像的色彩空间需要使用 <code>Quartz</code> 来建立使用目标色彩空间的绘图上下文。一旦有了具有所需色彩空间的 <code>CGContextRef</code> 对象，就可以使用它来配置 Cocoa 绘图环境并绘制图像。</p>
 <p>清单 5-8 显示了如何使用自定义颜色空间创建 Quartz 位图上下文。该函数接收一个 <code>CMProfileRef</code> 对象，该对象可以从 ColorSync Manager 或 <code>NSColorSpace</code> 的 <code>colorSyncProfile</code> 方法获得。它使用颜色配置文件确定颜色空间中的通道数。一旦知道位图所需的通道总数（包括 alpha ），它就会创建并返回匹配的位图上下文。</p>
 <p>清单 5-8：使用自定义颜色配置文件创建位图</p>
-<pre><code class="language-objective-c">CGContextRef CreateCGBitmapContextWithColorProfile(size_t width,
+<pre><code class="language-objectivec">CGContextRef CreateCGBitmapContextWithColorProfile(size_t width,
                 size_t height,
                 CMProfileRef profile,
                 CGImageAlphaInfo alphaInfo)
@@ -910,7 +910,7 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 </code></pre>
 <p>一旦有了 Quartz 位图上下文，就可以创建一个新的 Cocoa 图形上下文对象并将其用于绘图。要创建 <code>NSGraphicsContext</code> 对象，请使用 <code>graphicsContextWithGraphicsPort:flipped:</code> 方法，该方法将 <code>CGContextRef</code> 对象作为参数。然后，您可以使用 <code>setCurrentContext:</code> 方法使其变为当前状态并开始绘制。 完成绘制后，可以使用Quartz创建一个包含结果的 <code>CGImageRef</code> 对象。清单 5-9 显示了此过程。</p>
 <p>清单 5-9：将位图转换为其他颜色空间</p>
-<pre><code class="language-objective-c">- (CGImageRef) convertBitmapImageRep:(NSBitmapImageRep*)theRep toColorSpace:(NSColorSpace*)colorspace
+<pre><code class="language-objectivec">- (CGImageRef) convertBitmapImageRep:(NSBitmapImageRep*)theRep toColorSpace:(NSColorSpace*)colorspace
 {
     if (!theRep)
         return nil;
@@ -963,7 +963,7 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 </code></pre>
 <p>有两种方法可以从 <code>CGImageRef</code> 类型获取 <code>NSImage</code> 对象。在 OS X v10.5 和更高版本中，可以使用其 initWithCGImage: 方法创建一个 NSBitmapImageRep 对象，然后将该图像表示形式添加到 NSImage 对象。但是，如果您的代码需要在 OS X v10.4 或更早的版本中运行，则可以将焦点锁定在 NSImage 对象上，并使用 CGContextDrawImage 函数将 Quartz 图像绘制到该图像中。后一种技术创建图像数据的副本，比使用 initWithCGImage: 方法需要更多的精力，但在 OS X 的所有版本上都可用。清单 5-10 显示了一个示例方法，该方法演示了两种方法，但始终使用目标平台的最佳方法进行操作。</p>
 <p>清单 5-10：使用 <code>CGImageRef</code> 对象创建一个 <code>NSImage</code> 对象</p>
-<pre><code class="language-objective-c">- (NSImage*)imageFromCGImageRef:(CGImageRef)image
+<pre><code class="language-objectivec">- (NSImage*)imageFromCGImageRef:(CGImageRef)image
 {
     NSImage* newImage = nil;
  
@@ -1005,7 +1005,7 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 <p>如果您已有一个 ICC 配置文件，并且想将该配置文件与图像相关联，则必须使用 ColorSync Manager 进行。如果使用 Quartz 图形上下文，则使用 ICC 配置文件获取创建 <code>CGImageRef</code> 对象所需的色彩空间信息。然后，您可以使用该色彩空间信息来创建适当的上下文以渲染图像。</p>
 <p>清单 5-11 显示了如何从 ICC 配置文件创建 <code>CGColorSpaceRef</code> 对象。这段代码使用了几种 ColorSync Manager 功能来创建 <code>CMProfileRef</code> 对象，然后您可以从中提取色彩空间对象。OS X 在 <code>/System/Library/ColorSync/Profiles/</code> 目录中包含几个标准的 ICC 配置文件。</p>
 <p>清单 5-11：从自定义颜色配置文件创建颜色空间</p>
-<pre><code class="language-objective-c">CGColorSpaceRef CreateColorSpaceForProfileAtPath(NSString* path)
+<pre><code class="language-objectivec">CGColorSpaceRef CreateColorSpaceForProfileAtPath(NSString* path)
 {
     CMProfileLocation profileLoc;
     CMProfileRef profileRef;

@@ -166,7 +166,7 @@
 </tbody>
 </table>
 <p>尽管在每种情况下结构布局都是相同的，但是您不能将 Quartz 数据类型直接传递给需要 Cocoa 类型的方法。要进行转换，必须将一种类型转换为另一种类型，如以下示例所示：</p>
-<pre><code class="language-objective-c">NSRect cocoaRect = *(NSRect*)&amp;myCGRect;
+<pre><code class="language-objectivec">NSRect cocoaRect = *(NSRect*)&amp;myCGRect;
 </code></pre>
 <p>表 9-2 列出了 Cocoa 类，它们近似于特定 Quartz 数据类型的行为。在某些情况下，Cocoa 类包装了其 Quartz 对应对象的一个实例，但这并不总是正确的。对于阴影，Quartz 不提供用于管理阴影参数的直接数据类型。您必须使用几种不同的功能在 Quartz 中设置阴影属性。就层而言，没有与 Cocoa 相等的类型。</p>
 <p>表 9-2：等效的 Cocoa 和 Quartz 类型</p>
@@ -250,7 +250,7 @@
 <p>在创建 OpenGL 图形上下文对象之前，首先要创建一个像素格式对象（<code>NSOpenGLPixelFormat</code>）。在创建像素格式对象时指定的属性决定了图形上下文的渲染行为。一旦有了有效的像素格式对象，就可以创建和初始化 OpenGL 图形上下文对象。</p>
 <p>清单 9-1 尝试创建一个支持全屏，双缓冲，32 位图形的 OpenGL 图形上下文。如果所需的渲染器可用，则返回上下文。否则，返回 <code>nil</code>。</p>
 <p>清单 9-1：创建一个 OpenGL 图形上下文</p>
-<pre><code class="language-objective-c">- (NSOpenGLContext*)getMyContext
+<pre><code class="language-objectivec">- (NSOpenGLContext*)getMyContext
 {
     // Specify the pixel-format attributes.
     NSOpenGLPixelFormatAttribute attrs[] =

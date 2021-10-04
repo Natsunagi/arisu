@@ -125,13 +125,13 @@
 <h2><a id="%E5%90%91%E7%BB%98%E5%88%B6%E7%9A%84%E8%B7%AF%E5%BE%84%E6%B7%BB%E5%8A%A0%E9%98%B4%E5%BD%B1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>向绘制的路径添加阴影</h2>
 <p>Cocoa 通过 NSShadow 类提供对阴影的支持。阴影模仿投射在对象上的光源，使路径看起来好像它们漂浮在视图表面上方。图 6-1 显示了阴影在一些路径上产生的效果。</p>
 <p>图 6-1：渲染路径投射的阴影</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-1.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/6-1.png" alt="" /></p>
 <p>阴影效果由水平和垂直偏移值，模糊值和阴影颜色组成。这些效果结合在一起，给人一种幻觉，即画布上方有一束光照在下面的形状上。偏移和模糊值可有效确定灯光的位置以及画布上方形状的高度。</p>
 <p>阴影位置始终使用视图的基本坐标系，而忽略您对视图中的形状应用的任何变换。这意味着无论您如何操纵视图中的形状，生成阴影的光的外观位置都不会改变。如果要更改光源的外观位置，则必须在绘制内容之前更改阴影对象属性并将更新的阴影对象应用于当前图形上下文。</p>
 <p>要创建阴影，您可以创建一个 <code>NSShadow</code> 对象并调用其方法来设置所需的阴影属性。如果您预期一条或多条路径会相互重叠，则应确保选择一种具有 Alpha值 的颜色；否则，与其他对象相交的阴影可能看起来很平坦并破坏了效果。要应用阴影，请调用其 <code>set</code> 方法。</p>
 <p>清单 6-1 显示了用于为图 6-1 中的路径创建阴影的代码。部分透明的颜色用于允许重叠的路径和阴影。</p>
 <p>清单 6-1：向路径添加阴影</p>
-<pre><code class="language-objective-c">NSGraphicsContext saveGraphicsState];
+<pre><code class="language-objectivec">NSGraphicsContext saveGraphicsState];
  
 // Create the shadow below and to the right of the shape.
 NSShadow* theShadow = [[NSShadow alloc] init];
@@ -156,7 +156,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 <p>渐变填充（在 Quartz 中也称为阴影）是一种从一种颜色逐渐变为另一种颜色的图案。与 <code>NSColor</code> 支持的基于图像的图案不同，渐变填充不会平铺颜色以填充目标形状。相反，它使用数学函数来计算渐变梯度中各个点的颜色。由于渐变梯度本质上是数学的，因此它们与分辨率无关，并且可以轻松缩放到任何设备。</p>
 <p>图 6-2 显示了一些简单的渐变填充模式。渐变 a 和 b 显示填充不同贝塞尔曲线形状并沿不同角度对齐的线性梯度，而渐变 c 和 d 显示径向梯度。在使用渐变 c 的情况下，渐变被设置为在渐变的开始和结束位置之前和之后绘制，从而在渐变的正中心创建了一个白色圆圈，并在渐变周围形成了一个黑色边框。对于渐变 d，用于绘制渐变的圆的中心点会偏移，从而产生另一种阴影效果。</p>
 <p>图 6-2：不同类型的渐变</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-2.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/6-2.png" alt="" /></p>
 <p>在 OS X v10.5 和更高版本中，Cocoa 使用 NSGradient 类提供了对绘制渐变的支持。如果您的软件在 OS X 的早期版本上运行，则必须使用 Quartz 或 Core Image 来执行渐变填充。</p>
 <h3><a id="%E4%BD%BF%E7%94%A8nsgradient%E7%B1%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用 NSGradient 类</h3>
 <p>在 OS X v10.5 和更高版本中，可以使用 <code>NSGradient</code> 类创建复杂的渐变填充图案，而无需编写自己的颜色计算功能。渐变对象是不可变的对象，用于存储有关渐变中颜色的信息，并提供用于将这些颜色绘制到当前上下文的接口。创建 N<code>SGradient</code> 对象时，可以指定一个或多个 <code>NSColor</code> 对象以及一组可选的位置参数。在绘制过程中，渐变对象使用此信息来计算渐变的颜色过渡。</p>
@@ -183,7 +183,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 <p>通过使用 <code>NSBezierPath</code> 或矩形作为它们的第一个参数，可以很容易地识别出这些便捷方法。绘制渐变时，此参数用作渐变的裁剪区域。您可以使用这些方法在界面中现有形状内绘制渐变填充。</p>
 <p>清单 6-2 显示了一些绘制轴向渐变图案的代码。包含圆角矩形的 <code>NSBezierPath</code> 对象在绘制渐变时充当渐变的剪切区域。图 6-3 显示了所得的梯度。</p>
 <p>清单 6-2：将轴向渐变剪切为圆角矩形</p>
-<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+<pre><code class="language-objectivec">- (void)drawRect:(NSRect)rect
 {
     NSRect        bounds = [self bounds];
  
@@ -203,7 +203,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
     [aGradient drawInBezierPath:clipShape angle:0.0];
 }
 </code></pre>
-<p>图 6-3：贝塞尔曲线路径内绘制的轴向渐变<img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-3.png" alt="" /></p>
+<p>图 6-3：贝塞尔曲线路径内绘制的轴向渐变<img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/6-3.png" alt="" /></p>
 <h4><a id="%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%A7%8B%E7%BB%98%E5%9B%BE%E4%BE%8B%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用原始绘图例程</h4>
 <p>除了高级便利方法之外，<code>NSGradien</code>t 类还定义了两种用于绘制渐变的基本方法：</p>
 <ul>
@@ -213,7 +213,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 <p>这些方法为您提供了更多关于渐变参数的灵活性，包括将渐变颜色扩展到其起点和终点之外的能力。与高级例程不同，这些方法在绘制之前不会更改剪辑区域。如果在绘制之前未设置自定义剪辑区域，则取决于渐变选项，生成的渐变可能会扩展为填充整个视图。</p>
 <p>清单 6-3 显示了使用 <code>NSGradient</code> 的原始绘制例程在视图中绘制径向渐变的代码。渐变中的第二个圆在水平和垂直方向上都与第一个圆偏移 60 个点，从而导致整个渐变偏向圆的右上角。因为代码为 <code>options</code> 参数传递了值 0，所以渐变不会超出起始和结束颜色，因此不会填充整个视图。图 6-4 显示了此代码产生的梯度。</p>
 <p>清单 6-3：使用基本例程绘制径向渐变</p>
-<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+<pre><code class="language-objectivec">- (void)drawRect:(NSRect)rect
 {
     NSRect bounds = [self bounds];
     NSGradient* aGradient = [[[NSGradient alloc]
@@ -230,7 +230,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 }
 </code></pre>
 <p>图 6-4：使用基本绘图方法创建的渐变</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/6-4.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/6-4.png" alt="" /></p>
 <h3><a id="%E5%9C%A8cocoa%E4%B8%AD%E4%BD%BF%E7%94%A8-quartz%E7%9D%80%E8%89%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在 Cocoa 中使用 Quartz 着色</h3>
 <p>由于 <code>NSGradient</code> 类仅在 OS X v10.5 和更高版本中可用，因此在 OS X 早期版本上运行的软件必须使用 Quartz 或 Core Image 绘制渐变填充。Quartz 使用您提供的数学计算功能支持在不同颜色空间中创建径向和轴向渐变。使用数学函数意味着您使用 Quartz 创建的渐变可以很好地缩放到任何分辨率。另一方面，Core Image 提供了用于创建由径向，轴向或高斯梯度组成的固定分辨率图像的滤镜。但是，由于最终结果是图像，因此对于 PDF 和其他基于打印的图形，Core Image 渐变可能不太理想。</p>
 <p>要在您的 Cocoa 程序中绘制 Quartz 阴影，您可以通过 <code>drawRect:</code> 方法执行以下操作：</p>
@@ -251,7 +251,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 <h3><a id="%E6%8D%95%E8%8E%B7%E5%B1%8F%E5%B9%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>捕获屏幕</h3>
 <p>Cocoa 不为捕获和释放屏幕提供直接支持。<code>NSScreen</code> 类提供对有关可用屏幕信息的只读访问。要捕获或操作屏幕，必须使用 Quartz Services 中的功能。</p>
 <p>要捕获所有可用的屏幕，您只需调用 <code>CGCaptureAllDisplays</code> 函数。要捕获单个显示器，必须获取所需显示器的 ID，然后调用 <code>CGDisplayCapture</code> 函数来捕获它。以下示例显示了如何使用 <code>NSScreen</code> 对象提供的信息来捕获系统的主屏幕。</p>
-<pre><code class="language-objective-c">- (BOOL) captureMainScreen
+<pre><code class="language-objectivec">- (BOOL) captureMainScreen
 {
     // Get the ID of the main screen.
     NSScreen* mainScreen = [NSScreen mainScreen];
@@ -279,7 +279,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 </ul>
 <p>清单 6-4 显示了捕获所有显示并为全屏绘制设置 OpenGL 上下文的基本步骤。有关如何创建 <code>NSOpenGLContext</code> 对象的信息，请参见创建 OpenGL 图形上下文。</p>
 <p>清单 6-4：创建 OpenGL 全屏上下文</p>
-<pre><code class="language-objective-c">NSOpenGLContext* CreateScreenContext()
+<pre><code class="language-objectivec">NSOpenGLContext* CreateScreenContext()
 {
     CGDisplayErr err;
  
@@ -313,7 +313,7 @@ NSShadow* theShadow = [[NSShadow alloc] init];
 <p>尽管使用 Cocoa 类创建了一个全屏窗口，但仍然必须使用 Quartz Services 捕获显示并正确配置窗口。<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/AdvancedDrawing/AdvancedDrawing.html#//apple_ref/doc/uid/TP40003290-CH207-CJBGBCBH">捕获屏幕</a>中介绍了捕获过程。捕获屏幕后，窗口服务器将打开一个屏蔽窗口，该窗口可隐藏大多数其他内容。要使全屏窗口可见，必须将其水平调整为位于此防护罩上方。您可以使用 <code>CGShieldingWindowLevel</code> 函数获取屏蔽级别，然后将返回的值传递给窗口的 <code>setLevel:</code> 方法。</p>
 <p>清单 6-5 显示了在 <code>NSDocument</code> 的子类中定义的操作方法。document 对象使用此方法捕获主显示并创建窗口以填充该屏幕空间。窗口本身包含用于绘制内容的单个视图（类型为 <code>MyFullScreenView</code>）。（在您自己的代码中，您将用自己的自定义图形视图替换该视图。）对窗口的引用存储在 <code>myScreenWindow</code> 类实例变量中，该变量在首次实例化该类时初始化为 <code>nil</code>。</p>
 <p>清单 6-5：创建 Cocoa 全屏上下文</p>
-<pre><code class="language-objective-c">- (IBAction)goFullScreen:(id)sender
+<pre><code class="language-objectivec">- (IBAction)goFullScreen:(id)sender
 {
     // Get the screen information.
     NSScreen* mainScreen = [NSScreen mainScreen];

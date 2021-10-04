@@ -145,7 +145,7 @@
 <p>与 Quartz 一样，Cocoa 绘图使用画家（painter）的模型进行成像。在画家的模型中，每个连续的绘画操作都会将一层“油漆”应用于输出“画布”。随着添加新的油漆层，以前的油漆元素可能会被新油漆遮盖（部分或全部）或修改。该模型使您可以从少量强大的原语中构建极其复杂的图像。</p>
 <p>图 1-1 显示了画家模型的工作方式，并演示了渲染内容时绘制顺序的重要性。在第一个结果中，首先绘制左侧的线框形状，然后绘制实心形状，使除线框形状的周长以外的所有面都模糊。以相反的顺序绘制形状时，结果会大不相同。由于线框形状中有更多的孔，因此实心部分会通过这些孔显示出来。</p>
 <p>图 1-1：画家模型</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-1.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/1-1.png" alt="" /></p>
 <h2><a id="%E7%BB%98%E7%94%BB%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘画环境</h2>
 <p>绘图环境包含数字画布和图形设置，这些设置决定了内容的最终外观。画布确定绘制内容的位置，而图形设置控制绘制的各个方面，包括内容的大小，颜色，质量和方向。</p>
 <h3><a id="%E5%9B%BE%E5%BD%A2%E4%B8%8A%E4%B8%8B%E6%96%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>图形上下文</h3>
@@ -222,7 +222,7 @@
 <li>贝塞尔曲线（Bezier cubic curves）</li>
 </ul>
 <p>图 1-2：图形基元示例</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-2.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/1-2.png" alt="" /></p>
 <p>贝塞尔曲线路径对象存储基于矢量的路径信息，使其紧凑且独立于分辨率。您可以使用任何简单形状创建路径，也可以将基本形状组合在一起以创建更复杂的路径。要渲染这些形状，请设置路径的图形属性，然后描边或填充它以“绘制”视图的路径。</p>
 <blockquote>
 <p>注意：您还可以使用 <code>NSBezierPath</code> 方法将字形轮廓添加到 Bezier 路径对象。但是，对于大多数文本处理，您应该使用在 Text 中引入的 Cocoa 文本系统。</p>
@@ -232,7 +232,7 @@
 <p><code>NSImage</code> 类及其关联的图像表示形式类（<code>NSImageRep</code> 和子类）提供了对图像的支持。<code>NSImage</code> 类包含用于创建和管理与图像有关的数据的基本接口。图像表示类提供了 <code>NSImage</code> 用于处理基础图像数据的基础结构。</p>
 <p>可以从现有文件加载图像，也可以动态创建图像。图 1-3 显示了从文件加载的一些位图图像。</p>
 <p>图 1-3：位图图像示例</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-3.jpg" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/1-3.jpg" alt="" /></p>
 <p>Cocoa 直接或间接支持许多不同的图像格式。Cocoa 支持的某些格式直接包括以下内容：</p>
 <ul>
 <li>位图图像，包括以下图像格式：
@@ -257,7 +257,7 @@
 <h3><a id="%E6%96%87%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>文本</h3>
 <p>Cocoa 提供了一个先进的文本系统，可以绘制从简单字符串到格式化文本流的所有内容。图 1-4 显示了可以创建的风格化文本的一些基本示例。</p>
 <p>图 1-4：文本示例</p>
-<p><img src="https://gitee.com/sylvia-grass/Images/raw/master/MWeb/Cocoa_Drawing_Guide/1-4.png" alt="" /></p>
+<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/1-4.png" alt="" /></p>
 <p>因为使用 Cocoa 文本系统进行文本布局和渲染是一个非常复杂的过程，所以它在其他地方已经有很好的文档说明，因此在本文档中不会进行详细介绍。有关图形文字的基本信息以及指向更高级的文本相关文档的链接，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Text/Text.html#//apple_ref/doc/uid/TP40003290-CH209-BCIEEIGC">文本</a>。</p>
 <h2><a id="views-and-drawing" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Views and Drawing</h2>
 <p>几乎所有 Cocoa 图中的绘制都是在内部视图中完成的。视图是代表窗口可视部分的对象。每个视图对象负责显示一些可视内容并响应其可见区域中的用户事件。一个视图也可能负责一个或多个子视图。</p>
@@ -268,7 +268,7 @@
 </blockquote>
 <p>默认情况下，仅在响应用户操作时才发生窗口更新。这意味着仅当有关视图的某些更改时，才调用视图的 <code>drawRect:</code> 方法。 例如，当滚动动作导致视图的先前隐藏部分暴露时，Cocoa 调用该方法。Cocoa 也调用它来响应您自己的代码的请求。如果自定义视图显示的信息发生更改，则必须明确告知 Cocoa 您希望更新视图的适当部分。为此，您可以使视图的可见区域的一部分无效。Cocoa 将无效区域收集在一起，并生成适当的 <code>drawRect:</code> 消息以重绘内容。</p>
 <p>尽管有许多绘制方法，但是基本的 <code>drawRect:</code> 方法具有以下结构：</p>
-<pre><code class="language-objective-c">- (void)drawRect:(NSRect)rect
+<pre><code class="language-objectivec">- (void)drawRect:(NSRect)rect
 {
     // Draw your content
 }
