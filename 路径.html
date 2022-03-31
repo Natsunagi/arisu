@@ -9,7 +9,7 @@
     Cocoa 绘画指导 第八章 - Arisu
     
     </title>
-    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+    <link rel="shortcut icon" href="https://ushio.oss-cn-shanghai.aliyuncs.com/Arisu/Arisu_Icon.png" type="image/png" />
 
     
     
@@ -86,7 +86,7 @@
                             <figure class="media-left">
                               <p class="image is-48x48">
                                 
-                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                  <img class="is-rounded" src="https://ushio.oss-cn-shanghai.aliyuncs.com/Arisu/Arisu_Icon.png">
                                 
                               </p>
                             </figure>
@@ -167,7 +167,7 @@
 </table>
 <p>将新形状添加到路径时，<code>NSBezierPath</code> 会将其分解为一个或多个组件路径元素，以进行存储。例如，调用 <code>moveToPoint:</code> 或 <code>lineToPoint:</code> 分别创建一个 Move To 元素或 Line To 元素。对于更复杂的形状（例如矩形和椭圆形），可能会创建多个直线或曲线元素。 图 8-1 显示了两个形状以及生成的路径元素。对于曲线段，该图还显示了定义曲线的控制点。</p>
 <p>图 8-1：复杂路径的路径元素</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-1.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-1.png" alt="" /></p>
 <p>清单 8-1 显示了创建图 8-1 所示路径的代码。</p>
 <p>清单 8-1：创建一个复杂路径</p>
 <pre><code class="language-objectivec">NSBezierPath* aPath = [NSBezierPath bezierPath];
@@ -225,7 +225,7 @@ NSBezierPath* thePath = [NSBezierPath bezierPath];
 <h4><a id="%E7%BA%BF%E5%B8%BD%E6%A0%B7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线帽样式</h4>
 <p>当前的线帽样式确定路径段的开放端点的外观。Cocoa 支持图 8-2 中所示的线帽样式。</p>
 <p>图 8-2：线帽样式</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-2.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-2.png" alt="" /></p>
 <p>要设置 <code>NSBezierPath</code> 对象的线帽样式，请使用 <code>setLineCapStyle:</code> 方法。默认的线帽样式设置为 <code>NSButtLineCapStyle</code>。要更改默认的线帽样式，请使用 <code>setDefaultLineCapStyle:</code> 方法。清单 8-3 演示了这两种方法：</p>
 <p>清单8-3：设置路径的线帽样式</p>
 <pre><code class="language-objectivec">// Set the default line cap style
@@ -241,7 +241,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 <h4><a id="%E7%BA%BF%E8%BF%9E%E6%8E%A5%E6%A0%B7%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>线连接样式</h4>
 <p>当前的线连接样式确定路径中的连接线如何在顶点处连接。Cocoa 支持图 8-3 所示的线连接样式。</p>
 <p>图 8-3：线连接样式</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-3.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-3.png" alt="" /></p>
 <p>要为 <code>NSBezierPath</code> 对象设置线连接样式，请使用 <code>setLineJoinStyle:</code> 方法。默认的线连接样式设置为 <code>NSMiterLineJoinStyle</code>。若要更改默认的线连接样式，请使用 <code>setDefaultLineJoinStyle:</code> 方法。清单 8-4 演示了这两种方法：</p>
 <p>清单 8-4：设置路径的线连接样式</p>
 <pre><code class="language-objectivec">// Set the default line join style
@@ -259,7 +259,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 <p>破折号样式确定用于描画路径的图案。默认情况下，描边路径显示为实线。使用虚线模式，可以指定实色和透明色样的交替组。设置虚线样式时，可以指定每个连续的实心或透明色板的宽度（以磅为单位）。然后，您指定的宽度将在路径的整个长度上重复。</p>
 <p>图 8-4 显示了一些样例虚线图案以及用于创建每个图案的值。</p>
 <p>图 8-4：虚线图样</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-4.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-4.png" alt="" /></p>
 <p><code>NSBezierPath</code> 类不支持默认线破折号样式的概念。如果要使用虚线样式，则必须使用 <code>setLineDash:count:phase:</code> 方法将其明确地应用于路径，如清单 8-5 所示，该方法将呈现上图中的最后一个图案。</p>
 <p>清单 8-5：在路径中添加破折号样式</p>
 <pre><code class="language-objectivec">void AddDashStyleToPath(NSBezierPath* thePath)
@@ -282,7 +282,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 <p>当您想快速渲染大量曲线并且不关心精度时，可以调整线的平坦度。例如，当精度不那么重要时，您可以在实时调整大小或滚动操作期间增加此值。无论如何，您都应该始终衡量性能，以确保这样的修改实际上可以节省时间。</p>
 <p>图 8-5 显示了更改默认平面度如何影响曲面。左图显示了一组平坦度值为 0.6（默认值）的曲面。右图显示了将平面度值设置为 20 时渲染的相同曲面。每个曲面的曲率都消失了，现在看起来像是一组连接的线段。</p>
 <p>图 8-5：曲线上的平坦度影响</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-5.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-5.png" alt="" /></p>
 <p>要设置特定 <code>NSBezierPath</code> 对象的平坦度，请使用 <code>setFlatness:</code> 方法。要设置默认的平坦度值，请使用 <code>setDefaultFlatness:</code>，如清单 8-6 所示：</p>
 <p>清单 8-6：设置路径的平坦度</p>
 <pre><code class="language-objectivec">[- (void) drawRect:(NSRect)rect
@@ -306,7 +306,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 </blockquote>
 <p>图 8-6 显示了一个不同的斜接限制如何影响相同路径的示例。该路径由通过斜接连接的几条 10 点宽的线组成。在左图中，斜接限制设置为 5。由于斜接长度超过了斜接限制，因此将线连接更改为斜角连接。如右图所示，通过将斜接限制增加到 16，可以恢复斜接连接，但延伸得远远超出两条线相交的点。</p>
 <p>图 8-6：斜接限制效果</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-6.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-6.png" alt="" /></p>
 <p>要设置特定 <code>NSBezierPath</code> 对象的斜接限制，请使用 <code>setMiterLimit:</code> 方法。要为新创建的 <code>NSBezierPath</code> 对象设置默认斜接限制，请使用 <code>setDefaultMiterLimit:</code>。 清单 8-7 演示了这两种方法：</p>
 <p>清单 8-7：设置路径的斜接限制</p>
 <pre><code class="language-objectivec">// Increase the default limit
@@ -345,7 +345,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 <p>填充操作适用于开放和封闭子路径。闭合子路径是一系列以“Close Path”元素结尾的图形调用。打开的子路径以“Move To”元素结尾。填充部分子路径时，<code>NSBezierPath</code> 会通过从子路径的第一点到最后一点创建一条隐式（非渲染）线，自动为您关闭它。</p>
 <p>图 8-7：显示了如何将缠绕规则应用于特定路径。子图 a 显示使用非零规则渲染的路径，子图 b 显示使用偶数奇数规则渲染的路径。子图 c 和 d 添加了方向标记，并且隐藏了闭合图形的路径线，以帮助您了解如何将规则应用于路径的两个区域。</p>
 <p>图 8-7：将缠绕规则应用于路径</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-7.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-7.png" alt="" /></p>
 <p>要为 <code>NSBezierPath</code> 对象设置缠绕规则，请使用 <code>setWindingRule:</code> 方法。默认绕线规则为 <code>NSNonZeroWindingRule</code>。要更改所有 <code>NSBezierPath</code> 对象的默认绕线规则，请使用 <code>setDefaultWindingRule:</code> 方法。</p>
 <h2><a id="%E6%93%8D%E7%BA%B5%E5%87%A0%E4%BD%95%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>操纵几何类型</h2>
 <p>Foundation 框架包含许多用于操纵几何值并使用这些值执行各种计算的功能。除了基本的相等性检查之外，您还可以执行更复杂的操作，例如矩形的并集和交集或在矩形边界中包含点。</p>
@@ -481,7 +481,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 </ul>
 <p>这些方法创建的矩形的角根据指定的半径值弯曲。半径描述了要在矩形的每个角使用的椭圆的宽度和高度。图 8-8 显示了如何使用此内接的椭圆形定义矩形的角线段的路径。</p>
 <p>图8-8：刻出圆角矩形的角</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-8.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-8.png" alt="" /></p>
 <p>清单 8-11 显示了一个代码片段，该代码片段创建并绘制了带有圆角矩形的路径。</p>
 <p>清单 8-11：绘制一个圆角矩形</p>
 <pre><code class="language-objectivec">void DrawRoundedRect(NSRect rect, CGFloat x, CGFloat y)
@@ -518,7 +518,7 @@ NSBezierPath* aPath = [NSBezierPath bezierPath];
 <p><code>appendBezierPathWithArcFromPoint:toPoint:radius:</code> 方法通过以当前点和传递给该方法的两个点所成的角度刻入弧来创建弧。以这种方式刻出一个圆会产生不与用于指定圆的任何点相交的弧。这也可能导致从当前点到弧的起点之间形成多余的线。</p>
 <p>图 8-9 显示了三个不同的弧以及用于创建它们的控制点。对于使用 <code>appendBezierPathWithArcFromPoint:toPoint:radius:</code> 创建的两个弧，必须在调用方法之前设置当前点。在两个示例中，该点都设置为（30，30）。由于第二个圆弧的半径较短，并且圆弧的起点与当前点不同，因此从当前点到起点绘制一条线。</p>
 <p>图 8-9：创建弧</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-9.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-9.png" alt="" /></p>
 <p>清单 8-12 显示了用于创建图 8-9 中每个圆弧的代码段。（尽管该图单独显示了弧，但是执行以下代码将使弧彼此重叠。）</p>
 <p>清单 8-12：创建三个弧</p>
 <pre><code class="language-objectivec">NSBezierPath*   arcPath1 = [NSBezierPath bezierPath];
@@ -545,7 +545,7 @@ NSBezierPath*   arcPath2 = [NSBezierPath bezierPath];
 <h3><a id="%E6%B7%BB%E5%8A%A0%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加贝塞尔曲线</h3>
 <p>要绘制贝塞尔曲线，必须使用 <code>NSBezierPath</code> 的 <code>curveToPoint:controlPoint1:controlPoint2:</code> 方法。此方法支持创建从当前点到您在调用该方法时指定的目标点的三次曲线。<code>controlPoint1</code> 参数确定从当前点开始的曲率，而 <code>controlPoint2</code> 参数确定目标点的曲率，如图 8-10 所示。</p>
 <p>图 8-10：三次贝塞尔曲线</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-10.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-10.png" alt="" /></p>
 <h3><a id="%E6%B7%BB%E5%8A%A0%E6%96%87%E5%AD%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加文字</h3>
 <p>由于 <code>NSBezierPath</code> 仅支持基于路径的内容，因此您不能将文本字符直接添加到路径。相反，您必须添加字形。字形是特定字体中字符（或部分字符）的视觉表示。对于轮廓字体的字形，此视觉表示形式存储为一组数学路径，可以添加到 <code>NSBezierPath</code> 对象中。</p>
 <blockquote>
@@ -567,7 +567,7 @@ NSBezierPath*   arcPath2 = [NSBezierPath bezierPath];
 <p>有两种方法可以绘制路径内容：可以描画路径或填充路径。抚摸路径会使用当前的笔触颜色和路径属性来绘制路径形状的轮廓。填充路径会使用当前的填充颜色和缠绕规则渲染路径所涵盖的区域。</p>
 <p>图 8-11 显示了与<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-BBCHIBJC">图 8-1</a> 相同的路径，但填充了内容并应用了不同的笔触宽度。</p>
 <p>图 8-11：绘制和填充路径</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/8-11.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/8-11.png" alt="" /></p>
 <h2><a id="%E7%BB%98%E5%88%B6%E7%9F%A9%E5%BD%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘制矩形</h2>
 <p>Cocoa 提供了几种使用默认属性立即将矩形绘制到当前上下文的函数。这些函数使用 Quartz 基元快速绘制一个或多个矩形，但其方式可能不如使用 <code>NSBezierPath</code> 那样精确。例如，这些例程不会将当前的联接样式应用于框架矩形的角。</p>
 <p>表 8-4 列出了一些更常用的用于绘制矩形的函数及其行为。您可以在速度比精度更重要的地方使用这些功能。每个函数的语法均以简写形式提供，其中省略了参数类型以演示调用约定。有关可用功能及其完整语法的完整列表，请参见 <a href="https://developer.apple.com/documentation/appkit/functions">Application Kit 函数参考</a>。</p>

@@ -9,7 +9,7 @@
     Cocoa 绘画指导 第五章 - Arisu
     
     </title>
-    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+    <link rel="shortcut icon" href="https://ushio.oss-cn-shanghai.aliyuncs.com/Arisu/Arisu_Icon.png" type="image/png" />
 
     
     
@@ -86,7 +86,7 @@
                             <figure class="media-left">
                               <p class="image is-48x48">
                                 
-                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                  <img class="is-rounded" src="https://ushio.oss-cn-shanghai.aliyuncs.com/Arisu/Arisu_Icon.png">
                                 
                               </p>
                             </figure>
@@ -333,7 +333,7 @@
 <p>图像对象有两种可能的方向：标准方向和翻转方向。创建新的空 <code>NSImage</code> 对象时，可以根据要绘制图像数据的方式设置方向。默认情况下，图像使用标准的笛卡尔坐标（非翻转）坐标系，但是您可以通过在绘制之前调用 <code>NSImage</code> 的 <code>setFlipped:</code> 方法来强制它们使用翻转的坐标系。但是，在将焦点锁定在图像上并开始绘图之前，必须始终设置图像方向。在 <code>lockFocus</code> 调用之后更改坐标系的方向无效。此外，在再次解除焦点锁定之后调用<code>setFlipped:</code> 方法可能不会获得理想的结果，应该避免。</p>
 <p>在视图中绘制图像时，可以将图像视为只是其中包含一些数据的矩形。无论其内部坐标系的方向如何，您都始终相对于当前视图的坐标系放置图像。图 5-1 以非翻转视图显示了两个图像。用于绘制每幅图像的代码使用图中所示的坐标点，这些坐标点位于视图的（未翻转）坐标系中。但是，由于第一张图片内部使用了翻转的坐标系，因此其内容上下颠倒。</p>
 <p>图 5-1：未翻转视图中的图像方向</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/5-1.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/5-1.png" alt="" /></p>
 <h3><a id="%E7%BB%98%E5%9B%BE%E4%B8%8E%E5%90%88%E6%88%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>绘图与合成</h3>
 <p><code>NSImage</code> 类提供了不同的方法组，以方便将图像绘制到当前上下文。通常可以将两种主要方法分类为“绘图”方法与“合成”方法。<code>NSImage</code> 有三种“绘制”方法：</p>
 <ul>
@@ -734,10 +734,10 @@ NSImage* pdfImage = [[NSImage alloc] initWithSize:viewBounds.size];
 <p>在高分辨率屏幕上清晰地绘制多部分图像可能非常具有挑战性。如果您不小心在整数边界上正确对齐图像，则生成的纹理可能包含像素裂缝或其他视觉伪像。AppKit 函数考虑了在任何情况下正确绘制多部分图像所需的所有因素，包括使用分辨率独立比例因子为 1.0 以外的情况。</p>
 <p>图 5-2 显示了如何为水平可调整大小的控件组合三部分的图像。两个端盖是固定尺寸的图像，可为背景边缘提供所需的装饰。然后，中心填充部分会适当调整大小，以适合您传递到 <code>NSDrawThreePartImage</code> 函数中的边界矩形。（如果希望控件在垂直方向上可调整大小，则可以将这些图像垂直堆叠而不是水平堆叠。）使用此功能绘制背景后，可以根据需要在背景上分层放置其他内容。</p>
 <p>图 5-2：绘制三部分图像</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/5-2.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/5-2.png" alt="" /></p>
 <p>图 5-3 显示了如何为可垂直和水平调整大小的控件组合九个部分的图像。在这种情况下，角块的大小保持不变，但是剩余的五个填充图像的大小各不相同，以适合当前的边界矩形。</p>
 <p>图 5-3：绘制九部分图像</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/5-3.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/5-3.png" alt="" /></p>
 <p>有关这些功能的更多信息，请参见 <a href="https://developer.apple.com/documentation/appkit/functions">Application Kit 功能参考</a>中的相关描述。</p>
 <h3><a id="%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAopengl%E7%BA%B9%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建一个 OpenGL 纹理</h3>
 <p>在 OpenGL 中，纹理是绘制对象表面的一种方法。对于复杂或逼真的表面，应用纹理可能比使用原始形状渲染相同的内容更容易。Cocoa 中的几乎所有视图或图像都可以用来创建 OpenGL 纹理。从视图或图像中，创建一个位图图像表示对象（如捕获视图或图像的内容中所述），然后使用该对象创建纹理。</p>

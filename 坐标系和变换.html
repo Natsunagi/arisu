@@ -9,7 +9,7 @@
     Cocoa 绘画指导 第三章 - Arisu
     
     </title>
-    <link rel="shortcut icon" href="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png" type="image/png" />
+    <link rel="shortcut icon" href="https://ushio.oss-cn-shanghai.aliyuncs.com/Arisu/Arisu_Icon.png" type="image/png" />
 
     
     
@@ -86,7 +86,7 @@
                             <figure class="media-left">
                               <p class="image is-48x48">
                                 
-                                  <img class="is-rounded" src="https://gitee.com/saiha/images/raw/main/Arisu/Arisu_Icon.png">
+                                  <img class="is-rounded" src="https://ushio.oss-cn-shanghai.aliyuncs.com/Arisu/Arisu_Icon.png">
                                 
                               </p>
                             </figure>
@@ -135,7 +135,7 @@
 </blockquote>
 <p>图 3-1 显示了屏幕，窗口和视图的坐标系原点。在每种情况下，每个点左下角的值都是在其父坐标系中测量的坐标。（屏幕没有父坐标系，因此两个坐标值均为0）。窗口的父窗口是屏幕，视图的父窗口是窗口。</p>
 <p>图 3-1：屏幕上的屏幕，窗口和视图坐标系</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-1.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-1.png" alt="" /></p>
 <p>从屏幕坐标到本地窗口或视图坐标的映射在 Cocoa 图形上下文对象的当前转换矩阵（CTM）中进行。Cocoa 自动将 CTM 应用于您进行的任何图形调用，因此您无需自己转换坐标值。但是，您可以修改 CTM 来更改视图内坐标轴的位置和方向。（有关更多信息，请参见<a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Transforms/Transforms.html#//apple_ref/doc/uid/TP40003290-CH204-BCIGEJHE">转换操作</a>。）</p>
 <h3><a id="%E7%82%B9%E6%95%B0%E4%B8%8E%E5%83%8F%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>点数与像素</h3>
 <p>OS X 中的绘图系统基于 PDF 绘图模型，这是基于矢量的绘图模型。与基于栅格的绘图模型（其中绘图命令对单个像素进行操作）相比，OS X 中的绘图命令是使用固定比例的绘图空间（称为用户坐标空间）指定的。然后，系统将该绘图空间中的坐标映射到相应目标设备（例如监视器或打印机）的实际像素上。该模型的优势在于，使用矢量命令绘制的图形可以很好地缩放到任何分辨率的设备。随着设备分辨率的提高，系统能够使用任何额外的像素来使图形看起来更清晰。</p>
@@ -169,7 +169,7 @@
 <h4><a id="%E5%B9%B3%E7%A7%BB%EF%BC%88translation%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>平移（Translation）</h4>
 <p>平移涉及将当前坐标系的原点水平和垂直移动一定量。平移可能是最常用的，因为它可以用于在当前视图中定位图形元素。例如，如果创建起点始终为（0，0）的路径，则可以使用平移变换在视图周围移动该路径，如图 3-2 所示。</p>
 <p>图 3-2：平移内容</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-2.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-2.png" alt="" /></p>
 <p>要平移内容，请使用 <code>NSAffineTransform</code> 的 <code>translateXBy:yBy:</code> 方法。下面的示例在视图的坐标空间中将当前上下文的原点从（0，0）更改为（50，20）：</p>
 <pre><code class="language-objectivec">NSAffineTransform* xform = [NSAffineTransform transform];
 [xform translateXBy:50.0 yBy:20.0];
@@ -179,7 +179,7 @@
 <p>通过缩放，您可以分别沿 x 和 y 轴拉伸或缩小用户空间的单位。通常，用户空间中的一个单位等于 1/72 英寸。如果将任一轴的比例乘以 2，则该轴上的一个单位等于 2/72 英寸。这会使比例因子大于 1 的内容放大，而比例因子小于 1 的内容缩小。</p>
 <p>图 3-3 显示了缩放对内容的影响。在该图中，已经应用了平移变换，以使原点位于原始用户空间坐标系中的（1，1）。应用缩放变换后，您可以看到修改后的坐标系以及它如何映射到原始坐标系。</p>
 <p>图 3-3：缩放内容</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-3.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-3.png" alt="" /></p>
 <p>尽管通常可以通过对水平轴和垂直轴应用相同的比例因子来按比例缩放，但是可以为每个轴分配不同的比例因子以创建拉伸或扭曲的图像。若要按比例缩放内容，请使用 <code>NSAffineTransform</code> 的 <code>scaleBy:</code> 方法。若要沿 X 和 Y 轴不同地缩放内容，请使用 <code>scaleXBy:yBy:</code> 方法。 以下示例演示了图 3-3 中所示的比例因子：</p>
 <pre><code class="language-objectivec">NSAffineTransform* xform = [NSAffineTransform transform];
 [xform scaleXBy:2.0 yBy:1.5];
@@ -191,7 +191,7 @@
 <h4><a id="%E6%97%8B%E8%BD%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>旋转</h4>
 <p>旋转通过绕当前原点旋转坐标轴来更改其坐标轴方向，如图 3-4 所示。您可以通过一整圈运动来更改方向。</p>
 <p>图 3-4：旋转内容</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-4.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-4.png" alt="" /></p>
 <p>若要旋转内容，请使用 <code>NSAffineTransform</code> 的 <code>rotationByDegrees:</code> 或 <code>rotationByRadians:</code> 方法。正旋转值围绕当前原点逆时针旋转。例如，要将当前坐标系绕当前原点旋转 45 度（如图3-4所示），可以使用以下代码：</p>
 <pre><code class="language-objectivec">NSAffineTransform* xform = [NSAffineTransform transform];
 [xform rotateByDegrees:45];
@@ -204,16 +204,16 @@
 <p>变换的实现使用矩阵乘法将输入的坐标点映射到修改的坐标空间。尽管“变换数学”涵盖了矩阵的数学，但是要注意的重要因素是矩阵乘法并不总是可交换的运算，即 b 与 a 的乘积并不总是等于 a 与 b 的乘积。因此，应用转换的顺序通常对于获得所需结果至关重要。</p>
 <p>图 3-5 显示了以两种不同方式应用于路径的两个转换。在该图的顶部，内容沿 X 轴平移 60 个点，然后旋转 45 度。在该图的底部，通过平移之前的旋转来反转完全相同的变换。最终结果是两个不同的坐标系。</p>
 <p>图 3-5：转换顺序</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-5.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-5.png" alt="" /></p>
 <p>上图演示了转换顺序的关键方面。每个后续变换都将应用到由先前变换创建的坐标系。平移然后旋转时，旋转围绕平移坐标系的原点开始。同样，旋转然后平移时，平移会沿着旋转的坐标系的轴发生。</p>
 <p>对于相同类型的转换，转换的顺序无关紧要。例如，连续进行三个旋转会创建一个坐标系，该坐标系的最终旋转等于三个旋转角度的最终总和。在其他情况下（例如按 1.0 缩放），变换的顺序无关紧要，但通常应假定顺序很重要。</p>
 <h3><a id="%E8%BD%AC%E6%8D%A2%E8%BF%90%E7%AE%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换运算</h3>
 <p>所有变换操作都有助于建立数学矩阵，然后图形系统将其用于计算单个点的屏幕位置。 <code>NSAffineTransform</code> 类使用 3 x 3 矩阵存储转换值。图 3-6 显示了此矩阵，并确定了用于应用变换的关键因素。m11，m12，m21 和 m22 值控制缩放比例和旋转因子，而 tx 和 ty 控制平移。</p>
 <p>图 3-6：基本转换矩阵</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-6.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-6.png" alt="" /></p>
 <p>使用线性代数，可以将坐标向量乘以变换矩阵，以获得位置等于新坐标系中原始点的新坐标向量。图 3-7 显示了矩阵乘法过程和所得的线性方程。</p>
 <p>图 3-7：坐标系的数学变换</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-7.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-7.png" alt="" /></p>
 <p>如果您已经熟悉转换结构和数学，则可以使用 <code>NSAffineTransform</code> 的 <code>setTransformStruct:</code> 方法直接设置转换矩阵的值。此方法用您指定的新值替换六个键转换值。一次替换所有值比一次应用单个转换快得多。但是，它确实需要您预先计算矩阵值。</p>
 <p>有关矩阵乘法背后的数学运算的更多信息，请参见 <a href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP30001066">Quartz 2D 编程指南</a>。</p>
 <h2><a id="%E5%9C%A8%E4%BB%A3%E7%A0%81%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%BD%AC%E6%8D%A2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在代码中使用转换</h2>
@@ -273,7 +273,7 @@
 <h2><a id="%E7%BF%BB%E8%BD%AC%E5%9D%90%E6%A0%87%E7%B3%BB" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>翻转坐标系</h2>
 <p>在 Cocoa 和 Quartz 中经常出现的一个主题是使用翻转坐标系进行绘图。默认情况下，Cocoa 使用标准的笛卡尔坐标系，其中正值向上延伸到原点的右侧。但是，可以“翻转”坐标系，以使正值向下延伸到原点的右侧，并且原点本身位于当前视图或窗口的左上角，如图 3-8 所示。</p>
 <p>图 3-8：正常和翻转的坐标轴</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-8.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-8.png" alt="" /></p>
 <p>在某些情况下，翻转坐标系可使绘图更容易。特别是文本系统使用翻转的坐标来简化文本行的放置，在大多数书写系统中，文本行从上到下流动。尽管鼓励您尽可能使用标准的直角坐标（非翻转）坐标系，但是可以使用翻转坐标（如果这样做更容易在代码中支持）。</p>
 <p>将视图配置为使用翻转的坐标只会影响您直接在该视图中绘制的内容。翻转坐标系不会被子视图继承。但是，您在视图中绘制的内容必须根据视图的当前方向正确定向。不考虑当前视图方向可能会导致内容放置不正确或内容颠倒。</p>
 <p>以下各节提供有关 Cocoa 支持翻转坐标的信息，以及使用翻转坐标系统时可能遇到的一些问题。在可能的情况下，这些部分还提供有关如何解决因坐标系翻转而产生的问题的指南。</p>
@@ -298,7 +298,7 @@
 <p>尽管 <code>NSImage</code> 的 <code>CompositeToPoint</code> 方法为您提供了一种无需翻转转换即可正确定向图像的方法，但不建议您使用它们。有一些副作用使使用这些方法绘制更加复杂。  <code>CompositeToPoint</code> 方法通过删除应用于 CTM 的所有自定义缩放比例或旋转因子来工作。这些方法还消除了任何翻转变换所应用的任何缩放比例（但不消除平移），无论该变换是由您还是由 Cocoa 提供的。（这些方法也不会从分辨率独立性上移除有效的比例因子。）但是，将保留您应用于 CTM 的所有自定义转换因子。尽管此行为是为了确保图像不会被视图的边界矩形剪切，但是如果您不补偿翻转变换的平移因子，则可能仍会发生剪切。</p>
 <p>图 3-9 显示了使用 <code>CompositeToPoint:fromRect:operation:</code> 方法在未翻转视图中然后在翻转视图中渲染图像时发生的情况。在未翻转的视图中，图像在视图中的指定点按预期渲染。在翻转的视图中，删除了 y 轴的比例因子，但没有移除平移因子，这会导致图像被裁剪，因为它部分出现在视图的可见范围之外。为了进行补偿，您需要通过从视图高度中减去原始值来调整图像的 y 坐标，以获得调整后的位置。</p>
 <p>图 3-9：将图像合成为翻转视图</p>
-<p><img src="https://gitee.com/saiha/images/raw/main/MWeb/Cocoa_Drawing_Guide/3-9.png" alt="" /></p>
+<p><img src="https://ushio.oss-cn-shanghai.aliyuncs.com/MWeb/Cocoa_Drawing_Guide/3-9.png" alt="" /></p>
 <p>与在翻转坐标系中绘制图像有关的问题本质上与您首先创建这些图像的方式无关。图像内部使用单独的坐标系来定向图像数据。无论是从现有文件加载图像数据，还是通过锁定焦点来创建图像，一旦加载了图像数据或解锁了焦点，便会设置图像数据。此时，您必须选择适当的绘制方法或在绘制之前自行调整坐标系，以纠正翻转的方向问题。</p>
 <blockquote>
 <p>重要说明：尽管 <code>NSImage</code> 的 <code>setFlipped:</code> 方法似乎是在事后更改图像方向的好方法，但实际情况并非如此。<code>setFlipped:</code> 方法可让您在发出 <code>lockFocus</code> 调用并绘制到图像之前指定图像数据的方向。有时在绘制过程中使用该方法校正翻转的坐标系似乎可行，但是这不是翻转图像的可靠方法，因此强烈建议不要使用这种方法。</p>
